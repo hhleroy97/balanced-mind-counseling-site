@@ -28,18 +28,16 @@ export default async function ResourcesPage({
   ]);
 
   return (
-    <section className="mx-auto w-full max-w-7xl space-y-10 px-6 py-16 lg:px-8">
-      <div className="space-y-4">
-        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
+    <section className="mx-auto w-full max-w-7xl space-y-8 px-6 pb-14 pt-24 lg:px-8 lg:pb-16 lg:pt-24">
+      <div className="space-y-2">
+        <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-primary">
           Resources
         </p>
-        <h1 className="max-w-3xl font-serif text-5xl tracking-tight text-foreground">
-          Practical worksheets and supportive tools clients can use between
-          sessions.
+        <h1 className="max-w-3xl font-serif text-2xl tracking-tight text-foreground sm:text-3xl">
+          Practical worksheets and supportive tools for between sessions.
         </h1>
-        <p className="max-w-2xl text-lg leading-8 text-muted-foreground">
-          Explore free downloads for grounding, CBT reframing, DBT skills, and
-          mental health reflection.
+        <p className="max-w-2xl text-sm leading-6 text-muted-foreground">
+          Free downloads for grounding, CBT reframing, DBT skills, and reflection.
         </p>
       </div>
 

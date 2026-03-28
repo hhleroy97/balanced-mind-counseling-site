@@ -18,14 +18,14 @@ export function ResourceCard({ resource }: { resource: Resource }) {
           width={1200}
           height={750}
           sizes="(min-width: 1280px) 30vw, (min-width: 1024px) 45vw, 100vw"
-          className="h-56 w-full bg-muted/40 object-cover object-left-bottom"
+          className="h-44 w-full bg-muted/40 object-cover object-left-bottom"
         />
       ) : (
-        <div className="flex h-56 w-full items-center justify-center bg-[linear-gradient(135deg,_rgba(227,168,144,0.18),_rgba(142,173,150,0.18))]">
+        <div className="flex h-44 w-full items-center justify-center bg-[linear-gradient(135deg,_rgba(227,168,144,0.18),_rgba(142,173,150,0.18))]">
           <FileText className="size-10 text-primary" />
         </div>
       )}
-      <CardHeader className="space-y-4">
+      <CardHeader className="space-y-3 p-5">
         <div className="flex items-center justify-between gap-3">
           <Badge>{resource.category}</Badge>
           {resource.featured ? (
@@ -34,11 +34,11 @@ export function ResourceCard({ resource }: { resource: Resource }) {
             </span>
           ) : null}
         </div>
-        <div className="space-y-3">
+        <div className="space-y-2">
           <p className="text-sm text-muted-foreground">
             {formatDate(resource.publishedAt)}
           </p>
-          <CardTitle className="text-3xl">
+          <CardTitle className="line-clamp-2 text-2xl leading-tight">
             <Link
               href={`/resources/${resource.slug.current}`}
               className="hover:text-primary"
@@ -48,11 +48,11 @@ export function ResourceCard({ resource }: { resource: Resource }) {
           </CardTitle>
         </div>
       </CardHeader>
-      <CardContent className="flex flex-1 flex-col justify-between space-y-5">
-        <p className="line-clamp-3 leading-7 text-muted-foreground">
+      <CardContent className="flex flex-1 flex-col justify-between space-y-4 p-5 pt-0">
+        <p className="line-clamp-2 leading-6 text-muted-foreground">
           {resource.description}
         </p>
-        <div className="flex items-center gap-4">
+        <div className="flex flex-wrap items-center gap-3">
           <Link
             href={`/resources/${resource.slug.current}`}
             className="text-sm font-semibold text-primary underline-offset-4 hover:underline"

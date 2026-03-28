@@ -21,6 +21,8 @@
 }
 
 :root {
+  /* Fixed header (py-4 + logo h-12–h-14); used for one-fold sections on the homepage */
+  --site-header-height: 5.5rem;
   --background: #fcfaf7;
   --foreground: #1f2933;
   --card: #ffffff;
@@ -58,4 +60,30 @@
   ::selection {
     background: color-mix(in srgb, var(--primary) 24%, white);
   }
+}
+
+/* One viewport “page” per section below the fixed header (homepage) */
+@layer utilities {
+  .site-fold-section {
+    box-sizing: border-box;
+    min-height: 100svh;
+    padding-top: var(--site-header-height);
+    padding-bottom: 1.5rem;
+    scroll-margin-top: var(--site-header-height);
+    scroll-snap-align: start;
+    scroll-snap-stop: normal;
+  }
+
+  /* Usable content height inside a fold (below header + section bottom padding) */
+  .site-fold-inner {
+    min-height: calc(100svh - var(--site-header-height) - 1.5rem);
+  }
+
+  .scroll-mt-header {
+    scroll-margin-top: var(--site-header-height);
+  }
+}
+
+html.home-fold-scroll {
+  scroll-snap-type: y proximity;
 }

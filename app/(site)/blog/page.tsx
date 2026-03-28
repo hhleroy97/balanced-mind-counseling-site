@@ -33,17 +33,16 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
   ]);
 
   return (
-    <section className="mx-auto w-full max-w-7xl space-y-10 px-6 py-16 lg:px-8">
-      <div className="space-y-4">
-        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
+    <section className="mx-auto w-full max-w-7xl space-y-8 px-6 pb-14 pt-24 lg:px-8 lg:pb-16 lg:pt-24">
+      <div className="space-y-2">
+        <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-primary">
           Blog
         </p>
-        <h1 className="max-w-3xl font-serif text-5xl tracking-tight text-foreground">
-          Articles that make therapy concepts feel practical and approachable.
+        <h1 className="max-w-3xl font-serif text-2xl tracking-tight text-foreground sm:text-3xl">
+          Articles that make therapy concepts practical and approachable.
         </h1>
-        <p className="max-w-2xl text-lg leading-8 text-muted-foreground">
-          Browse therapist-written reflections on coping skills, boundaries,
-          burnout, and emotional wellness.
+        <p className="max-w-2xl text-sm leading-6 text-muted-foreground">
+          Reflections on coping skills, boundaries, burnout, and emotional wellness.
         </p>
       </div>
 

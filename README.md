@@ -109,6 +109,14 @@ For the practice owner:
 5. Add `Resources` to publish downloadable worksheets.
 6. Use `Testimonials` only for anonymized quotes.
 
+## Homepage Placeholders
+
+- The homepage is now a single scrollable landing page with header anchors for `Home`, `About`, `Services`, `Rates`, `Getting Started`, `Blog`, `Resources`, and `Contact`, plus a `Client Portal` item that opens `clientPortalUrl` from site settings in a new tab. Each section uses `site-fold-section` in `app/globals.css` so it fills one viewport with top padding for the fixed header, plus gentle scroll snapping (`home-fold-scroll` on the document) on `/` only.
+- The hero lives in `components/sections/Hero.tsx` and pulls visible content from `siteSettings`, including the logo lockup, `tagline`, `heroHeadline`, `heroSubheadline`, booking link, client portal link, and top-line contact chips.
+- The about section in `components/sections/About.tsx` surfaces the practice portrait from `profilePhoto`, falling back to `heroImage` or a static image, plus the practice name, SEO description, bio, contact details, and social links.
+- Blog and resource sections on the homepage are preview sections that link onward to the full `/blog` and `/resources` archives.
+- `Rates` and `Getting Started` are intentionally lightweight editorial sections for homepage flow and can be promoted into Sanity fields later if you want those blocks to become CMS-managed too.
+
 ## Deployment Checklist
 
 - Add all environment variables in Vercel

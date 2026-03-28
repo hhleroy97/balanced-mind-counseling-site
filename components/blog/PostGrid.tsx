@@ -12,7 +12,7 @@ export function PostGrid({ posts }: { posts: Post[] }) {
   }
 
   return (
-    <div className="grid gap-6 lg:grid-cols-2">
+    <div className="grid gap-5 lg:grid-cols-2 xl:grid-cols-3">
       {posts.map((post, index) => (
         <FadeIn key={post.slug.current} delay={index * 0.06}>
           <PostCard post={post} />

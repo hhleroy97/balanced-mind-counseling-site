@@ -62,12 +62,26 @@ async function safeFetch<T>(query: string, params?: Record<string, string>) {
 
 function withSiteSettingsFallbacks(siteSettings: SiteSettings): SiteSettings {
   return {
+    ...mockSiteSettings,
     ...siteSettings,
+    practiceName: siteSettings.practiceName || mockSiteSettings.practiceName,
+    tagline: siteSettings.tagline || mockSiteSettings.tagline,
+    heroHeadline: siteSettings.heroHeadline || mockSiteSettings.heroHeadline,
+    heroSubheadline: siteSettings.heroSubheadline || mockSiteSettings.heroSubheadline,
+    bio: siteSettings.bio?.length ? siteSettings.bio : mockSiteSettings.bio,
+    email: siteSettings.email || mockSiteSettings.email,
+    phone: siteSettings.phone || mockSiteSettings.phone,
+    address: siteSettings.address || mockSiteSettings.address,
+    seoDescription: siteSettings.seoDescription || mockSiteSettings.seoDescription,
     bookingUrl: envBookingUrl || siteSettings.bookingUrl || mockSiteSettings.bookingUrl,
     clientPortalUrl:
       envClientPortalUrl ||
       siteSettings.clientPortalUrl ||
       mockSiteSettings.clientPortalUrl,
+    socialLinks: {
+      ...mockSiteSettings.socialLinks,
+      ...(siteSettings.socialLinks ?? {}),
+    },
   };
 }
 
