@@ -2,9 +2,15 @@ import Link from "next/link";
 
 import { PostGrid } from "@/components/blog/PostGrid";
 import { FadeIn } from "@/components/shared/FadeIn";
-import type { Post } from "@/lib/types";
+import type { Post, SiteSettings } from "@/lib/types";
 
-export function BlogPreview({ posts }: { posts: Post[] }) {
+export function BlogPreview({
+  siteSettings,
+  posts,
+}: {
+  siteSettings: SiteSettings;
+  posts: Post[];
+}) {
   return (
     <section className="site-fold-section flex flex-col bg-card">
       <div
@@ -13,15 +19,12 @@ export function BlogPreview({ posts }: { posts: Post[] }) {
       >
         <FadeIn className="space-y-4">
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
-            Blog
+            {siteSettings.blogEyebrow}
           </p>
           <h2 className="max-w-3xl font-serif text-4xl tracking-tight text-foreground md:text-5xl">
-            Recent writing that makes therapy concepts feel more practical and usable.
+            {siteSettings.blogHeading}
           </h2>
-          <p className="max-w-2xl text-lg leading-8 text-muted-foreground">
-            Browse the latest reflections, coping tools, and therapist-written articles
-            before heading into the full archive.
-          </p>
+          <p className="max-w-2xl text-lg leading-8 text-muted-foreground">{siteSettings.blogIntro}</p>
         </FadeIn>
 
         <PostGrid posts={posts} />

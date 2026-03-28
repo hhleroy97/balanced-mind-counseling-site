@@ -6,7 +6,7 @@ import { notFound } from "next/navigation";
 import { SanityImage } from "@/components/shared/SanityImage";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { getResourceBySlug, getResourceSlugs } from "@/lib/content";
+import { getResourceBySlug, getResourceSlugs, getSiteSettings } from "@/lib/content";
 import { absoluteUrl, formatDate } from "@/lib/utils";
 
 export const revalidate = 600;
@@ -44,7 +44,10 @@ export async function generateMetadata({
 
 export default async function ResourcePage({ params }: ResourcePageProps) {
   const { slug } = await params;
-  const resource = await getResourceBySlug(slug);
+  const [resource, siteSettings] = await Promise.all([
+    getResourceBySlug(slug),
+    getSiteSettings(),
+  ]);
 
   if (!resource) {
     notFound();
@@ -83,12 +86,8 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
 
       <div className="rounded-[2rem] border border-border bg-card p-8">
         <div className="space-y-5">
-          <h2 className="font-serif text-3xl">Download this resource</h2>
-          <p className="leading-7 text-muted-foreground">
-            Resources can be hosted directly in Sanity or linked from Cloudflare
-            R2. This scaffold supports both patterns through the `file` and
-            `fileUrl` fields.
-          </p>
+          <h2 className="font-serif text-3xl">{siteSettings.resourceDetailDownloadHeading}</h2>
+          <p className="leading-7 text-muted-foreground">{siteSettings.resourceDetailDownloadBody}</p>
           {resource.fileUrl ? (
             <Button asChild size="lg">
               <a href={resource.fileUrl} target="_blank" rel="noreferrer">
@@ -97,9 +96,7 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
               </a>
             </Button>
           ) : (
-            <p className="text-sm text-muted-foreground">
-              Add a file or external URL in Sanity to enable downloads.
-            </p>
+            <p className="text-sm text-muted-foreground">{siteSettings.resourceDetailNoFileMessage}</p>
           )}
         </div>
       </div>

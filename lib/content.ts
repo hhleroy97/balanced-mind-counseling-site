@@ -7,6 +7,7 @@ import {
 } from "@/lib/mock-data";
 import { uniqueValues } from "@/lib/utils";
 import type {
+  CopyCard,
   Post,
   Resource,
   Service,
@@ -60,28 +61,93 @@ async function safeFetch<T>(query: string, params?: Record<string, string>) {
   }
 }
 
+function mergeCopyCards(value: unknown, fallback: CopyCard[]): CopyCard[] {
+  if (!Array.isArray(value) || value.length === 0) {
+    return fallback;
+  }
+
+  return value.map((raw) => {
+    const item = raw as { title?: string; description?: string };
+    return {
+      title: typeof item.title === "string" ? item.title : "",
+      description: typeof item.description === "string" ? item.description : "",
+    };
+  });
+}
+
 function withSiteSettingsFallbacks(siteSettings: SiteSettings): SiteSettings {
+  const s = siteSettings;
+  const m = mockSiteSettings;
+
   return {
-    ...mockSiteSettings,
-    ...siteSettings,
-    practiceName: siteSettings.practiceName || mockSiteSettings.practiceName,
-    tagline: siteSettings.tagline || mockSiteSettings.tagline,
-    heroHeadline: siteSettings.heroHeadline || mockSiteSettings.heroHeadline,
-    heroSubheadline: siteSettings.heroSubheadline || mockSiteSettings.heroSubheadline,
-    bio: siteSettings.bio?.length ? siteSettings.bio : mockSiteSettings.bio,
-    email: siteSettings.email || mockSiteSettings.email,
-    phone: siteSettings.phone || mockSiteSettings.phone,
-    address: siteSettings.address || mockSiteSettings.address,
-    seoDescription: siteSettings.seoDescription || mockSiteSettings.seoDescription,
-    bookingUrl: envBookingUrl || siteSettings.bookingUrl || mockSiteSettings.bookingUrl,
-    clientPortalUrl:
-      envClientPortalUrl ||
-      siteSettings.clientPortalUrl ||
-      mockSiteSettings.clientPortalUrl,
+    ...m,
+    ...s,
+    practiceName: s.practiceName || m.practiceName,
+    tagline: s.tagline || m.tagline,
+    heroHeadline: s.heroHeadline || m.heroHeadline,
+    heroSubheadline: s.heroSubheadline || m.heroSubheadline,
+    bio: s.bio?.length ? s.bio : m.bio,
+    email: s.email || m.email,
+    phone: s.phone || m.phone,
+    address: s.address || m.address,
+    seoDescription: s.seoDescription || m.seoDescription,
+    bookingUrl: envBookingUrl || s.bookingUrl || m.bookingUrl,
+    clientPortalUrl: envClientPortalUrl || s.clientPortalUrl || m.clientPortalUrl,
     socialLinks: {
-      ...mockSiteSettings.socialLinks,
-      ...(siteSettings.socialLinks ?? {}),
+      ...m.socialLinks,
+      ...(s.socialLinks ?? {}),
     },
+
+    aboutEyebrow: s.aboutEyebrow || m.aboutEyebrow,
+    aboutHeading: s.aboutHeading || m.aboutHeading,
+    aboutLead: s.aboutLead || m.aboutLead,
+    aboutSupporting: s.aboutSupporting || m.aboutSupporting,
+    connectHeading: s.connectHeading || m.connectHeading,
+    contactDetailsLabel: s.contactDetailsLabel || m.contactDetailsLabel,
+
+    servicesEyebrow: s.servicesEyebrow || m.servicesEyebrow,
+    servicesHeading: s.servicesHeading || m.servicesHeading,
+    servicesIntro: s.servicesIntro || m.servicesIntro,
+
+    ratesEyebrow: s.ratesEyebrow || m.ratesEyebrow,
+    ratesHeading: s.ratesHeading || m.ratesHeading,
+    ratesIntro: s.ratesIntro || m.ratesIntro,
+    ratesItems: mergeCopyCards(s.ratesItems, m.ratesItems),
+
+    gettingStartedEyebrow: s.gettingStartedEyebrow || m.gettingStartedEyebrow,
+    gettingStartedHeading: s.gettingStartedHeading || m.gettingStartedHeading,
+    gettingStartedSteps: mergeCopyCards(s.gettingStartedSteps, m.gettingStartedSteps),
+
+    blogEyebrow: s.blogEyebrow || m.blogEyebrow,
+    blogHeading: s.blogHeading || m.blogHeading,
+    blogIntro: s.blogIntro || m.blogIntro,
+
+    resourcesEyebrow: s.resourcesEyebrow || m.resourcesEyebrow,
+    resourcesHeading: s.resourcesHeading || m.resourcesHeading,
+    resourcesIntro: s.resourcesIntro || m.resourcesIntro,
+
+    contactEyebrow: s.contactEyebrow || m.contactEyebrow,
+    contactHeading: s.contactHeading || m.contactHeading,
+    contactIntro: s.contactIntro || m.contactIntro,
+
+    blogPageEyebrow: s.blogPageEyebrow || m.blogPageEyebrow,
+    blogPageHeading: s.blogPageHeading || m.blogPageHeading,
+    blogPageIntro: s.blogPageIntro || m.blogPageIntro,
+
+    resourcesPageEyebrow: s.resourcesPageEyebrow || m.resourcesPageEyebrow,
+    resourcesPageHeading: s.resourcesPageHeading || m.resourcesPageHeading,
+    resourcesPageIntro: s.resourcesPageIntro || m.resourcesPageIntro,
+
+    contactPageEyebrow: s.contactPageEyebrow || m.contactPageEyebrow,
+    contactPageHeading: s.contactPageHeading || m.contactPageHeading,
+    contactPageIntro: s.contactPageIntro || m.contactPageIntro,
+
+    resourceDetailDownloadHeading:
+      s.resourceDetailDownloadHeading || m.resourceDetailDownloadHeading,
+    resourceDetailDownloadBody: s.resourceDetailDownloadBody || m.resourceDetailDownloadBody,
+    resourceDetailNoFileMessage: s.resourceDetailNoFileMessage || m.resourceDetailNoFileMessage,
+
+    footerBlurb: s.footerBlurb || m.footerBlurb,
   };
 }
 

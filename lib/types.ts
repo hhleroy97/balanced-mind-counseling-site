@@ -24,6 +24,12 @@ export type SocialLinks = {
   youtube?: string;
 };
 
+/** Title + body used for rates cards, getting-started steps, etc. */
+export type CopyCard = {
+  title: string;
+  description: string;
+};
+
 export type SiteSettings = {
   practiceName: string;
   tagline: string;
@@ -39,6 +45,57 @@ export type SiteSettings = {
   address: string;
   socialLinks: SocialLinks;
   seoDescription: string;
+
+  aboutEyebrow: string;
+  aboutHeading: string;
+  aboutLead: string;
+  aboutSupporting: string;
+  connectHeading: string;
+  contactDetailsLabel: string;
+
+  servicesEyebrow: string;
+  servicesHeading: string;
+  servicesIntro: string;
+
+  ratesEyebrow: string;
+  ratesHeading: string;
+  ratesIntro: string;
+  ratesItems: CopyCard[];
+
+  gettingStartedEyebrow: string;
+  gettingStartedHeading: string;
+  gettingStartedSteps: CopyCard[];
+
+  blogEyebrow: string;
+  blogHeading: string;
+  blogIntro: string;
+
+  resourcesEyebrow: string;
+  resourcesHeading: string;
+  resourcesIntro: string;
+
+  contactEyebrow: string;
+  contactHeading: string;
+  contactIntro: string;
+
+  blogPageEyebrow: string;
+  blogPageHeading: string;
+  blogPageIntro: string;
+
+  resourcesPageEyebrow: string;
+  resourcesPageHeading: string;
+  resourcesPageIntro: string;
+
+  contactPageEyebrow: string;
+  contactPageHeading: string;
+  contactPageIntro: string;
+
+  /** Resource detail page — download panel (single resource view) */
+  resourceDetailDownloadHeading: string;
+  resourceDetailDownloadBody: string;
+  resourceDetailNoFileMessage: string;
+
+  footerBlurb: string;
 };
 
 export type Service = {

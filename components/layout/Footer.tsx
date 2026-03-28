@@ -14,7 +14,7 @@ export async function Footer() {
         <div className="space-y-4">
           <h2 className="font-serif text-2xl">{siteSettings.practiceName}</h2>
           <p className="max-w-lg text-sm leading-7 text-muted-foreground">
-            {siteSettings.seoDescription}
+            {siteSettings.footerBlurb}
           </p>
           <div className="space-y-1 text-sm text-muted-foreground">
             <p>{siteSettings.email}</p>

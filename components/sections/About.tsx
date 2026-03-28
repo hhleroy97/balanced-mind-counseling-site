@@ -32,16 +32,16 @@ export function About({ siteSettings }: { siteSettings: SiteSettings }) {
         <FadeIn className="min-w-0 space-y-5 lg:space-y-6">
           <header className="space-y-2 lg:space-y-3">
             <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-[#b18d4a]">
-              About the Practice
+              {siteSettings.aboutEyebrow}
             </p>
             <h2 className="max-w-[28rem] font-serif text-[clamp(1.75rem,3.2vw,2.65rem)] leading-[1.08] tracking-[-0.035em] text-[#1f352c]">
-              Care shaped by the values and pace of {siteSettings.practiceName}.
+              {siteSettings.aboutHeading}
             </h2>
           </header>
 
           <div className="max-w-2xl space-y-3 text-base leading-7 text-[#345447] lg:text-[1.05rem] lg:leading-7">
-            <p className="font-medium text-[#1f352c]/90">{siteSettings.tagline}</p>
-            <p className="text-[#345447]/95">{siteSettings.seoDescription}</p>
+            <p className="font-medium text-[#1f352c]/90">{siteSettings.aboutLead}</p>
+            <p className="text-[#345447]/95">{siteSettings.aboutSupporting}</p>
           </div>
 
           <PortableTextRenderer
@@ -68,7 +68,7 @@ export function About({ siteSettings }: { siteSettings: SiteSettings }) {
 
           <div className="rounded-2xl border border-[#e2d9ca] bg-white/70 p-4 shadow-[0_8px_30px_rgba(38,65,54,0.06)]">
             <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#8f7440]">
-              Connect
+              {siteSettings.connectHeading}
             </p>
             <div className="mt-3 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
               <a

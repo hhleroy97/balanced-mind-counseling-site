@@ -47,11 +47,11 @@ export default async function Home() {
     <HomeFoldRoot>
       <Hero siteSettings={siteSettings} />
       <About siteSettings={siteSettings} />
-      <Services services={services} />
-      <Rates />
-      <GettingStarted />
-      <BlogPreview posts={posts.slice(0, 3)} />
-      <ResourcesPreview resources={resources.slice(0, 3)} />
+      <Services siteSettings={siteSettings} services={services} />
+      <Rates siteSettings={siteSettings} />
+      <GettingStarted siteSettings={siteSettings} />
+      <BlogPreview siteSettings={siteSettings} posts={posts.slice(0, 3)} />
+      <ResourcesPreview siteSettings={siteSettings} resources={resources.slice(0, 3)} />
       <ContactSection siteSettings={siteSettings} />
     </HomeFoldRoot>
   );

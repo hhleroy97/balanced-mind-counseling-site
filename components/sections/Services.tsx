@@ -14,7 +14,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import type { Service } from "@/lib/types";
+import type { Service, SiteSettings } from "@/lib/types";
 
 const iconMap: Record<string, LucideIcon> = {
   Leaf,
@@ -22,7 +22,13 @@ const iconMap: Record<string, LucideIcon> = {
   HeartHandshake,
 };
 
-export function Services({ services }: { services: Service[] }) {
+export function Services({
+  siteSettings,
+  services,
+}: {
+  siteSettings: SiteSettings;
+  services: Service[];
+}) {
   return (
     <section className="site-fold-section flex flex-col bg-card">
       <div
@@ -31,12 +37,14 @@ export function Services({ services }: { services: Service[] }) {
       >
         <FadeIn className="space-y-4">
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
-            Services
+            {siteSettings.servicesEyebrow}
           </p>
           <h2 className="max-w-3xl font-serif text-4xl tracking-tight text-foreground md:text-5xl">
-            Support tailored to the concerns clients most often bring into the
-            room.
+            {siteSettings.servicesHeading}
           </h2>
+          <p className="max-w-2xl text-lg leading-8 text-muted-foreground">
+            {siteSettings.servicesIntro}
+          </p>
         </FadeIn>
 
         <div className="grid gap-6 lg:grid-cols-3">

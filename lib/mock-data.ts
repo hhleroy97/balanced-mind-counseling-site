@@ -1,4 +1,5 @@
 import type {
+  CopyCard,
   Post,
   Resource,
   Service,
@@ -6,236 +7,242 @@ import type {
   Testimonial,
 } from "@/lib/types";
 
+const LP =
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.";
+const LP_SHORT =
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante venenatis dapibus.";
+const LP_LINE = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
+
+const mockRatesItems: CopyCard[] = [
+  {
+    title: "Lorem consultum",
+    description:
+      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+  },
+  {
+    title: "Excepteur sessions",
+    description:
+      "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  },
+  {
+    title: "Ullamco pricing",
+    description:
+      "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni.",
+  },
+];
+
+const mockGettingStartedSteps: CopyCard[] = [
+  {
+    title: "Lorem reach out",
+    description:
+      "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.",
+  },
+  {
+    title: "Consectetur schedule",
+    description:
+      "Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta.",
+  },
+  {
+    title: "Adipiscing begin",
+    description:
+      "Nisi ut aliquid ex ea commodi consequatur quis autem vel eum iure reprehenderit qui in ea voluptate.",
+  },
+];
+
+function blockParagraph(text: string) {
+  return [
+    {
+      _type: "block" as const,
+      style: "normal" as const,
+      children: [{ _type: "span" as const, text }],
+    },
+  ];
+}
+
 export const mockSiteSettings: SiteSettings = {
-  practiceName: "Balanced Mind Counseling",
-  tagline: "Compassionate therapy for meaningful, lasting change.",
-  heroHeadline: "Support for anxiety, burnout, and life transitions.",
-  heroSubheadline:
-    "A calm, relational therapy practice helping adults build steadier lives with practical tools and thoughtful care.",
+  practiceName: "Lorem Ipsum Counseling",
+  tagline: LP_LINE,
+  heroHeadline: "Dolor sit amet consectetur adipiscing elit sed do eiusmod.",
+  heroSubheadline: LP_SHORT,
   bookingUrl: "https://www.simplepractice.com",
   clientPortalUrl: "https://www.simplepractice.com/client-portal",
-  bio: [
-    {
-      _type: "block",
-      style: "normal",
-      children: [
-        {
-          _type: "span",
-          text: "I offer warm, evidence-informed therapy for adults navigating anxiety, grief, stress, and relationship challenges. Sessions blend insight, practical coping strategies, and a pace that respects your story.",
-        },
-      ],
-    },
-  ],
-  email: "hello@exampletherapy.com",
-  phone: "(555) 123-4567",
-  address: "Telehealth across California",
+  bio: blockParagraph(LP),
+  email: "lorem@ipsum.example",
+  phone: "(555) 010-2030",
+  address: "123 Lorem Street, Dolor Suite 400, Ipsum State 00000",
   socialLinks: {
     instagram: "https://instagram.com",
     linkedin: "https://linkedin.com",
   },
-  seoDescription:
-    "Balanced Mind Counseling offers warm, modern therapy services, articles, and mental health resources for adults.",
+  seoDescription: LP_SHORT,
+
+  aboutEyebrow: "About the practice",
+  aboutHeading: "Lorem ipsum dolor sit amet, consectetur adipiscing elit praesent commodo.",
+  aboutLead: LP_LINE,
+  aboutSupporting: LP_SHORT,
+  connectHeading: "Connect",
+  contactDetailsLabel: "Practice details",
+
+  servicesEyebrow: "Services",
+  servicesHeading: "Lorem ipsum dolor sit amet support tailored to client needs.",
+  servicesIntro: LP_SHORT,
+
+  ratesEyebrow: "Rates",
+  ratesHeading: "Lorem ipsum practical information about fees and getting started.",
+  ratesIntro: LP_SHORT,
+  ratesItems: mockRatesItems,
+
+  gettingStartedEyebrow: "Getting started",
+  gettingStartedHeading: "Lorem ipsum path from first question to first session.",
+  gettingStartedSteps: mockGettingStartedSteps,
+
+  blogEyebrow: "Blog",
+  blogHeading: "Lorem ipsum recent writing and placeholder articles.",
+  blogIntro: LP_SHORT,
+
+  resourcesEyebrow: "Resources",
+  resourcesHeading: "Lorem ipsum downloadable tools and worksheets.",
+  resourcesIntro: LP_SHORT,
+
+  contactEyebrow: "Contact",
+  contactHeading: "Lorem ipsum reach out with questions or scheduling needs.",
+  contactIntro: LP_SHORT,
+
+  blogPageEyebrow: "Blog",
+  blogPageHeading: "Lorem ipsum articles and reflections placeholder archive.",
+  blogPageIntro: LP_SHORT,
+
+  resourcesPageEyebrow: "Resources",
+  resourcesPageHeading: "Lorem ipsum worksheets and supportive tools placeholder library.",
+  resourcesPageIntro: LP_SHORT,
+
+  contactPageEyebrow: "Contact",
+  contactPageHeading: "Lorem ipsum questions or book directly when ready.",
+  contactPageIntro: LP_SHORT,
+
+  resourceDetailDownloadHeading: "Lorem ipsum download this resource",
+  resourceDetailDownloadBody: LP_SHORT,
+  resourceDetailNoFileMessage:
+    "Lorem ipsum add a file or external URL in the CMS to enable downloads.",
+
+  footerBlurb: LP_SHORT,
 };
 
 export const mockServices: Service[] = [
   {
-    title: "Anxiety Therapy",
-    slug: { current: "anxiety-therapy" },
+    title: "Lorem anxiety support",
+    slug: { current: "lorem-anxiety" },
     icon: "Leaf",
     shortDescription:
-      "Build steadier routines, reduce overwhelm, and respond to anxiety with more clarity.",
-    fullDescription: [
-      {
-        _type: "block",
-        style: "normal",
-        children: [
-          {
-            _type: "span",
-            text: "We focus on understanding anxiety patterns, nervous system regulation, and realistic coping skills you can apply between sessions.",
-          },
-        ],
-      },
-    ],
+      "Dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore.",
+    fullDescription: blockParagraph(LP),
     order: 1,
   },
   {
-    title: "Burnout Recovery",
-    slug: { current: "burnout-recovery" },
+    title: "Ipsum burnout care",
+    slug: { current: "ipsum-burnout" },
     icon: "Sparkles",
     shortDescription:
-      "Create room for rest, boundaries, and a healthier relationship with work and caregiving.",
-    fullDescription: [
-      {
-        _type: "block",
-        style: "normal",
-        children: [
-          {
-            _type: "span",
-            text: "Together we explore what exhaustion is signaling and build sustainable rhythms that support your values, not just your obligations.",
-          },
-        ],
-      },
-    ],
+      "Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip.",
+    fullDescription: blockParagraph(LP_SHORT),
     order: 2,
   },
   {
-    title: "Relationship Support",
-    slug: { current: "relationship-support" },
+    title: "Dolor relationship focus",
+    slug: { current: "dolor-relationships" },
     icon: "HeartHandshake",
     shortDescription:
-      "Strengthen communication, boundaries, and connection in your closest relationships.",
-    fullDescription: [
-      {
-        _type: "block",
-        style: "normal",
-        children: [
-          {
-            _type: "span",
-            text: "Therapy can help you identify patterns, clarify needs, and practice more grounded ways of relating to partners, family, and friends.",
-          },
-        ],
-      },
-    ],
+      "Ex ea commodo consequat duis aute irure dolor in reprehenderit in voluptate velit.",
+    fullDescription: blockParagraph(LP_SHORT),
     order: 3,
   },
 ];
 
 export const mockPosts: Post[] = [
   {
-    title: "What Grounding Actually Looks Like in Daily Life",
-    slug: { current: "what-grounding-looks-like" },
+    title: "Lorem ipsum dolor sit amet grounding exercises",
+    slug: { current: "lorem-grounding" },
     publishedAt: "2026-02-12T09:00:00.000Z",
-    excerpt:
-      "Grounding skills are more than crisis tools. Here are practical ways to use them during ordinary moments of stress.",
-    tags: ["Anxiety", "Coping Skills"],
+    excerpt: LP_SHORT,
+    tags: ["Lorem", "Ipsum"],
     body: [
-      {
-        _type: "block",
-        style: "normal",
-        children: [
-          {
-            _type: "span",
-            text: "Grounding can be gentle and ordinary. It might mean feeling your feet on the floor before a meeting, naming three things you can see, or taking one slower exhale before responding.",
-          },
-        ],
-      },
+      ...blockParagraph(LP),
       {
         _type: "block",
         style: "h2",
-        children: [{ _type: "span", text: "Start small and repeat often" }],
+        children: [{ _type: "span", text: "Dolor sit amet heading" }],
       },
-      {
-        _type: "block",
-        style: "normal",
-        children: [
-          {
-            _type: "span",
-            text: "Short, repeated moments of regulation usually work better than waiting until you feel completely flooded.",
-          },
-        ],
-      },
+      ...blockParagraph(LP_SHORT),
     ],
     seo: {
-      title: "What Grounding Looks Like in Daily Life",
-      description:
-        "Learn approachable grounding strategies for anxiety and everyday stress.",
+      title: "Lorem grounding",
+      description: LP_LINE,
     },
   },
   {
-    title: "Signs You Might Be Running on Empty",
-    slug: { current: "signs-you-might-be-running-on-empty" },
+    title: "Consectetur adipiscing elit burnout signals",
+    slug: { current: "ipsum-burnout-post" },
     publishedAt: "2026-01-20T09:00:00.000Z",
-    excerpt:
-      "Burnout is not just being busy. These common signals can help you notice when your system needs support.",
-    tags: ["Burnout", "Stress"],
-    body: [
-      {
-        _type: "block",
-        style: "normal",
-        children: [
-          {
-            _type: "span",
-            text: "Burnout often shows up as irritability, numbness, loss of motivation, and the feeling that even small tasks take too much effort.",
-          },
-        ],
-      },
-    ],
+    excerpt: LP_SHORT,
+    tags: ["Dolor", "Sit"],
+    body: blockParagraph(LP),
     seo: {
-      title: "Signs You Might Be Running on Empty",
-      description:
-        "Common burnout signals and how therapy can support nervous system recovery.",
+      title: "Ipsum burnout",
+      description: LP_LINE,
     },
   },
   {
-    title: "A Gentle Way to Prepare for Hard Conversations",
-    slug: { current: "prepare-for-hard-conversations" },
+    title: "Sed do eiusmod tempor conversations",
+    slug: { current: "dolor-conversations" },
     publishedAt: "2025-12-15T09:00:00.000Z",
-    excerpt:
-      "A simple framework to help you approach difficult conversations with more steadiness and less reactivity.",
-    tags: ["Relationships", "Communication"],
-    body: [
-      {
-        _type: "block",
-        style: "normal",
-        children: [
-          {
-            _type: "span",
-            text: "Preparation can lower anxiety before difficult conversations. Clarify your intention, name your needs, and stay connected to what you want the relationship to feel like after the conversation.",
-          },
-        ],
-      },
-    ],
+    excerpt: LP_SHORT,
+    tags: ["Amet", "Consectetur"],
+    body: blockParagraph(LP_SHORT),
     seo: {
-      title: "Prepare for Hard Conversations",
-      description:
-        "A therapist-informed approach to difficult conversations and healthy communication.",
+      title: "Amet conversations",
+      description: LP_LINE,
     },
   },
 ];
 
 export const mockResources: Resource[] = [
   {
-    title: "Anxiety Check-In Worksheet",
-    slug: { current: "anxiety-check-in-worksheet" },
-    description:
-      "A one-page worksheet for noticing triggers, body cues, and supportive next steps.",
-    category: "Anxiety",
-    fileUrl: "https://example.com/anxiety-check-in.pdf",
+    title: "Lorem worksheet alpha",
+    slug: { current: "lorem-worksheet-alpha" },
+    description: LP_SHORT,
+    category: "Lorem",
+    fileUrl: "https://example.com/lorem.pdf",
     featured: true,
     publishedAt: "2026-02-01T09:00:00.000Z",
   },
   {
-    title: "CBT Thought Reframe Guide",
-    slug: { current: "cbt-thought-reframe-guide" },
-    description:
-      "A practical prompt sheet for slowing down automatic thoughts and testing alternatives.",
-    category: "CBT",
-    fileUrl: "https://example.com/cbt-thought-reframe.pdf",
+    title: "Ipsum guide beta",
+    slug: { current: "ipsum-guide-beta" },
+    description: LP_SHORT,
+    category: "Ipsum",
+    fileUrl: "https://example.com/ipsum.pdf",
     featured: true,
     publishedAt: "2026-01-10T09:00:00.000Z",
   },
   {
-    title: "DBT Distress Tolerance Menu",
-    slug: { current: "dbt-distress-tolerance-menu" },
-    description:
-      "A curated list of grounding and distress tolerance ideas for moments of overwhelm.",
-    category: "DBT",
-    fileUrl: "https://example.com/dbt-distress-tolerance.pdf",
+    title: "Dolor menu gamma",
+    slug: { current: "dolor-menu-gamma" },
+    description: LP_SHORT,
+    category: "Dolor",
+    fileUrl: "https://example.com/dolor.pdf",
     publishedAt: "2025-12-01T09:00:00.000Z",
   },
 ];
 
 export const mockTestimonials: Testimonial[] = [
   {
-    quote:
-      "Therapy helped me feel more equipped to manage anxiety without feeling ashamed of it.",
-    attribution: "Former Client",
+    quote: LP_SHORT,
+    attribution: "Lorem Client",
     featured: true,
   },
   {
-    quote:
-      "I felt understood and challenged in a way that was steady, thoughtful, and practical.",
-    attribution: "Former Client",
+    quote: LP_SHORT,
+    attribution: "Ipsum Client",
     featured: true,
   },
 ];

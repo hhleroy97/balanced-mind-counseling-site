@@ -2,9 +2,15 @@ import Link from "next/link";
 
 import { ResourceGrid } from "@/components/resources/ResourceGrid";
 import { FadeIn } from "@/components/shared/FadeIn";
-import type { Resource } from "@/lib/types";
+import type { Resource, SiteSettings } from "@/lib/types";
 
-export function ResourcesPreview({ resources }: { resources: Resource[] }) {
+export function ResourcesPreview({
+  siteSettings,
+  resources,
+}: {
+  siteSettings: SiteSettings;
+  resources: Resource[];
+}) {
   return (
     <section className="site-fold-section flex flex-col bg-[#f6f1e7]">
       <div
@@ -13,14 +19,13 @@ export function ResourcesPreview({ resources }: { resources: Resource[] }) {
       >
         <FadeIn className="space-y-4">
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
-            Resources
+            {siteSettings.resourcesEyebrow}
           </p>
           <h2 className="max-w-3xl font-serif text-4xl tracking-tight text-foreground md:text-5xl">
-            Downloadable tools and handouts to support the work between sessions.
+            {siteSettings.resourcesHeading}
           </h2>
           <p className="max-w-2xl text-lg leading-8 text-muted-foreground">
-            Start with a curated set of practical worksheets and visit the library for
-            the full resource collection.
+            {siteSettings.resourcesIntro}
           </p>
         </FadeIn>
 

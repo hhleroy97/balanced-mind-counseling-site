@@ -2,26 +2,11 @@ import Link from "next/link";
 
 import { FadeIn } from "@/components/shared/FadeIn";
 import { Card } from "@/components/ui/card";
+import type { SiteSettings } from "@/lib/types";
 
-const rateDetails = [
-  {
-    title: "Consultation",
-    description:
-      "Start with a brief conversation about fit, scheduling, and what kind of support you are looking for.",
-  },
-  {
-    title: "Ongoing Sessions",
-    description:
-      "Therapy is typically offered in 50-minute sessions with a steady cadence that supports meaningful progress.",
-  },
-  {
-    title: "Payment Questions",
-    description:
-      "Fees, billing logistics, and any practical questions can be reviewed clearly before you begin.",
-  },
-];
+export function Rates({ siteSettings }: { siteSettings: SiteSettings }) {
+  const items = siteSettings.ratesItems;
 
-export function Rates() {
   return (
     <section className="site-fold-section flex flex-col bg-[#f6f1e7]">
       <div
@@ -30,20 +15,17 @@ export function Rates() {
       >
         <FadeIn className="space-y-4">
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
-            Rates
+            {siteSettings.ratesEyebrow}
           </p>
           <h2 className="max-w-3xl font-serif text-4xl tracking-tight text-foreground md:text-5xl">
-            Clear information about the practical side of getting started.
+            {siteSettings.ratesHeading}
           </h2>
-          <p className="max-w-2xl text-lg leading-8 text-muted-foreground">
-            The first step is understanding fit, availability, and what care could look
-            like. Questions about fees are welcome and can be reviewed directly.
-          </p>
+          <p className="max-w-2xl text-lg leading-8 text-muted-foreground">{siteSettings.ratesIntro}</p>
         </FadeIn>
 
         <div className="grid gap-6 lg:grid-cols-3">
-          {rateDetails.map((detail, index) => (
-            <FadeIn key={detail.title} delay={index * 0.06}>
+          {items.map((detail, index) => (
+            <FadeIn key={`${detail.title}-${index}`} delay={index * 0.06}>
               <Card className="h-full rounded-[1.75rem] bg-white/85 p-8 shadow-none">
                 <h3 className="font-serif text-2xl text-[#1f352c]">{detail.title}</h3>
                 <p className="mt-4 leading-7 text-[#345447]">{detail.description}</p>

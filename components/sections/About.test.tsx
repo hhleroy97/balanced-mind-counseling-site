@@ -56,8 +56,13 @@ describe("About", () => {
     const html = renderToStaticMarkup(<About siteSettings={mockSiteSettings} />);
 
     expect(html).toContain(mockSiteSettings.practiceName);
-    expect(html).toContain(mockSiteSettings.tagline);
-    expect(html).toContain(mockSiteSettings.seoDescription);
+    expect(html).toContain(mockSiteSettings.aboutEyebrow);
+    expect(html).toContain(mockSiteSettings.aboutHeading);
+    expect(html).toContain(mockSiteSettings.aboutLead);
+    expect(html).toContain(mockSiteSettings.aboutSupporting);
+    expect(html).toContain(mockSiteSettings.connectHeading);
+    // Rich-text bio (mock uses a longer paragraph than aboutLead)
+    expect(html).toContain("Sed eiusmod tempor incididunt ut labore et dolore magna aliqua.");
     expect(html).toContain(mockSiteSettings.email);
     expect(html).toContain(mockSiteSettings.phone);
     expect(html).toContain(mockSiteSettings.address);
@@ -66,8 +71,5 @@ describe("About", () => {
     expect(html).toContain('href="/#contact"');
     expect(html).toContain('href="https://instagram.com"');
     expect(html).toContain('href="https://linkedin.com"');
-    expect(html).toContain(
-      "I offer warm, evidence-informed therapy for adults navigating anxiety, grief, stress, and relationship challenges.",
-    );
   });
 });

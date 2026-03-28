@@ -25,21 +25,17 @@ export function ContactSection({
       >
         <FadeIn className="space-y-6">
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
-            Contact
+            {siteSettings.contactEyebrow}
           </p>
           <h2 className="max-w-2xl font-serif text-4xl tracking-tight text-foreground md:text-5xl">
-            Reach out with questions, scheduling needs, or a sense of what support you
-            are looking for.
+            {siteSettings.contactHeading}
           </h2>
-          <p className="max-w-2xl text-lg leading-8 text-muted-foreground">
-            Use the form for general inquiries or take the direct route if you are
-            ready to book.
-          </p>
+          <p className="max-w-2xl text-lg leading-8 text-muted-foreground">{siteSettings.contactIntro}</p>
 
           <Card className="space-y-5 rounded-[1.75rem] p-8 shadow-none">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                Practice details
+                {siteSettings.contactDetailsLabel}
               </p>
               <div className="mt-4 space-y-2 text-muted-foreground">
                 <p>{siteSettings.email}</p>
