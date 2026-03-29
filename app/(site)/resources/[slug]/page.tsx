@@ -9,8 +9,6 @@ import { Button } from "@/components/ui/button";
 import { getResourceBySlug, getResourceSlugs, getSiteSettings } from "@/lib/content";
 import { absoluteUrl, formatDate } from "@/lib/utils";
 
-export const revalidate = 600;
-
 type ResourcePageProps = {
   params: Promise<{ slug: string }>;
 };

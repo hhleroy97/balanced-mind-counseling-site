@@ -6,8 +6,6 @@ import { CategoryFilter } from "@/components/resources/CategoryFilter";
 import { Button } from "@/components/ui/button";
 import { getBlogPageData, getPostTags, getSiteSettings } from "@/lib/content";
 
-export const revalidate = 300;
-
 export async function generateMetadata(): Promise<Metadata> {
   const siteSettings = await getSiteSettings();
   return {

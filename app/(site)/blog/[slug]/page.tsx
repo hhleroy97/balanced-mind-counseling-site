@@ -7,8 +7,6 @@ import { Badge } from "@/components/ui/badge";
 import { getPostBySlug, getPostSlugs } from "@/lib/content";
 import { absoluteUrl, formatDate } from "@/lib/utils";
 
-export const revalidate = 300;
-
 type PostPageProps = {
   params: Promise<{ slug: string }>;
 };

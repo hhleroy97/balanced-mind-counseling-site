@@ -4,8 +4,6 @@ import { CategoryFilter } from "@/components/resources/CategoryFilter";
 import { ResourceGrid } from "@/components/resources/ResourceGrid";
 import { getFilteredResources, getResourceCategories, getSiteSettings } from "@/lib/content";
 
-export const revalidate = 600;
-
 export async function generateMetadata(): Promise<Metadata> {
   const siteSettings = await getSiteSettings();
   return {

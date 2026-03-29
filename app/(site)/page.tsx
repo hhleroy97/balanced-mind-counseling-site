@@ -16,8 +16,6 @@ import {
   getSiteSettings,
 } from "@/lib/content";
 
-export const revalidate = 3600;
-
 export async function generateMetadata(): Promise<Metadata> {
   const siteSettings = await getSiteSettings();
 

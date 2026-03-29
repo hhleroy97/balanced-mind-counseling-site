@@ -3,6 +3,8 @@ import type { MetadataRoute } from "next";
 import { getPostSlugs, getResourceSlugs } from "@/lib/content";
 import { absoluteUrl } from "@/lib/utils";
 
+export const dynamic = "force-dynamic";
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [postSlugs, resourceSlugs] = await Promise.all([
     getPostSlugs(),
