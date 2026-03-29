@@ -1,11 +1,11 @@
 export const siteSettingsQuery = `*[_type == "siteSettings"][0]`;
 
-export const servicesQuery = `*[_type == "service"] | order(order asc) {
+export const servicesQuery = `*[_type == "service" && defined(slug.current)] | order(order asc) {
   ...,
   slug,
 }`;
 
-export const postsQuery = `*[_type == "post"] | order(publishedAt desc) {
+export const postsQuery = `*[_type == "post" && defined(slug.current)] | order(publishedAt desc) {
   ...,
   slug,
 }`;
@@ -17,7 +17,7 @@ export const postBySlugQuery = `*[_type == "post" && slug.current == $slug][0] {
   slug,
 }`;
 
-export const resourcesQuery = `*[_type == "resource"] | order(featured desc, publishedAt desc) {
+export const resourcesQuery = `*[_type == "resource" && defined(slug.current)] | order(featured desc, publishedAt desc) {
   ...,
   slug,
   "fileUrl": coalesce(fileUrl, file.asset->url),

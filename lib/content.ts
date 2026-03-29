@@ -42,11 +42,43 @@ function normalizeTags(tags: unknown): string[] {
     .filter(Boolean);
 }
 
-function normalizePost(post: Post): Post {
+function postSlugCurrent(post: Post): string | null {
+  const raw = post.slug?.current;
+  const current = typeof raw === "string" ? raw.trim() : "";
+  return current.length > 0 ? current : null;
+}
+
+function normalizePost(post: Post): Post | null {
+  const current = postSlugCurrent(post);
+  if (!current) {
+    return null;
+  }
+
   return {
     ...post,
+    slug: { current },
     tags: normalizeTags(post.tags),
   };
+}
+
+function normalizeResource(resource: Resource): Resource | null {
+  const raw = resource.slug?.current;
+  const current = typeof raw === "string" ? raw.trim() : "";
+  if (!current) {
+    return null;
+  }
+
+  return { ...resource, slug: { current } };
+}
+
+function normalizeService(service: Service): Service | null {
+  const raw = service.slug?.current;
+  const current = typeof raw === "string" ? raw.trim() : "";
+  if (!current) {
+    return null;
+  }
+
+  return { ...service, slug: { current } };
 }
 
 async function safeFetch<T>(query: string, params?: Record<string, string>) {
@@ -158,7 +190,8 @@ export async function getSiteSettings(): Promise<SiteSettings> {
 
 export async function getServices(): Promise<Service[]> {
   const services = await safeFetch<Service[]>(servicesQuery);
-  return services?.length ? services : mockServices;
+  const list = services?.length ? services : mockServices;
+  return list.map(normalizeService).filter((s): s is Service => s !== null);
 }
 
 export async function getTestimonials(): Promise<Testimonial[]> {
@@ -168,7 +201,8 @@ export async function getTestimonials(): Promise<Testimonial[]> {
 
 export async function getPosts(): Promise<Post[]> {
   const posts = await safeFetch<Post[]>(postsQuery);
-  return posts?.length ? posts.map(normalizePost) : mockPosts.map(normalizePost);
+  const list = posts?.length ? posts : mockPosts;
+  return list.map(normalizePost).filter((p): p is Post => p !== null);
 }
 
 export async function getPostBySlug(slug: string): Promise<Post | null> {
@@ -192,16 +226,18 @@ export async function getPostSlugs(): Promise<string[]> {
 
 export async function getResources(): Promise<Resource[]> {
   const resources = await safeFetch<Resource[]>(resourcesQuery);
-  return resources?.length ? resources : mockResources;
+  const list = resources?.length ? resources : mockResources;
+  return list.map(normalizeResource).filter((r): r is Resource => r !== null);
 }
 
 export async function getResourceBySlug(slug: string): Promise<Resource | null> {
   const resource = await safeFetch<Resource>(resourceBySlugQuery, { slug });
   if (resource) {
-    return resource;
+    return normalizeResource(resource);
   }
 
-  return mockResources.find((entry) => entry.slug.current === slug) ?? null;
+  const fallback = mockResources.find((entry) => entry.slug.current === slug) ?? null;
+  return fallback ? normalizeResource(fallback) : null;
 }
 
 export async function getResourceSlugs(): Promise<string[]> {

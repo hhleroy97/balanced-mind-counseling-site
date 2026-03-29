@@ -8,6 +8,7 @@ import { formatDate } from "@/lib/utils";
 
 export function PostCard({ post }: { post: Post }) {
   const tags = Array.isArray(post.tags) ? post.tags : [];
+  const slug = post.slug?.current?.trim() ?? "";
 
   return (
     <Card className="flex h-full flex-col overflow-hidden">
@@ -30,20 +31,26 @@ export function PostCard({ post }: { post: Post }) {
         <div className="space-y-2">
           <p className="text-sm text-muted-foreground">{formatDate(post.publishedAt)}</p>
           <CardTitle className="line-clamp-2 text-2xl leading-tight">
-            <Link href={`/blog/${post.slug.current}`} className="hover:text-primary">
-              {post.title}
-            </Link>
+            {slug ? (
+              <Link href={`/blog/${slug}`} className="hover:text-primary">
+                {post.title}
+              </Link>
+            ) : (
+              <span>{post.title}</span>
+            )}
           </CardTitle>
         </div>
       </CardHeader>
       <CardContent className="flex flex-1 flex-col justify-between space-y-4 p-5 pt-0">
         <p className="line-clamp-2 leading-6 text-muted-foreground">{post.excerpt}</p>
-        <Link
-          href={`/blog/${post.slug.current}`}
-          className="text-sm font-semibold text-primary underline-offset-4 hover:underline"
-        >
-          Read article
-        </Link>
+        {slug ? (
+          <Link
+            href={`/blog/${slug}`}
+            className="text-sm font-semibold text-primary underline-offset-4 hover:underline"
+          >
+            Read article
+          </Link>
+        ) : null}
       </CardContent>
     </Card>
   );

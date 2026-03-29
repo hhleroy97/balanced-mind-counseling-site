@@ -14,7 +14,7 @@ export function ResourceGrid({ resources }: { resources: Resource[] }) {
   return (
     <div className="grid gap-5 lg:grid-cols-2 xl:grid-cols-3">
       {resources.map((resource, index) => (
-        <FadeIn key={resource.slug.current} delay={index * 0.05}>
+        <FadeIn key={resource.slug?.current ?? resource._id ?? index} delay={index * 0.05}>
           <ResourceCard resource={resource} />
         </FadeIn>
       ))}

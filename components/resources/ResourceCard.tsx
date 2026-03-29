@@ -9,6 +9,8 @@ import type { Resource } from "@/lib/types";
 import { formatDate } from "@/lib/utils";
 
 export function ResourceCard({ resource }: { resource: Resource }) {
+  const slug = resource.slug?.current?.trim() ?? "";
+
   return (
     <Card className="flex h-full flex-col overflow-hidden">
       {resource.thumbnail ? (
@@ -39,12 +41,13 @@ export function ResourceCard({ resource }: { resource: Resource }) {
             {formatDate(resource.publishedAt)}
           </p>
           <CardTitle className="line-clamp-2 text-2xl leading-tight">
-            <Link
-              href={`/resources/${resource.slug.current}`}
-              className="hover:text-primary"
-            >
-              {resource.title}
-            </Link>
+            {slug ? (
+              <Link href={`/resources/${slug}`} className="hover:text-primary">
+                {resource.title}
+              </Link>
+            ) : (
+              <span>{resource.title}</span>
+            )}
           </CardTitle>
         </div>
       </CardHeader>
@@ -53,12 +56,14 @@ export function ResourceCard({ resource }: { resource: Resource }) {
           {resource.description}
         </p>
         <div className="flex flex-wrap items-center gap-3">
-          <Link
-            href={`/resources/${resource.slug.current}`}
-            className="text-sm font-semibold text-primary underline-offset-4 hover:underline"
-          >
-            View details
-          </Link>
+          {slug ? (
+            <Link
+              href={`/resources/${slug}`}
+              className="text-sm font-semibold text-primary underline-offset-4 hover:underline"
+            >
+              View details
+            </Link>
+          ) : null}
           {resource.fileUrl ? (
             <Button asChild size="sm">
               <a href={resource.fileUrl} target="_blank" rel="noreferrer" download>

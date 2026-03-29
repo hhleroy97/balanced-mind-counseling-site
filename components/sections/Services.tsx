@@ -52,7 +52,7 @@ export function Services({
             const Icon = iconMap[service.icon] ?? Leaf;
 
             return (
-              <FadeIn key={service.slug.current} delay={index * 0.08}>
+              <FadeIn key={service.slug?.current ?? service._id ?? index} delay={index * 0.08}>
                 <Card className="h-full">
                   <CardHeader className="space-y-4">
                     <div className="flex size-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
