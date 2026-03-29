@@ -1,32 +1,47 @@
+import { isValidSignature, SIGNATURE_HEADER_NAME } from "@sanity/webhook";
 import { revalidatePath } from "next/cache";
 import { type NextRequest, NextResponse } from "next/server";
 
 import { isRevalidateAuthorized } from "@/lib/revalidate-auth";
 
 /**
- * On-demand ISR: call from a Sanity document webhook so Vercel serves fresh
- * content without waiting for `revalidate` timers or redeploying.
+ * On-demand ISR: Sanity document webhooks call this route after publish.
  *
- * Sanity (sanity.io/manage → API → Webhooks):
- * - URL: https://<your-domain>/api/revalidate
- * - Method: POST
- * - Dataset: production (or your public dataset)
- * - Trigger: create / update / delete on published docs (disable "include drafts" unless you want previews to purge cache)
- * - Headers: add `x-sanity-revalidate-secret` = same value as SANITY_REVALIDATE_SECRET on Vercel
+ * Auth (use one approach):
  *
- * Vercel: set SANITY_REVALIDATE_SECRET (long random string; Production + Preview if needed).
+ * 1) **Sanity "Secret" field (recommended)** — Put the same string in the webhook's
+ *    Secret box (sanity.io/manage → API → Webhooks) and in Vercel
+ *    `SANITY_REVALIDATE_SECRET`. Sanity signs the body; we verify with
+ *    `sanity-webhook-signature` (no custom headers needed).
+ *
+ * 2) **Manual header** — Leave Sanity Secret empty and send
+ *    `x-sanity-revalidate-secret` or `Authorization: Bearer …` matching
+ *    `SANITY_REVALIDATE_SECRET` (min length in `lib/revalidate-auth.ts`).
  */
 
-export async function POST(request: NextRequest) {
-  const secret = process.env.SANITY_REVALIDATE_SECRET;
+async function isAuthorized(request: NextRequest, rawBody: string, secret: string | undefined) {
+  if (!secret) {
+    return false;
+  }
 
-  if (!isRevalidateAuthorized(request, secret)) {
+  const signature = request.headers.get(SIGNATURE_HEADER_NAME);
+  if (signature) {
+    return isValidSignature(rawBody, signature, secret);
+  }
+
+  return isRevalidateAuthorized(request, secret);
+}
+
+export async function POST(request: NextRequest) {
+  const secret = process.env.SANITY_REVALIDATE_SECRET?.trim();
+
+  const rawBody = await request.text();
+
+  if (!(await isAuthorized(request, rawBody, secret))) {
     return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
   }
 
   try {
-    await request.json().catch(() => ({}));
-
     revalidatePath("/", "page");
     revalidatePath("/blog", "layout");
     revalidatePath("/resources", "layout");
