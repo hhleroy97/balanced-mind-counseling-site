@@ -1,13 +1,6 @@
 import { ContactForm } from "@/components/contact/ContactForm";
 import { FadeIn } from "@/components/shared/FadeIn";
 import { Card } from "@/components/ui/card";
-import {
-  type SectionLayoutVariant,
-  sectionFoldGrowClass,
-  sectionInnerClass,
-  sectionOuterClass,
-} from "@/lib/section-layout";
-import { cn } from "@/lib/utils";
 import type { SiteSettings } from "@/lib/types";
 
 const socialLabels: Record<string, string> = {
@@ -19,24 +12,16 @@ const socialLabels: Record<string, string> = {
 
 export function ContactSection({
   siteSettings,
-  variant = "fold",
 }: {
   siteSettings: SiteSettings;
-  variant?: SectionLayoutVariant;
 }) {
   const socials = Object.entries(siteSettings.socialLinks).filter(([, value]) => Boolean(value));
 
   return (
-    <section className={cn(sectionOuterClass(variant), "bg-card")}>
+    <section className="site-fold-section flex flex-col bg-card">
       <div
         id="contact"
-        className={cn(
-          sectionInnerClass(variant),
-          "mx-auto grid w-full max-w-7xl gap-8 scroll-mt-header lg:grid-cols-[1.05fr_0.95fr]",
-          variant === "fold"
-            ? cn(sectionFoldGrowClass(variant), "lg:items-center")
-            : "lg:items-start",
-        )}
+        className="site-fold-inner site-page-x mx-auto grid w-full max-w-7xl flex-1 gap-8 overflow-y-auto lg:grid-cols-[1.05fr_0.95fr] lg:items-center scroll-mt-header"
       >
         <FadeIn className="space-y-6">
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">

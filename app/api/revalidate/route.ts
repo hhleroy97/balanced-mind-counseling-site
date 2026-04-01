@@ -65,7 +65,6 @@ export async function POST(request: NextRequest) {
     revalidatePath("/", "page");
     revalidatePath("/blog", "layout");
     revalidatePath("/resources", "layout");
-    revalidatePath("/contact", "page");
 
     return NextResponse.json({ revalidated: true, at: Date.now() });
   } catch {

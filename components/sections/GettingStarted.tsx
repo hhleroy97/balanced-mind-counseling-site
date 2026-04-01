@@ -1,33 +1,16 @@
 import { FadeIn } from "@/components/shared/FadeIn";
 import { SectionCardMedia } from "@/components/shared/SectionCardMedia";
 import { Card } from "@/components/ui/card";
-import {
-  type SectionLayoutVariant,
-  sectionFoldGrowClass,
-  sectionInnerClass,
-  sectionOuterClass,
-} from "@/lib/section-layout";
-import { cn } from "@/lib/utils";
 import type { SiteSettings } from "@/lib/types";
 
-export function GettingStarted({
-  siteSettings,
-  variant = "fold",
-}: {
-  siteSettings: SiteSettings;
-  variant?: SectionLayoutVariant;
-}) {
+export function GettingStarted({ siteSettings }: { siteSettings: SiteSettings }) {
   const steps = siteSettings.gettingStartedSteps;
 
   return (
-    <section className={cn(sectionOuterClass(variant), "bg-[#fbf8f2]")}>
+    <section className="site-fold-section flex flex-col bg-[#fbf8f2]">
       <div
         id="getting-started"
-        className={cn(
-          sectionInnerClass(variant),
-          "mx-auto flex w-full max-w-7xl flex-col space-y-8 scroll-mt-header lg:space-y-10",
-          sectionFoldGrowClass(variant),
-        )}
+        className="site-fold-inner site-page-x mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center space-y-8 overflow-y-auto lg:space-y-10 scroll-mt-header"
       >
         <FadeIn className="space-y-4">
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">

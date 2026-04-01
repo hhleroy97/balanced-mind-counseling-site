@@ -65,7 +65,7 @@ describe("About", () => {
     expect(html).toContain(mockSiteSettings.phone);
     expect(html).toContain(mockSiteSettings.address);
     expect(html).toContain(`href="${mockSiteSettings.bookingUrl}"`);
-    expect(html).toContain('href="/contact"');
+    expect(html).toContain('href="/#contact"');
     expect(html).toContain("Contact the practice");
     expect(html).toContain('href="https://instagram.com"');
     expect(html).toContain('href="https://linkedin.com"');

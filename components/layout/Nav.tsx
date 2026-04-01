@@ -6,13 +6,13 @@ import { useNavActiveSection } from "@/components/layout/useHomeSectionSpy";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
-  { href: "/", sectionId: "home" as const, label: "Home" },
-  { href: "/about", sectionId: "about" as const, label: "About" },
-  { href: "/services", sectionId: "services" as const, label: "Services" },
-  { href: "/rates", sectionId: "rates" as const, label: "Rates" },
-  { href: "/getting-started", sectionId: "getting-started" as const, label: "Getting Started" },
-  { href: "/blog", sectionId: "blog" as const, label: "Blog" },
-  { href: "/resources", sectionId: "resources" as const, label: "Resources" },
+  { href: "/#home", sectionId: "home" as const, label: "Home" },
+  { href: "/#about", sectionId: "about" as const, label: "About" },
+  { href: "/#services", sectionId: "services" as const, label: "Services" },
+  { href: "/#rates", sectionId: "rates" as const, label: "Rates" },
+  { href: "/#getting-started", sectionId: "getting-started" as const, label: "Getting Started" },
+  { href: "/#blog", sectionId: "blog" as const, label: "Blog" },
+  { href: "/#resources", sectionId: "resources" as const, label: "Resources" },
 ] as const;
 
 function navItemClass(compact: boolean, isActive: boolean) {
@@ -51,6 +51,9 @@ export function Nav({
             {link.label}
           </Link>
         ))}
+        <Link href="/#contact" className={navItemClass(compact, activeSectionId === "contact")}>
+          Contact
+        </Link>
         <a
           href={clientPortalUrl}
           target="_blank"
@@ -59,9 +62,6 @@ export function Nav({
         >
           Client Portal
         </a>
-        <Link href="/contact" className={navItemClass(compact, activeSectionId === "contact")}>
-          Contact
-        </Link>
       </div>
     </nav>
   );

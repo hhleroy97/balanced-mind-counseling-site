@@ -28,28 +28,28 @@ export async function Footer() {
             Navigation
           </h3>
           <div className="space-y-3 text-sm">
-            <Link className="block hover:text-primary" href="/">
+            <Link className="block hover:text-primary" href="/#home">
               Home
             </Link>
-            <Link className="block hover:text-primary" href="/about">
+            <Link className="block hover:text-primary" href="/#about">
               About
             </Link>
-            <Link className="block hover:text-primary" href="/services">
+            <Link className="block hover:text-primary" href="/#services">
               Services
             </Link>
-            <Link className="block hover:text-primary" href="/rates">
+            <Link className="block hover:text-primary" href="/#rates">
               Rates
             </Link>
-            <Link className="block hover:text-primary" href="/getting-started">
+            <Link className="block hover:text-primary" href="/#getting-started">
               Getting started
             </Link>
-            <Link className="block hover:text-primary" href="/blog">
+            <Link className="block hover:text-primary" href="/#blog">
               Blog
             </Link>
-            <Link className="block hover:text-primary" href="/resources">
+            <Link className="block hover:text-primary" href="/#resources">
               Resources
             </Link>
-            <Link className="block hover:text-primary" href="/contact">
+            <Link className="block hover:text-primary" href="/#contact">
               Contact
             </Link>
           </div>

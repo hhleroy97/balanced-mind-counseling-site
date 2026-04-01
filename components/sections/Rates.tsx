@@ -3,33 +3,16 @@ import Link from "next/link";
 import { FadeIn } from "@/components/shared/FadeIn";
 import { SectionCardMedia } from "@/components/shared/SectionCardMedia";
 import { Card } from "@/components/ui/card";
-import {
-  type SectionLayoutVariant,
-  sectionFoldGrowClass,
-  sectionInnerClass,
-  sectionOuterClass,
-} from "@/lib/section-layout";
-import { cn } from "@/lib/utils";
 import type { SiteSettings } from "@/lib/types";
 
-export function Rates({
-  siteSettings,
-  variant = "fold",
-}: {
-  siteSettings: SiteSettings;
-  variant?: SectionLayoutVariant;
-}) {
+export function Rates({ siteSettings }: { siteSettings: SiteSettings }) {
   const items = siteSettings.ratesItems;
 
   return (
-    <section className={cn(sectionOuterClass(variant), "bg-[#f6f1e7]")}>
+    <section className="site-fold-section flex flex-col bg-[#f6f1e7]">
       <div
         id="rates"
-        className={cn(
-          sectionInnerClass(variant),
-          "mx-auto flex w-full max-w-7xl flex-col space-y-8 scroll-mt-header lg:space-y-10",
-          sectionFoldGrowClass(variant),
-        )}
+        className="site-fold-inner site-page-x mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center space-y-8 overflow-y-auto lg:space-y-10 scroll-mt-header"
       >
         <FadeIn className="space-y-4">
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
@@ -60,7 +43,7 @@ export function Rates({
 
         <FadeIn delay={0.2}>
           <Link
-            href="/contact"
+            href="/#contact"
             className="inline-flex text-sm font-semibold uppercase tracking-[0.16em] text-primary underline-offset-4 hover:underline"
           >
             Ask about fees and availability

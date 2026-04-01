@@ -222,7 +222,7 @@ export const siteSettingsType = defineType({
     defineField({
       name: "servicesEyebrow",
       title: "Eyebrow",
-      description: "Home /services page and services fold on the homepage.",
+      description: "Services fold on the homepage (#services).",
       type: "string",
       group: "services",
     }),
@@ -244,14 +244,14 @@ export const siteSettingsType = defineType({
       title: "Service cards",
       type: "array",
       group: "services",
-      description: "Cards on the home services fold and /services (not separate documents).",
+      description: "Cards on the home services fold (not separate documents).",
       of: [{ type: "object", fields: serviceItemFields }],
     }),
 
     defineField({
       name: "ratesEyebrow",
       title: "Eyebrow",
-      description: "Home /rates page and rates fold on the homepage.",
+      description: "Rates fold on the homepage (#rates).",
       type: "string",
       group: "rates",
     }),
@@ -279,7 +279,7 @@ export const siteSettingsType = defineType({
     defineField({
       name: "gettingStartedEyebrow",
       title: "Eyebrow",
-      description: "Home /getting-started page and fold on the homepage.",
+      description: "Getting started fold on the homepage (#getting-started).",
       type: "string",
       group: "gettingStarted",
     }),
@@ -342,7 +342,7 @@ export const siteSettingsType = defineType({
     defineField({
       name: "contactEyebrow",
       title: "Eyebrow",
-      description: "Home contact fold and /contact page.",
+      description: "Contact fold on the homepage (#contact).",
       type: "string",
       group: "contact",
     }),

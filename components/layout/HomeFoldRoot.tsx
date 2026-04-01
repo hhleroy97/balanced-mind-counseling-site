@@ -20,5 +20,24 @@ export function HomeFoldRoot({ children }: { children: ReactNode }) {
     };
   }, [pathname]);
 
+  useEffect(() => {
+    if (pathname !== "/") return;
+
+    function scrollToHash() {
+      const id = window.location.hash.slice(1);
+      if (!id) return;
+      const el = document.getElementById(id);
+      if (el) {
+        requestAnimationFrame(() => {
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+      }
+    }
+
+    scrollToHash();
+    window.addEventListener("hashchange", scrollToHash);
+    return () => window.removeEventListener("hashchange", scrollToHash);
+  }, [pathname]);
+
   return <>{children}</>;
 }
