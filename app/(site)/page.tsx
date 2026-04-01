@@ -9,12 +9,7 @@ import { Rates } from "@/components/sections/Rates";
 import { ResourcesPreview } from "@/components/sections/ResourcesPreview";
 import { Services } from "@/components/sections/Services";
 import { HomeFoldRoot } from "@/components/layout/HomeFoldRoot";
-import {
-  getPosts,
-  getResources,
-  getServices,
-  getSiteSettings,
-} from "@/lib/content";
+import { getPosts, getResources, getSiteSettings } from "@/lib/content";
 
 export async function generateMetadata(): Promise<Metadata> {
   const siteSettings = await getSiteSettings();
@@ -34,9 +29,8 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Home() {
-  const [siteSettings, services, posts, resources] = await Promise.all([
+  const [siteSettings, posts, resources] = await Promise.all([
     getSiteSettings(),
-    getServices(),
     getPosts(),
     getResources(),
   ]);
@@ -45,7 +39,7 @@ export default async function Home() {
     <HomeFoldRoot>
       <Hero siteSettings={siteSettings} />
       <About siteSettings={siteSettings} />
-      <Services siteSettings={siteSettings} services={services} />
+      <Services siteSettings={siteSettings} />
       <Rates siteSettings={siteSettings} />
       <GettingStarted siteSettings={siteSettings} />
       <BlogPreview siteSettings={siteSettings} posts={posts.slice(0, 3)} />

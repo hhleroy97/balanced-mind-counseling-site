@@ -8,8 +8,8 @@ import { getSiteSettings } from "@/lib/content";
 export async function generateMetadata(): Promise<Metadata> {
   const siteSettings = await getSiteSettings();
   return {
-    title: siteSettings.contactPageEyebrow,
-    description: siteSettings.contactPageIntro,
+    title: siteSettings.contactHeading,
+    description: siteSettings.contactIntro,
   };
 }
 
@@ -20,12 +20,12 @@ export default async function ContactPage() {
     <section className="site-page-x mx-auto grid w-full max-w-7xl gap-8 py-16 lg:grid-cols-[1.05fr_0.95fr]">
       <div className="space-y-6">
         <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
-          {siteSettings.contactPageEyebrow}
+          {siteSettings.contactEyebrow}
         </p>
         <h1 className="max-w-2xl font-serif text-5xl tracking-tight text-foreground">
-          {siteSettings.contactPageHeading}
+          {siteSettings.contactHeading}
         </h1>
-        <p className="max-w-2xl text-lg leading-8 text-muted-foreground">{siteSettings.contactPageIntro}</p>
+        <p className="max-w-2xl text-lg leading-8 text-muted-foreground">{siteSettings.contactIntro}</p>
 
         <Card className="space-y-5 p-8">
           <div>

@@ -30,6 +30,40 @@ const sectionCardFields = [
   }),
 ];
 
+const serviceItemFields = [
+  defineField({ name: "title", title: "Title", type: "string" }),
+  defineField({
+    name: "shortDescription",
+    title: "Short description",
+    type: "text",
+    rows: 3,
+    description: "Shown under the title on the card.",
+  }),
+  defineField({
+    name: "fullDescription",
+    title: "Full description",
+    type: "blockContent",
+  }),
+  defineField({
+    name: "icon",
+    title: "Icon",
+    type: "string",
+    description: "Shown in the card header unless Image is set.",
+    options: {
+      list: lucideIconSelectOptions,
+      layout: "dropdown",
+    },
+    initialValue: "Leaf",
+  }),
+  defineField({
+    name: "image",
+    title: "Image (optional)",
+    type: "image",
+    description: "Replaces the icon when uploaded.",
+    options: { hotspot: true },
+  }),
+];
+
 export const siteSettingsType = defineType({
   name: "siteSettings",
   title: "Site Settings",
@@ -38,8 +72,8 @@ export const siteSettingsType = defineType({
     { name: "identity", title: "Practice & SEO", default: true },
     { name: "hero", title: "Hero" },
     { name: "about", title: "About (home)" },
-    { name: "sections", title: "Home sections" },
-    { name: "pages", title: "Inner pages" },
+    { name: "sections", title: "Sections (home & routes)" },
+    { name: "pages", title: "Resource detail" },
     { name: "footer", title: "Footer" },
   ],
   fields: [
@@ -183,21 +217,32 @@ export const siteSettingsType = defineType({
     defineField({
       name: "servicesEyebrow",
       title: "Services — eyebrow",
+      description: "Home services fold.",
       type: "string",
       group: "sections",
     }),
     defineField({
       name: "servicesHeading",
       title: "Services — heading",
+      description: "Home services fold.",
       type: "string",
       group: "sections",
     }),
     defineField({
       name: "servicesIntro",
       title: "Services — intro paragraph",
+      description: "Home services fold.",
       type: "text",
       rows: 3,
       group: "sections",
+    }),
+    defineField({
+      name: "servicesItems",
+      title: "Services — cards",
+      type: "array",
+      group: "sections",
+      description: "Service offerings for the home page (managed here, not as separate documents).",
+      of: [{ type: "object", fields: serviceItemFields }],
     }),
 
     defineField({
@@ -249,19 +294,22 @@ export const siteSettingsType = defineType({
 
     defineField({
       name: "blogEyebrow",
-      title: "Blog preview — eyebrow",
+      title: "Blog — eyebrow",
+      description: "Home preview and /blog page.",
       type: "string",
       group: "sections",
     }),
     defineField({
       name: "blogHeading",
-      title: "Blog preview — heading",
+      title: "Blog — heading",
+      description: "Home preview and /blog page.",
       type: "string",
       group: "sections",
     }),
     defineField({
       name: "blogIntro",
-      title: "Blog preview — intro",
+      title: "Blog — intro",
+      description: "Home preview and /blog page.",
       type: "text",
       rows: 3,
       group: "sections",
@@ -269,19 +317,22 @@ export const siteSettingsType = defineType({
 
     defineField({
       name: "resourcesEyebrow",
-      title: "Resources preview — eyebrow",
+      title: "Resources — eyebrow",
+      description: "Home preview and /resources page.",
       type: "string",
       group: "sections",
     }),
     defineField({
       name: "resourcesHeading",
-      title: "Resources preview — heading",
+      title: "Resources — heading",
+      description: "Home preview and /resources page.",
       type: "string",
       group: "sections",
     }),
     defineField({
       name: "resourcesIntro",
-      title: "Resources preview — intro",
+      title: "Resources — intro",
+      description: "Home preview and /resources page.",
       type: "text",
       rows: 3,
       group: "sections",
@@ -289,82 +340,25 @@ export const siteSettingsType = defineType({
 
     defineField({
       name: "contactEyebrow",
-      title: "Contact fold — eyebrow",
+      title: "Contact — eyebrow",
+      description: "Home fold and /contact page.",
       type: "string",
       group: "sections",
     }),
     defineField({
       name: "contactHeading",
-      title: "Contact fold — heading",
+      title: "Contact — heading",
+      description: "Home fold and /contact page.",
       type: "string",
       group: "sections",
     }),
     defineField({
       name: "contactIntro",
-      title: "Contact fold — intro",
+      title: "Contact — intro",
+      description: "Home fold and /contact page.",
       type: "text",
       rows: 3,
       group: "sections",
-    }),
-
-    defineField({
-      name: "blogPageEyebrow",
-      title: "Blog page — eyebrow",
-      type: "string",
-      group: "pages",
-    }),
-    defineField({
-      name: "blogPageHeading",
-      title: "Blog page — heading",
-      type: "string",
-      group: "pages",
-    }),
-    defineField({
-      name: "blogPageIntro",
-      title: "Blog page — intro",
-      type: "text",
-      rows: 3,
-      group: "pages",
-    }),
-
-    defineField({
-      name: "resourcesPageEyebrow",
-      title: "Resources page — eyebrow",
-      type: "string",
-      group: "pages",
-    }),
-    defineField({
-      name: "resourcesPageHeading",
-      title: "Resources page — heading",
-      type: "string",
-      group: "pages",
-    }),
-    defineField({
-      name: "resourcesPageIntro",
-      title: "Resources page — intro",
-      type: "text",
-      rows: 3,
-      group: "pages",
-    }),
-
-    defineField({
-      name: "contactPageEyebrow",
-      title: "Contact page — eyebrow",
-      type: "string",
-      group: "pages",
-    }),
-    defineField({
-      name: "contactPageHeading",
-      title: "Contact page — heading",
-      type: "string",
-      group: "pages",
-    }),
-    defineField({
-      name: "contactPageIntro",
-      title: "Contact page — intro",
-      type: "text",
-      rows: 3,
-      group: "pages",
     }),
 
     defineField({

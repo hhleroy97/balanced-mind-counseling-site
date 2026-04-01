@@ -8,15 +8,10 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import type { Service, SiteSettings } from "@/lib/types";
+import type { SiteSettings } from "@/lib/types";
 
-export function Services({
-  siteSettings,
-  services,
-}: {
-  siteSettings: SiteSettings;
-  services: Service[];
-}) {
+export function Services({ siteSettings }: { siteSettings: SiteSettings }) {
+  const { servicesItems: services } = siteSettings;
   return (
     <section className="site-fold-section flex flex-col bg-card">
       <div
@@ -37,7 +32,7 @@ export function Services({
 
         <div className="grid gap-6 lg:grid-cols-3">
           {services.map((service, index) => (
-            <FadeIn key={service.slug?.current ?? service._id ?? index} delay={index * 0.08}>
+            <FadeIn key={`${service.title}-${index}`} delay={index * 0.08}>
               <Card className="h-full">
                 <CardHeader className="space-y-4">
                   <SectionCardMedia

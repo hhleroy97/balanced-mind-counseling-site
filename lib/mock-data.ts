@@ -2,7 +2,7 @@ import type {
   CopyCard,
   Post,
   Resource,
-  Service,
+  ServiceItem,
   SiteSettings,
   Testimonial,
 } from "@/lib/types";
@@ -65,6 +65,30 @@ function blockParagraph(text: string) {
   ];
 }
 
+export const mockServiceItems: ServiceItem[] = [
+  {
+    title: "Lorem anxiety support",
+    icon: "Leaf",
+    shortDescription:
+      "Dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore.",
+    fullDescription: blockParagraph(LP),
+  },
+  {
+    title: "Ipsum burnout care",
+    icon: "Sparkles",
+    shortDescription:
+      "Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip.",
+    fullDescription: blockParagraph(LP_SHORT),
+  },
+  {
+    title: "Dolor relationship focus",
+    icon: "HeartHandshake",
+    shortDescription:
+      "Ex ea commodo consequat duis aute irure dolor in reprehenderit in voluptate velit.",
+    fullDescription: blockParagraph(LP_SHORT),
+  },
+];
+
 export const mockSiteSettings: SiteSettings = {
   practiceName: "Lorem Ipsum Counseling",
   tagline: LP_LINE,
@@ -94,6 +118,7 @@ export const mockSiteSettings: SiteSettings = {
   servicesEyebrow: "Services",
   servicesHeading: "Lorem ipsum dolor sit amet support tailored to client needs.",
   servicesIntro: LP_SHORT,
+  servicesItems: mockServiceItems,
 
   ratesEyebrow: "Rates",
   ratesHeading: "Lorem ipsum practical information about fees and getting started.",
@@ -116,18 +141,6 @@ export const mockSiteSettings: SiteSettings = {
   contactHeading: "Lorem ipsum reach out with questions or scheduling needs.",
   contactIntro: LP_SHORT,
 
-  blogPageEyebrow: "Blog",
-  blogPageHeading: "Lorem ipsum articles and reflections placeholder archive.",
-  blogPageIntro: LP_SHORT,
-
-  resourcesPageEyebrow: "Resources",
-  resourcesPageHeading: "Lorem ipsum worksheets and supportive tools placeholder library.",
-  resourcesPageIntro: LP_SHORT,
-
-  contactPageEyebrow: "Contact",
-  contactPageHeading: "Lorem ipsum questions or book directly when ready.",
-  contactPageIntro: LP_SHORT,
-
   resourceDetailDownloadHeading: "Lorem ipsum download this resource",
   resourceDetailDownloadBody: LP_SHORT,
   resourceDetailNoFileMessage:
@@ -135,36 +148,6 @@ export const mockSiteSettings: SiteSettings = {
 
   footerBlurb: LP_SHORT,
 };
-
-export const mockServices: Service[] = [
-  {
-    title: "Lorem anxiety support",
-    slug: { current: "lorem-anxiety" },
-    icon: "Leaf",
-    shortDescription:
-      "Dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore.",
-    fullDescription: blockParagraph(LP),
-    order: 1,
-  },
-  {
-    title: "Ipsum burnout care",
-    slug: { current: "ipsum-burnout" },
-    icon: "Sparkles",
-    shortDescription:
-      "Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip.",
-    fullDescription: blockParagraph(LP_SHORT),
-    order: 2,
-  },
-  {
-    title: "Dolor relationship focus",
-    slug: { current: "dolor-relationships" },
-    icon: "HeartHandshake",
-    shortDescription:
-      "Ex ea commodo consequat duis aute irure dolor in reprehenderit in voluptate velit.",
-    fullDescription: blockParagraph(LP_SHORT),
-    order: 3,
-  },
-];
 
 export const mockPosts: Post[] = [
   {

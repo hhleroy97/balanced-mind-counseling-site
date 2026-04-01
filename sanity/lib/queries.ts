@@ -1,10 +1,5 @@
 export const siteSettingsQuery = `*[_type == "siteSettings"][0]`;
 
-export const servicesQuery = `*[_type == "service" && defined(slug.current)] | order(order asc) {
-  ...,
-  slug,
-}`;
-
 export const postsQuery = `*[_type == "post" && defined(slug.current)] | order(publishedAt desc) {
   ...,
   slug,

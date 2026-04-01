@@ -63,6 +63,7 @@ export type SiteSettings = {
   servicesEyebrow: string;
   servicesHeading: string;
   servicesIntro: string;
+  servicesItems: ServiceItem[];
 
   ratesEyebrow: string;
   ratesHeading: string;
@@ -85,18 +86,6 @@ export type SiteSettings = {
   contactHeading: string;
   contactIntro: string;
 
-  blogPageEyebrow: string;
-  blogPageHeading: string;
-  blogPageIntro: string;
-
-  resourcesPageEyebrow: string;
-  resourcesPageHeading: string;
-  resourcesPageIntro: string;
-
-  contactPageEyebrow: string;
-  contactPageHeading: string;
-  contactPageIntro: string;
-
   /** Resource detail page — download panel (single resource view) */
   resourceDetailDownloadHeading: string;
   resourceDetailDownloadBody: string;
@@ -105,16 +94,14 @@ export type SiteSettings = {
   footerBlurb: string;
 };
 
-export type Service = {
-  _id?: string;
+/** Service card on the home page (from Site Settings). */
+export type ServiceItem = {
   title: string;
-  slug: { current: string };
+  shortDescription: string;
+  fullDescription: RichTextBlock[];
   icon: string;
   /** Optional card image; when set, replaces the icon */
   image?: unknown;
-  shortDescription: string;
-  fullDescription: RichTextBlock[];
-  order: number;
 };
 
 export type PostSeo = {

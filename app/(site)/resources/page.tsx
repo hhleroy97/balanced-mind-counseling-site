@@ -7,8 +7,8 @@ import { getFilteredResources, getResourceCategories, getSiteSettings } from "@/
 export async function generateMetadata(): Promise<Metadata> {
   const siteSettings = await getSiteSettings();
   return {
-    title: siteSettings.resourcesPageEyebrow,
-    description: siteSettings.resourcesPageIntro,
+    title: siteSettings.resourcesHeading,
+    description: siteSettings.resourcesIntro,
   };
 }
 
@@ -32,13 +32,13 @@ export default async function ResourcesPage({
     <section className="site-page-x mx-auto w-full max-w-7xl space-y-8 pb-14 pt-24 lg:pb-16 lg:pt-24">
       <div className="space-y-2">
         <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-primary">
-          {siteSettings.resourcesPageEyebrow}
+          {siteSettings.resourcesEyebrow}
         </p>
         <h1 className="max-w-3xl font-serif text-2xl tracking-tight text-foreground sm:text-3xl">
-          {siteSettings.resourcesPageHeading}
+          {siteSettings.resourcesHeading}
         </h1>
         <p className="max-w-2xl text-sm leading-6 text-muted-foreground">
-          {siteSettings.resourcesPageIntro}
+          {siteSettings.resourcesIntro}
         </p>
       </div>
 

@@ -4,6 +4,10 @@ import { describe, expect, it, vi } from "vitest";
 
 import { Nav } from "@/components/layout/Nav";
 
+vi.mock("next/navigation", () => ({
+  usePathname: () => "/",
+}));
+
 vi.mock("next/link", () => ({
   default: ({
     children,

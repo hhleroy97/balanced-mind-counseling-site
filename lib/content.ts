@@ -1,7 +1,6 @@
 import {
   mockPosts,
   mockResources,
-  mockServices,
   mockSiteSettings,
   mockTestimonials,
 } from "@/lib/mock-data";
@@ -10,7 +9,7 @@ import type {
   CopyCard,
   Post,
   Resource,
-  Service,
+  ServiceItem,
   SiteSettings,
   Testimonial,
 } from "@/lib/types";
@@ -22,7 +21,6 @@ import {
   resourceBySlugQuery,
   resourceSlugsQuery,
   resourcesQuery,
-  servicesQuery,
   siteSettingsQuery,
   testimonialsQuery,
 } from "@/sanity/lib/queries";
@@ -71,19 +69,6 @@ function normalizeResource(resource: Resource): Resource | null {
   return { ...resource, slug: { current } };
 }
 
-function normalizeService(service: Service): Service | null {
-  const raw = service.slug?.current;
-  const current = typeof raw === "string" ? raw.trim() : "";
-  if (!current) {
-    return null;
-  }
-
-  const icon =
-    typeof service.icon === "string" && service.icon.trim() ? service.icon.trim() : "Leaf";
-
-  return { ...service, slug: { current }, icon };
-}
-
 async function safeFetch<T>(query: string, params?: Record<string, string>) {
   if (!client || !isSanityEnabled) {
     return null;
@@ -113,6 +98,32 @@ function mergeCopyCards(value: unknown, fallback: CopyCard[]): CopyCard[] {
       title: typeof item.title === "string" ? item.title : "",
       description: typeof item.description === "string" ? item.description : "",
       ...(icon ? { icon } : {}),
+      ...(item.image ? { image: item.image } : {}),
+    };
+  });
+}
+
+function mergeServiceItems(value: unknown, fallback: ServiceItem[]): ServiceItem[] {
+  if (!Array.isArray(value) || value.length === 0) {
+    return fallback;
+  }
+
+  return value.map((raw) => {
+    const item = raw as {
+      title?: string;
+      shortDescription?: string;
+      fullDescription?: ServiceItem["fullDescription"];
+      icon?: string;
+      image?: unknown;
+    };
+    const icon =
+      typeof item.icon === "string" && item.icon.trim() ? item.icon.trim() : "Leaf";
+    const fullDescription = Array.isArray(item.fullDescription) ? item.fullDescription : [];
+    return {
+      title: typeof item.title === "string" ? item.title : "",
+      shortDescription: typeof item.shortDescription === "string" ? item.shortDescription : "",
+      fullDescription,
+      icon,
       ...(item.image ? { image: item.image } : {}),
     };
   });
@@ -157,6 +168,7 @@ function withSiteSettingsFallbacks(siteSettings: SiteSettings): SiteSettings {
     servicesEyebrow: s.servicesEyebrow || m.servicesEyebrow,
     servicesHeading: s.servicesHeading || m.servicesHeading,
     servicesIntro: s.servicesIntro || m.servicesIntro,
+    servicesItems: mergeServiceItems(s.servicesItems, m.servicesItems),
 
     ratesEyebrow: s.ratesEyebrow || m.ratesEyebrow,
     ratesHeading: s.ratesHeading || m.ratesHeading,
@@ -179,18 +191,6 @@ function withSiteSettingsFallbacks(siteSettings: SiteSettings): SiteSettings {
     contactHeading: s.contactHeading || m.contactHeading,
     contactIntro: s.contactIntro || m.contactIntro,
 
-    blogPageEyebrow: s.blogPageEyebrow || m.blogPageEyebrow,
-    blogPageHeading: s.blogPageHeading || m.blogPageHeading,
-    blogPageIntro: s.blogPageIntro || m.blogPageIntro,
-
-    resourcesPageEyebrow: s.resourcesPageEyebrow || m.resourcesPageEyebrow,
-    resourcesPageHeading: s.resourcesPageHeading || m.resourcesPageHeading,
-    resourcesPageIntro: s.resourcesPageIntro || m.resourcesPageIntro,
-
-    contactPageEyebrow: s.contactPageEyebrow || m.contactPageEyebrow,
-    contactPageHeading: s.contactPageHeading || m.contactPageHeading,
-    contactPageIntro: s.contactPageIntro || m.contactPageIntro,
-
     resourceDetailDownloadHeading:
       s.resourceDetailDownloadHeading || m.resourceDetailDownloadHeading,
     resourceDetailDownloadBody: s.resourceDetailDownloadBody || m.resourceDetailDownloadBody,
@@ -203,12 +203,6 @@ function withSiteSettingsFallbacks(siteSettings: SiteSettings): SiteSettings {
 export async function getSiteSettings(): Promise<SiteSettings> {
   const siteSettings = (await safeFetch<SiteSettings>(siteSettingsQuery)) ?? mockSiteSettings;
   return withSiteSettingsFallbacks(siteSettings);
-}
-
-export async function getServices(): Promise<Service[]> {
-  const services = await safeFetch<Service[]>(servicesQuery);
-  const list = services?.length ? services : mockServices;
-  return list.map(normalizeService).filter((s): s is Service => s !== null);
 }
 
 export async function getTestimonials(): Promise<Testimonial[]> {

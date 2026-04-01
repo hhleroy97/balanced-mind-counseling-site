@@ -104,7 +104,7 @@ For the practice owner:
 
 1. Open Sanity Studio.
 2. Update `Site Settings` for homepage text, contact details, and booking links.
-3. Add or reorder `Services` to change the homepage services section.
+3. In `Site Settings` → **Sections (home & routes)**, edit **Services — cards** to add or reorder homepage service cards (same document as rates-style cards).
 4. Publish `Posts` for new blog articles.
 5. Add `Resources` to publish downloadable worksheets.
 6. Use `Testimonials` only for anonymized quotes.

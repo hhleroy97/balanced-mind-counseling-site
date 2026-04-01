@@ -25,35 +25,31 @@ export function HeaderClient({
           : "border-b border-transparent bg-transparent",
       )}
     >
-      <div className="site-page-x mx-auto grid w-full max-w-7xl grid-cols-[auto_minmax(0,1fr)] items-center gap-4 py-4">
-        <div className="justify-self-start">
-          <Link href="/#home" className="flex items-center gap-3">
-            <div
-              className={cn(
-                "overflow-hidden transition-all duration-500",
-                !isHome || isCompact
-                  ? "max-w-sm opacity-100"
-                  : "pointer-events-none max-w-0 opacity-0",
-              )}
-            >
-              <div className="flex items-center">
-                <Image
-                  src="/logo.png"
-                  alt={`${practiceName} logo`}
-                  width={240}
-                  height={80}
-                  priority
-                  className="h-12 w-auto object-contain sm:h-14"
-                />
-              </div>
-            </div>
+      <div className="site-page-x mx-auto grid w-full max-w-7xl grid-cols-[11rem_minmax(0,1fr)] items-center gap-4 py-4 md:grid-cols-[13.5rem_minmax(0,1fr)_13.5rem]">
+        <div className="flex min-h-12 items-center justify-start sm:min-h-14">
+          <Link
+            href="/#home"
+            className={cn(
+              "inline-flex transition-opacity duration-500",
+              !isHome || isCompact ? "opacity-100" : "pointer-events-none opacity-0",
+            )}
+          >
+            <Image
+              src="/logo.png"
+              alt={`${practiceName} logo`}
+              width={240}
+              height={80}
+              priority
+              className="h-12 w-auto max-w-[10.5rem] object-contain object-left sm:h-14 sm:max-w-[12.5rem]"
+            />
           </Link>
         </div>
         <Nav
           clientPortalUrl={clientPortalUrl}
           compact={!isHome || isCompact}
-          className="justify-self-stretch"
+          className="justify-self-stretch md:justify-self-center"
         />
+        <div className="hidden md:block" aria-hidden="true" />
       </div>
     </header>
   );
