@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { FadeIn } from "@/components/shared/FadeIn";
+import { SectionCardMedia } from "@/components/shared/SectionCardMedia";
 import { Card } from "@/components/ui/card";
 import type { SiteSettings } from "@/lib/types";
 
@@ -27,6 +28,12 @@ export function Rates({ siteSettings }: { siteSettings: SiteSettings }) {
           {items.map((detail, index) => (
             <FadeIn key={`${detail.title}-${index}`} delay={index * 0.06}>
               <Card className="h-full rounded-[1.75rem] bg-white/85 p-8 shadow-none">
+                <SectionCardMedia
+                  label={detail.title}
+                  icon={detail.icon}
+                  image={detail.image}
+                  iconFrameClassName="bg-primary/10 text-primary"
+                />
                 <h3 className="font-serif text-2xl text-[#1f352c]">{detail.title}</h3>
                 <p className="mt-4 leading-7 text-[#345447]">{detail.description}</p>
               </Card>

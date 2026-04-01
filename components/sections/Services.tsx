@@ -1,12 +1,6 @@
-import {
-  HeartHandshake,
-  Leaf,
-  Sparkles,
-  type LucideIcon,
-} from "lucide-react";
-
 import { PortableTextRenderer } from "@/components/blog/PortableTextRenderer";
 import { FadeIn } from "@/components/shared/FadeIn";
+import { SectionCardMedia } from "@/components/shared/SectionCardMedia";
 import {
   Card,
   CardContent,
@@ -15,12 +9,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import type { Service, SiteSettings } from "@/lib/types";
-
-const iconMap: Record<string, LucideIcon> = {
-  Leaf,
-  Sparkles,
-  HeartHandshake,
-};
 
 export function Services({
   siteSettings,
@@ -48,29 +36,27 @@ export function Services({
         </FadeIn>
 
         <div className="grid gap-6 lg:grid-cols-3">
-          {services.map((service, index) => {
-            const Icon = iconMap[service.icon] ?? Leaf;
-
-            return (
-              <FadeIn key={service.slug?.current ?? service._id ?? index} delay={index * 0.08}>
-                <Card className="h-full">
-                  <CardHeader className="space-y-4">
-                    <div className="flex size-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
-                      <Icon className="size-5" />
-                    </div>
-                    <CardTitle>{service.title}</CardTitle>
-                    <CardDescription>{service.shortDescription}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <PortableTextRenderer
-                      value={service.fullDescription}
-                      className="text-sm"
-                    />
-                  </CardContent>
-                </Card>
-              </FadeIn>
-            );
-          })}
+          {services.map((service, index) => (
+            <FadeIn key={service.slug?.current ?? service._id ?? index} delay={index * 0.08}>
+              <Card className="h-full">
+                <CardHeader className="space-y-4">
+                  <SectionCardMedia
+                    label={service.title}
+                    icon={service.icon}
+                    image={service.image}
+                  />
+                  <CardTitle>{service.title}</CardTitle>
+                  <CardDescription>{service.shortDescription}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <PortableTextRenderer
+                    value={service.fullDescription}
+                    className="text-sm"
+                  />
+                </CardContent>
+              </Card>
+            </FadeIn>
+          ))}
         </div>
       </div>
     </section>

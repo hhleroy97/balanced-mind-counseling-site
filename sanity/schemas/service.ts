@@ -1,5 +1,7 @@
 import { defineField, defineType } from "sanity";
 
+import { lucideIconSelectOptions } from "@/lib/lucide-icons";
+
 export const serviceType = defineType({
   name: "service",
   title: "Service",
@@ -16,7 +18,19 @@ export const serviceType = defineType({
       name: "icon",
       title: "Icon",
       type: "string",
-      description: "Lucide icon name or emoji.",
+      description: "Shown in the card header unless Image is set.",
+      options: {
+        list: lucideIconSelectOptions,
+        layout: "dropdown",
+      },
+      initialValue: "Leaf",
+    }),
+    defineField({
+      name: "image",
+      title: "Image (optional)",
+      type: "image",
+      description: "Replaces the icon when uploaded.",
+      options: { hotspot: true },
     }),
     defineField({
       name: "shortDescription",

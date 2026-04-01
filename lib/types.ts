@@ -28,6 +28,9 @@ export type SocialLinks = {
 export type CopyCard = {
   title: string;
   description: string;
+  /** Lucide icon name from Studio picker; ignored if `image` is set */
+  icon?: string;
+  image?: unknown;
 };
 
 export type SiteSettings = {
@@ -103,6 +106,8 @@ export type Service = {
   title: string;
   slug: { current: string };
   icon: string;
+  /** Optional card image; when set, replaces the icon */
+  image?: unknown;
   shortDescription: string;
   fullDescription: RichTextBlock[];
   order: number;

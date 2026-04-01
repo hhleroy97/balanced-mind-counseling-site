@@ -18,16 +18,19 @@ const mockRatesItems: CopyCard[] = [
     title: "Lorem consultum",
     description:
       "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    icon: "DollarSign",
   },
   {
     title: "Excepteur sessions",
     description:
       "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    icon: "Clock",
   },
   {
     title: "Ullamco pricing",
     description:
       "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni.",
+    icon: "Wallet",
   },
 ];
 
@@ -36,16 +39,19 @@ const mockGettingStartedSteps: CopyCard[] = [
     title: "Lorem reach out",
     description:
       "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.",
+    icon: "Mail",
   },
   {
     title: "Consectetur schedule",
     description:
       "Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta.",
+    icon: "CalendarCheck",
   },
   {
     title: "Adipiscing begin",
     description:
       "Nisi ut aliquid ex ea commodi consequatur quis autem vel eum iure reprehenderit qui in ea voluptate.",
+    icon: "Heart",
   },
 ];
 

@@ -78,7 +78,10 @@ function normalizeService(service: Service): Service | null {
     return null;
   }
 
-  return { ...service, slug: { current } };
+  const icon =
+    typeof service.icon === "string" && service.icon.trim() ? service.icon.trim() : "Leaf";
+
+  return { ...service, slug: { current }, icon };
 }
 
 async function safeFetch<T>(query: string, params?: Record<string, string>) {
@@ -99,10 +102,18 @@ function mergeCopyCards(value: unknown, fallback: CopyCard[]): CopyCard[] {
   }
 
   return value.map((raw) => {
-    const item = raw as { title?: string; description?: string };
+    const item = raw as {
+      title?: string;
+      description?: string;
+      icon?: string;
+      image?: unknown;
+    };
+    const icon = typeof item.icon === "string" && item.icon.trim() ? item.icon.trim() : undefined;
     return {
       title: typeof item.title === "string" ? item.title : "",
       description: typeof item.description === "string" ? item.description : "",
+      ...(icon ? { icon } : {}),
+      ...(item.image ? { image: item.image } : {}),
     };
   });
 }

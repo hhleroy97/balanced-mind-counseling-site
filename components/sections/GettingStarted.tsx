@@ -1,4 +1,5 @@
 import { FadeIn } from "@/components/shared/FadeIn";
+import { SectionCardMedia } from "@/components/shared/SectionCardMedia";
 import { Card } from "@/components/ui/card";
 import type { SiteSettings } from "@/lib/types";
 
@@ -29,7 +30,14 @@ export function GettingStarted({ siteSettings }: { siteSettings: SiteSettings })
                   <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">
                     Step {stepLabel}
                   </p>
-                  <h3 className="mt-4 font-serif text-2xl text-foreground">{step.title}</h3>
+                  <div className="mt-4">
+                    <SectionCardMedia
+                      label={step.title}
+                      icon={step.icon}
+                      image={step.image}
+                    />
+                  </div>
+                  <h3 className="font-serif text-2xl text-foreground">{step.title}</h3>
                   <p className="mt-4 leading-7 text-muted-foreground">{step.description}</p>
                 </Card>
               </FadeIn>

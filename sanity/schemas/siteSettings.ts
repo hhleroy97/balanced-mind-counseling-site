@@ -1,12 +1,32 @@
 import { defineField, defineType } from "sanity";
 
-const copyCardFields = [
+import { lucideIconSelectOptions } from "@/lib/lucide-icons";
+
+const sectionCardFields = [
   defineField({ name: "title", title: "Title", type: "string" }),
   defineField({
     name: "description",
     title: "Description",
     type: "text",
     rows: 3,
+  }),
+  defineField({
+    name: "icon",
+    title: "Icon",
+    type: "string",
+    description: "Used when no image is set.",
+    options: {
+      list: lucideIconSelectOptions,
+      layout: "dropdown",
+    },
+    initialValue: "Leaf",
+  }),
+  defineField({
+    name: "image",
+    title: "Image (optional)",
+    type: "image",
+    description: "Replaces the icon in this card when uploaded.",
+    options: { hotspot: true },
   }),
 ];
 
@@ -188,7 +208,7 @@ export const siteSettingsType = defineType({
       title: "Rates — cards",
       type: "array",
       group: "sections",
-      of: [{ type: "object", fields: copyCardFields }],
+      of: [{ type: "object", fields: sectionCardFields }],
     }),
 
     defineField({
@@ -208,7 +228,7 @@ export const siteSettingsType = defineType({
       title: "Getting Started — steps",
       type: "array",
       group: "sections",
-      of: [{ type: "object", fields: copyCardFields }],
+      of: [{ type: "object", fields: sectionCardFields }],
     }),
 
     defineField({
