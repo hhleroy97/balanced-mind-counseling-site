@@ -2,17 +2,17 @@
 
 import Link from "next/link";
 
-import { useHomeSectionSpy } from "@/components/layout/useHomeSectionSpy";
+import { useNavActiveSection } from "@/components/layout/useHomeSectionSpy";
 import { cn } from "@/lib/utils";
 
-const scrollLinks = [
-  { href: "/#home", sectionId: "home", label: "Home" },
-  { href: "/#about", sectionId: "about", label: "About" },
-  { href: "/#services", sectionId: "services", label: "Services" },
-  { href: "/#rates", sectionId: "rates", label: "Rates" },
-  { href: "/#getting-started", sectionId: "getting-started", label: "Getting Started" },
-  { href: "/#blog", sectionId: "blog", label: "Blog" },
-  { href: "/#resources", sectionId: "resources", label: "Resources" },
+const navLinks = [
+  { href: "/", sectionId: "home" as const, label: "Home" },
+  { href: "/about", sectionId: "about" as const, label: "About" },
+  { href: "/services", sectionId: "services" as const, label: "Services" },
+  { href: "/rates", sectionId: "rates" as const, label: "Rates" },
+  { href: "/getting-started", sectionId: "getting-started" as const, label: "Getting Started" },
+  { href: "/blog", sectionId: "blog" as const, label: "Blog" },
+  { href: "/resources", sectionId: "resources" as const, label: "Resources" },
 ] as const;
 
 function navItemClass(compact: boolean, isActive: boolean) {
@@ -37,12 +37,12 @@ export function Nav({
   compact?: boolean;
   className?: string;
 }) {
-  const activeSectionId = useHomeSectionSpy();
+  const activeSectionId = useNavActiveSection();
 
   return (
     <nav className={cn("flex min-w-0 items-center", className)}>
       <div className="flex min-w-0 flex-1 items-center gap-5 overflow-x-auto pb-1 md:justify-center md:overflow-visible md:pb-0">
-        {scrollLinks.map((link) => (
+        {navLinks.map((link) => (
           <Link
             key={link.href}
             href={link.href}
@@ -59,10 +59,7 @@ export function Nav({
         >
           Client Portal
         </a>
-        <Link
-          href="/#contact"
-          className={navItemClass(compact, activeSectionId === "contact")}
-        >
+        <Link href="/contact" className={navItemClass(compact, activeSectionId === "contact")}>
           Contact
         </Link>
       </div>

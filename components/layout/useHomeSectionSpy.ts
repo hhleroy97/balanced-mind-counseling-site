@@ -5,6 +5,17 @@ import { useCallback, useEffect, useLayoutEffect, useState } from "react";
 
 import { HOME_NAV_SECTION_IDS, type HomeNavSectionId } from "@/lib/home-section-nav";
 
+/** Pathname → nav section for dedicated routes (and `/` uses scroll spy). */
+const PATHNAME_ACTIVE_SECTION: Partial<Record<string, HomeNavSectionId>> = {
+  "/about": "about",
+  "/services": "services",
+  "/rates": "rates",
+  "/getting-started": "getting-started",
+  "/blog": "blog",
+  "/resources": "resources",
+  "/contact": "contact",
+};
+
 function readHeaderActivationOffsetPx(): number {
   if (typeof document === "undefined") return 88;
   const header = document.querySelector("header");
@@ -61,4 +72,23 @@ export function useHomeSectionSpy(): HomeNavSectionId | null {
   }, [isHome, refresh]);
 
   return activeSectionId;
+}
+
+/**
+ * Active nav underline: scroll position on `/`, otherwise current route
+ * (including `/blog/[slug]` and `/resources/[slug]`).
+ */
+export function useNavActiveSection(): HomeNavSectionId | null {
+  const pathname = usePathname();
+  const homeScrollActive = useHomeSectionSpy();
+
+  if (pathname === "/") return homeScrollActive;
+
+  const exact = PATHNAME_ACTIVE_SECTION[pathname];
+  if (exact) return exact;
+
+  if (pathname.startsWith("/blog/")) return "blog";
+  if (pathname.startsWith("/resources/")) return "resources";
+
+  return null;
 }

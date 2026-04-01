@@ -28,7 +28,7 @@ export function HeaderClient({
       <div className="site-page-x mx-auto grid w-full max-w-7xl grid-cols-[11rem_minmax(0,1fr)] items-center gap-4 py-4 md:grid-cols-[13.5rem_minmax(0,1fr)_13.5rem]">
         <div className="flex min-h-12 items-center justify-start sm:min-h-14">
           <Link
-            href="/#home"
+            href="/"
             className={cn(
               "inline-flex transition-opacity duration-500",
               !isHome || isCompact ? "opacity-100" : "pointer-events-none opacity-0",

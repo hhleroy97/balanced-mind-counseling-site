@@ -55,6 +55,6 @@ describe("Hero", () => {
     expect(html).toContain(mockSiteSettings.address);
     expect(html).toContain(mockSiteSettings.phone);
     expect(html).toContain(mockSiteSettings.email);
-    expect(html).toContain('href="/#contact"');
+    expect(html).toContain('href="/contact"');
   });
 });

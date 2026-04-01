@@ -27,15 +27,15 @@ describe("Nav", () => {
       <Nav clientPortalUrl={portal} compact={false} />,
     );
 
-    expect(html).toContain('href="/#home"');
-    expect(html).toContain('href="/#about"');
-    expect(html).toContain('href="/#services"');
-    expect(html).toContain('href="/#rates"');
-    expect(html).toContain('href="/#getting-started"');
-    expect(html).toContain('href="/#blog"');
-    expect(html).toContain('href="/#resources"');
+    expect(html).toContain('href="/"');
+    expect(html).toContain('href="/about"');
+    expect(html).toContain('href="/services"');
+    expect(html).toContain('href="/rates"');
+    expect(html).toContain('href="/getting-started"');
+    expect(html).toContain('href="/blog"');
+    expect(html).toContain('href="/resources"');
     expect(html).toContain(`href="${portal}"`);
-    expect(html).toContain('href="/#contact"');
+    expect(html).toContain('href="/contact"');
     expect(html).toContain("target=\"_blank\"");
     expect(html).toContain('rel="noreferrer"');
   });

@@ -31,6 +31,18 @@ export async function Footer() {
             <Link className="block hover:text-primary" href="/">
               Home
             </Link>
+            <Link className="block hover:text-primary" href="/about">
+              About
+            </Link>
+            <Link className="block hover:text-primary" href="/services">
+              Services
+            </Link>
+            <Link className="block hover:text-primary" href="/rates">
+              Rates
+            </Link>
+            <Link className="block hover:text-primary" href="/getting-started">
+              Getting started
+            </Link>
             <Link className="block hover:text-primary" href="/blog">
               Blog
             </Link>

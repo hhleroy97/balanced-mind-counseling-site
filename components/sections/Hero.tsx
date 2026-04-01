@@ -82,7 +82,7 @@ export function Hero({ siteSettings }: { siteSettings: SiteSettings }) {
                 </a>
               </Button>
               <Link
-                href="/#contact"
+                href="/contact"
                 className="inline-flex h-12 items-center justify-center rounded-full border border-[#cdbf9f] px-5 text-sm font-medium text-[#335244] transition-colors hover:border-[#bda770] hover:bg-[#fbf8f2]"
               >
                 Ask a Question
