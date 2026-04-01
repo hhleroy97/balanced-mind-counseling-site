@@ -25,7 +25,7 @@ export function HeaderClient({
           : "border-b border-transparent bg-transparent",
       )}
     >
-      <div className="mx-auto grid w-full max-w-7xl grid-cols-[auto_minmax(0,1fr)] items-center gap-4 px-6 py-4 lg:px-8">
+      <div className="site-page-x mx-auto grid w-full max-w-7xl grid-cols-[auto_minmax(0,1fr)] items-center gap-4 py-4">
         <div className="justify-self-start">
           <Link href="/#home" className="flex items-center gap-3">
             <div

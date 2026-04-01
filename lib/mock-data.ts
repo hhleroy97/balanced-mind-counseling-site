@@ -86,6 +86,8 @@ export const mockSiteSettings: SiteSettings = {
   aboutHeading: "Lorem ipsum dolor sit amet, consectetur adipiscing elit praesent commodo.",
   aboutLead: LP_LINE,
   aboutSupporting: LP_SHORT,
+  aboutPortraitTitle: "Balanced Mind Counseling",
+  aboutPortraitSubtitle: "Licensed Professional Counselor",
   connectHeading: "Connect",
   contactDetailsLabel: "Practice details",
 

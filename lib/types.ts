@@ -53,6 +53,10 @@ export type SiteSettings = {
   aboutHeading: string;
   aboutLead: string;
   aboutSupporting: string;
+  /** Text on the About portrait overlay; falls back to practice name when empty in CMS */
+  aboutPortraitTitle: string;
+  /** Optional second line on the portrait overlay; empty string hides it */
+  aboutPortraitSubtitle: string;
   connectHeading: string;
   contactDetailsLabel: string;
 

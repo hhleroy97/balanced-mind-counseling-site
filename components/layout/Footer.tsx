@@ -10,7 +10,7 @@ export async function Footer() {
 
   return (
     <footer className="border-t border-border bg-card">
-      <div className="mx-auto grid w-full max-w-7xl gap-10 px-6 py-12 lg:grid-cols-[1.5fr_1fr_1fr] lg:px-8">
+      <div className="site-page-x mx-auto grid w-full max-w-7xl gap-10 py-12 lg:grid-cols-[1.5fr_1fr_1fr]">
         <div className="space-y-4">
           <h2 className="font-serif text-2xl">{siteSettings.practiceName}</h2>
           <p className="max-w-lg text-sm leading-7 text-muted-foreground">

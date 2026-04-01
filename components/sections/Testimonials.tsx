@@ -15,7 +15,7 @@ export function Testimonials({
 
   return (
     <section className="bg-card py-20">
-      <div className="mx-auto w-full max-w-7xl space-y-10 px-6 lg:px-8">
+      <div className="site-page-x mx-auto w-full max-w-7xl space-y-10">
         <FadeIn className="space-y-4">
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
             Testimonials

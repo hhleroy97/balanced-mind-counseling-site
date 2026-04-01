@@ -23,6 +23,9 @@
 :root {
   /* Fixed header (py-4 + logo h-12–h-14); used for one-fold sections on the homepage */
   --site-header-height: 5.5rem;
+  /* ~10% more than Tailwind px-6 / lg:px-8 for main content gutters */
+  --site-page-padding-x: 1.65rem;
+  --site-page-padding-x-lg: 2.2rem;
   --background: #fcfaf7;
   --foreground: #1f2933;
   --card: #ffffff;
@@ -81,6 +84,16 @@
 
   .scroll-mt-header {
     scroll-margin-top: var(--site-header-height);
+  }
+
+  .site-page-x {
+    padding-inline: var(--site-page-padding-x);
+  }
+
+  @media (min-width: 1024px) {
+    .site-page-x {
+      padding-inline: var(--site-page-padding-x-lg);
+    }
   }
 }
 

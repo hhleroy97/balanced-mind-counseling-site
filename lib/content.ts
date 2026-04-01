@@ -145,6 +145,12 @@ function withSiteSettingsFallbacks(siteSettings: SiteSettings): SiteSettings {
     aboutHeading: s.aboutHeading || m.aboutHeading,
     aboutLead: s.aboutLead || m.aboutLead,
     aboutSupporting: s.aboutSupporting || m.aboutSupporting,
+    aboutPortraitTitle:
+      typeof s.aboutPortraitTitle === "string" && s.aboutPortraitTitle.trim()
+        ? s.aboutPortraitTitle.trim()
+        : s.practiceName || m.practiceName,
+    aboutPortraitSubtitle:
+      typeof s.aboutPortraitSubtitle === "string" ? s.aboutPortraitSubtitle.trim() : "",
     connectHeading: s.connectHeading || m.connectHeading,
     contactDetailsLabel: s.contactDetailsLabel || m.contactDetailsLabel,
 

@@ -24,7 +24,7 @@ const highlights = [
 export function Highlights() {
   return (
     <section className="py-12">
-      <div className="mx-auto grid w-full max-w-7xl gap-4 px-6 md:grid-cols-3 lg:px-8">
+      <div className="site-page-x mx-auto grid w-full max-w-7xl gap-4 md:grid-cols-3">
         {highlights.map((item, index) => {
           const Icon = item.icon;
 

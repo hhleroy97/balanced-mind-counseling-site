@@ -152,6 +152,22 @@ export const siteSettingsType = defineType({
       group: "about",
     }),
     defineField({
+      name: "aboutPortraitTitle",
+      title: "About — portrait overlay title",
+      type: "string",
+      description:
+        "Name shown on the bottom of the About profile photo. Leave empty to use Practice Name.",
+      group: "about",
+    }),
+    defineField({
+      name: "aboutPortraitSubtitle",
+      title: "About — portrait overlay subtitle",
+      type: "string",
+      description:
+        "Optional second line under the portrait title (e.g. credentials or role). Leave empty to hide.",
+      group: "about",
+    }),
+    defineField({
       name: "connectHeading",
       title: "About — connect panel heading",
       type: "string",

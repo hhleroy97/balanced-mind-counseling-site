@@ -49,7 +49,7 @@ export default async function PostPage({ params }: PostPageProps) {
   const tags = Array.isArray(post.tags) ? post.tags : [];
 
   return (
-    <article className="mx-auto w-full max-w-4xl space-y-8 px-6 py-16 lg:px-8">
+    <article className="site-page-x mx-auto w-full max-w-4xl space-y-8 py-16">
       <div className="space-y-5">
         <div className="flex flex-wrap gap-2">
           {tags.map((tag) => (

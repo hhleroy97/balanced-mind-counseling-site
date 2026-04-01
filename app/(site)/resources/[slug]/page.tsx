@@ -52,7 +52,7 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
   }
 
   return (
-    <section className="mx-auto w-full max-w-4xl space-y-8 px-6 py-16 lg:px-8">
+    <section className="site-page-x mx-auto w-full max-w-4xl space-y-8 py-16">
       <Link
         href="/resources"
         className="text-sm font-medium text-muted-foreground hover:text-foreground"

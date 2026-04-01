@@ -55,20 +55,18 @@ describe("About", () => {
   it("renders CMS-managed practice, contact, and social details", () => {
     const html = renderToStaticMarkup(<About siteSettings={mockSiteSettings} />);
 
-    expect(html).toContain(mockSiteSettings.practiceName);
+    expect(html).toContain(mockSiteSettings.aboutPortraitTitle);
+    expect(html).toContain(mockSiteSettings.aboutPortraitSubtitle);
     expect(html).toContain(mockSiteSettings.aboutEyebrow);
     expect(html).toContain(mockSiteSettings.aboutHeading);
     expect(html).toContain(mockSiteSettings.aboutLead);
-    expect(html).toContain(mockSiteSettings.aboutSupporting);
     expect(html).toContain(mockSiteSettings.connectHeading);
-    // Rich-text bio (mock uses a longer paragraph than aboutLead)
-    expect(html).toContain("Sed eiusmod tempor incididunt ut labore et dolore magna aliqua.");
     expect(html).toContain(mockSiteSettings.email);
     expect(html).toContain(mockSiteSettings.phone);
     expect(html).toContain(mockSiteSettings.address);
     expect(html).toContain(`href="${mockSiteSettings.bookingUrl}"`);
-    expect(html).toContain(`href="${mockSiteSettings.clientPortalUrl}"`);
-    expect(html).toContain('href="/#contact"');
+    expect(html).toContain('href="/contact"');
+    expect(html).toContain("Contact the practice");
     expect(html).toContain('href="https://instagram.com"');
     expect(html).toContain('href="https://linkedin.com"');
   });

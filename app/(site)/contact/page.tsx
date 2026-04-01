@@ -17,7 +17,7 @@ export default async function ContactPage() {
   const siteSettings = await getSiteSettings();
 
   return (
-    <section className="mx-auto grid w-full max-w-7xl gap-8 px-6 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:px-8">
+    <section className="site-page-x mx-auto grid w-full max-w-7xl gap-8 py-16 lg:grid-cols-[1.05fr_0.95fr]">
       <div className="space-y-6">
         <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
           {siteSettings.contactPageEyebrow}

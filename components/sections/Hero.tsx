@@ -33,7 +33,7 @@ export function Hero({ siteSettings }: { siteSettings: SiteSettings }) {
       className="site-fold-section relative flex flex-col overflow-hidden bg-[#f6f1e7]"
     >
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(200,168,110,0.13),_transparent_26%),radial-gradient(circle_at_bottom_right,_rgba(51,82,68,0.08),_transparent_28%)]" />
-      <div className="site-fold-inner relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center gap-10 px-6 lg:flex-row lg:items-center lg:gap-12 lg:px-8 xl:gap-16">
+      <div className="site-fold-inner site-page-x relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center gap-10 lg:flex-row lg:items-center lg:gap-12 xl:gap-16">
         <motion.div
           id="hero-logo-trigger"
           {...fadeUp(0)}
