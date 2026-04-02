@@ -9,11 +9,8 @@ export function Rates({ siteSettings }: { siteSettings: SiteSettings }) {
   const items = siteSettings.ratesItems;
 
   return (
-    <section className="site-fold-section flex flex-col bg-[#f6f1e7]">
-      <div
-        id="rates"
-        className="site-fold-inner site-page-x mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center space-y-8 overflow-y-auto lg:space-y-10 scroll-mt-header"
-      >
+    <section id="rates" className="site-fold-section flex flex-col bg-[#f6f1e7]">
+      <div className="site-fold-inner site-page-x mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center space-y-8 overflow-y-auto lg:space-y-10">
         <FadeIn className="space-y-4">
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
             {siteSettings.ratesEyebrow}
@@ -28,13 +25,18 @@ export function Rates({ siteSettings }: { siteSettings: SiteSettings }) {
           {items.map((detail, index) => (
             <FadeIn key={`${detail.title}-${index}`} delay={index * 0.06}>
               <Card className="h-full rounded-[1.75rem] bg-white/85 p-8 shadow-none">
-                <SectionCardMedia
-                  label={detail.title}
-                  icon={detail.icon}
-                  image={detail.image}
-                  iconFrameClassName="bg-primary/10 text-primary"
-                />
-                <h3 className="font-serif text-2xl text-[#1f352c]">{detail.title}</h3>
+                <div className="flex items-center gap-3">
+                  <SectionCardMedia
+                    label={detail.title}
+                    icon={detail.icon}
+                    image={detail.image}
+                    iconFrameClassName="bg-primary/10 text-primary"
+                    className="mb-0"
+                  />
+                  <h3 className="min-w-0 flex-1 font-serif text-2xl leading-snug text-[#1f352c]">
+                    {detail.title}
+                  </h3>
+                </div>
                 <p className="mt-4 leading-7 text-[#345447]">{detail.description}</p>
               </Card>
             </FadeIn>

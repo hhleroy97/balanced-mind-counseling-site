@@ -18,11 +18,8 @@ export function ContactSection({
   const socials = Object.entries(siteSettings.socialLinks).filter(([, value]) => Boolean(value));
 
   return (
-    <section className="site-fold-section flex flex-col bg-card">
-      <div
-        id="contact"
-        className="site-fold-inner site-page-x mx-auto grid w-full max-w-7xl flex-1 gap-8 overflow-y-auto lg:grid-cols-[1.05fr_0.95fr] lg:items-center scroll-mt-header"
-      >
+    <section id="contact" className="site-fold-section flex flex-col bg-card">
+      <div className="site-fold-inner site-page-x mx-auto grid w-full max-w-7xl flex-1 gap-8 overflow-y-auto lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
         <FadeIn className="space-y-6">
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
             {siteSettings.contactEyebrow}

@@ -49,8 +49,7 @@ export default async function RootLayout({
   return (
     <html
       lang="en"
-      data-scroll-behavior="smooth"
-      className={`${inter.variable} ${lora.variable} h-full scroll-smooth antialiased`}
+      className={`${inter.variable} ${lora.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-background text-foreground">
         {children}

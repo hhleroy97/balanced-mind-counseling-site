@@ -4,7 +4,8 @@ import { usePathname } from "next/navigation";
 import { useEffect, type ReactNode } from "react";
 
 /**
- * Enables gentle scroll snapping on `/` so each homepage section reads like its own page.
+ * On `/`, adds light proximity scroll-snap to section heads and handles hash targets
+ * without animated scroll.
  */
 export function HomeFoldRoot({ children }: { children: ReactNode }) {
   const pathname = usePathname();
@@ -29,7 +30,7 @@ export function HomeFoldRoot({ children }: { children: ReactNode }) {
       const el = document.getElementById(id);
       if (el) {
         requestAnimationFrame(() => {
-          el.scrollIntoView({ behavior: "smooth", block: "start" });
+          el.scrollIntoView({ behavior: "auto", block: "start" });
         });
       }
     }

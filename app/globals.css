@@ -70,9 +70,9 @@
   .site-fold-section {
     box-sizing: border-box;
     min-height: 100svh;
+    /* Clears the fixed header; hash/nav targets sit on this section so no extra scroll-margin is needed. */
     padding-top: var(--site-header-height);
     padding-bottom: 1.5rem;
-    scroll-margin-top: var(--site-header-height);
     scroll-snap-align: start;
     scroll-snap-stop: normal;
   }
@@ -80,10 +80,6 @@
   /* Usable content height inside a fold (below header + section bottom padding) */
   .site-fold-inner {
     min-height: calc(100svh - var(--site-header-height) - 1.5rem);
-  }
-
-  .scroll-mt-header {
-    scroll-margin-top: var(--site-header-height);
   }
 
   .site-page-x {
@@ -97,6 +93,13 @@
   }
 }
 
+/* Homepage: free scroll with a light pull toward each section head (proximity snap). */
 html.home-fold-scroll {
   scroll-snap-type: y proximity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.home-fold-scroll {
+    scroll-snap-type: none;
+  }
 }

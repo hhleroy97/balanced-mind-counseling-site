@@ -30,11 +30,8 @@ export function About({ siteSettings }: { siteSettings: SiteSettings }) {
   const portraitSource = siteSettings.profilePhoto ?? siteSettings.heroImage;
 
   return (
-    <section className="site-fold-section flex flex-col bg-[#fbf8f2]">
-      <div
-        id="about"
-        className="site-fold-inner site-page-x mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center overflow-y-auto scroll-mt-header"
-      >
+    <section id="about" className="site-fold-section flex flex-col bg-[#fbf8f2]">
+      <div className="site-fold-inner site-page-x mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center overflow-y-auto">
         <div className="grid w-full gap-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:items-start lg:gap-10">
         <FadeIn className="order-1 min-w-0 space-y-5 lg:order-2 lg:space-y-6">
           <header className="space-y-2 lg:space-y-3">

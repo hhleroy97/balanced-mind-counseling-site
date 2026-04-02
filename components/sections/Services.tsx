@@ -13,11 +13,8 @@ import type { SiteSettings } from "@/lib/types";
 export function Services({ siteSettings }: { siteSettings: SiteSettings }) {
   const { servicesItems: services } = siteSettings;
   return (
-    <section className="site-fold-section flex flex-col bg-card">
-      <div
-        id="services"
-        className="site-fold-inner site-page-x mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center space-y-8 overflow-y-auto lg:space-y-10 scroll-mt-header"
-      >
+    <section id="services" className="site-fold-section flex flex-col bg-card">
+      <div className="site-fold-inner site-page-x mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center space-y-8 overflow-y-auto lg:space-y-10">
         <FadeIn className="space-y-4">
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
             {siteSettings.servicesEyebrow}
@@ -35,12 +32,15 @@ export function Services({ siteSettings }: { siteSettings: SiteSettings }) {
             <FadeIn key={`${service.title}-${index}`} delay={index * 0.08}>
               <Card className="h-full">
                 <CardHeader className="space-y-4">
-                  <SectionCardMedia
-                    label={service.title}
-                    icon={service.icon}
-                    image={service.image}
-                  />
-                  <CardTitle>{service.title}</CardTitle>
+                  <div className="flex items-center gap-3">
+                    <SectionCardMedia
+                      label={service.title}
+                      icon={service.icon}
+                      image={service.image}
+                      className="mb-0"
+                    />
+                    <CardTitle className="min-w-0 flex-1 leading-snug">{service.title}</CardTitle>
+                  </div>
                   <CardDescription>{service.shortDescription}</CardDescription>
                 </CardHeader>
                 <CardContent>

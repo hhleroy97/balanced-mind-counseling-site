@@ -12,11 +12,8 @@ export function ResourcesPreview({
   resources: Resource[];
 }) {
   return (
-    <section className="site-fold-section flex flex-col bg-[#f6f1e7]">
-      <div
-        id="resources"
-        className="site-fold-inner site-page-x mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center space-y-6 overflow-y-auto lg:space-y-8 scroll-mt-header"
-      >
+    <section id="resources" className="site-fold-section flex flex-col bg-[#f6f1e7]">
+      <div className="site-fold-inner site-page-x mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center space-y-6 overflow-y-auto lg:space-y-8">
         <FadeIn className="space-y-4">
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
             {siteSettings.resourcesEyebrow}

@@ -1,5 +1,4 @@
 import { FadeIn } from "@/components/shared/FadeIn";
-import { SectionCardMedia } from "@/components/shared/SectionCardMedia";
 import { Card } from "@/components/ui/card";
 import type { SiteSettings } from "@/lib/types";
 
@@ -7,11 +6,8 @@ export function GettingStarted({ siteSettings }: { siteSettings: SiteSettings })
   const steps = siteSettings.gettingStartedSteps;
 
   return (
-    <section className="site-fold-section flex flex-col bg-[#fbf8f2]">
-      <div
-        id="getting-started"
-        className="site-fold-inner site-page-x mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center space-y-8 overflow-y-auto lg:space-y-10 scroll-mt-header"
-      >
+    <section id="getting-started" className="site-fold-section flex flex-col bg-[#fbf8f2]">
+      <div className="site-fold-inner site-page-x mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center space-y-8 overflow-y-auto lg:space-y-10">
         <FadeIn className="space-y-4">
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
             {siteSettings.gettingStartedEyebrow}
@@ -30,14 +26,7 @@ export function GettingStarted({ siteSettings }: { siteSettings: SiteSettings })
                   <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">
                     Step {stepLabel}
                   </p>
-                  <div className="mt-4">
-                    <SectionCardMedia
-                      label={step.title}
-                      icon={step.icon}
-                      image={step.image}
-                    />
-                  </div>
-                  <h3 className="font-serif text-2xl text-foreground">{step.title}</h3>
+                  <h3 className="mt-4 font-serif text-2xl text-foreground">{step.title}</h3>
                   <p className="mt-4 leading-7 text-muted-foreground">{step.description}</p>
                 </Card>
               </FadeIn>

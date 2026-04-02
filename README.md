@@ -111,7 +111,7 @@ For the practice owner:
 
 ## Homepage Placeholders
 
-- The homepage is now a single scrollable landing page with header anchors for `Home`, `About`, `Services`, `Rates`, `Getting Started`, `Blog`, `Resources`, and `Contact`, plus a `Client Portal` item that opens `clientPortalUrl` from site settings in a new tab. Each section uses `site-fold-section` in `app/globals.css` so it fills one viewport with top padding for the fixed header, plus gentle scroll snapping (`home-fold-scroll` on the document) on `/` only.
+- The homepage is now a single scrollable landing page with header anchors for `Home`, `About`, `Services`, `Rates`, `Getting Started`, `Blog`, `Resources`, and `Contact`, plus a `Client Portal` item that opens `clientPortalUrl` from site settings in a new tab. Each section uses `site-fold-section` in `app/globals.css` so it fills one viewport with top padding for the fixed header, plus light proximity scroll-snap toward section heads (`home-fold-scroll` on the document; disabled when `prefers-reduced-motion`) on `/` only. The document does not use global smooth scrolling.
 - The hero lives in `components/sections/Hero.tsx` and pulls visible content from `siteSettings`, including the logo lockup, `tagline`, `heroHeadline`, `heroSubheadline`, booking link, client portal link, and top-line contact chips.
 - The about section in `components/sections/About.tsx` surfaces the practice portrait from `profilePhoto`, falling back to `heroImage` or a static image, plus the practice name, SEO description, bio, contact details, and social links.
 - Blog and resource sections on the homepage are preview sections that link onward to the full `/blog` and `/resources` archives.
