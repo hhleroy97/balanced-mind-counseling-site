@@ -37,6 +37,10 @@ export async function generateMetadata({
       url: absoluteUrl(`/resources/${slug}`),
       type: "article",
     },
+    twitter: {
+      title: resource.title,
+      description: resource.description,
+    },
   };
 }
 

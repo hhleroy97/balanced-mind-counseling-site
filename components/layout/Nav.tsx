@@ -13,6 +13,7 @@ const navLinks = [
   { href: "/#getting-started", sectionId: "getting-started" as const, label: "Getting Started" },
   { href: "/#blog", sectionId: "blog" as const, label: "Blog" },
   { href: "/#resources", sectionId: "resources" as const, label: "Resources" },
+  { href: "/#contact", sectionId: "contact" as const, label: "Contact" },
 ] as const;
 
 function navItemClass(compact: boolean, isActive: boolean) {
@@ -31,29 +32,31 @@ function navItemClass(compact: boolean, isActive: boolean) {
 export function Nav({
   clientPortalUrl,
   compact = false,
+  hiddenSections = [],
   className,
 }: {
   clientPortalUrl: string;
   compact?: boolean;
+  hiddenSections?: string[];
   className?: string;
 }) {
   const activeSectionId = useNavActiveSection();
+  const hidden = new Set(hiddenSections);
 
   return (
-    <nav className={cn("flex min-w-0 items-center", className)}>
+    <nav aria-label="Main" className={cn("flex min-w-0 items-center", className)}>
       <div className="flex min-w-0 flex-1 items-center gap-5 overflow-x-auto pb-1 md:justify-center md:overflow-visible md:pb-0">
-        {navLinks.map((link) => (
-          <Link
-            key={link.href}
-            href={link.href}
-            className={navItemClass(compact, activeSectionId === link.sectionId)}
-          >
-            {link.label}
-          </Link>
-        ))}
-        <Link href="/#contact" className={navItemClass(compact, activeSectionId === "contact")}>
-          Contact
-        </Link>
+        {navLinks
+          .filter((link) => !hidden.has(link.sectionId))
+          .map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className={navItemClass(compact, activeSectionId === link.sectionId)}
+            >
+              {link.label}
+            </Link>
+          ))}
         <a
           href={clientPortalUrl}
           target="_blank"

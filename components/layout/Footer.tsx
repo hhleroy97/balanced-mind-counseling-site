@@ -1,12 +1,25 @@
 import Link from "next/link";
 
 import { getSiteSettings } from "@/lib/content";
+import { getHiddenSections } from "@/lib/section-visibility";
+
+const footerLinks = [
+  { href: "/#home", sectionId: "home" as const, label: "Home" },
+  { href: "/#about", sectionId: "about" as const, label: "About" },
+  { href: "/#services", sectionId: "services" as const, label: "Services" },
+  { href: "/#rates", sectionId: "rates" as const, label: "Rates" },
+  { href: "/#getting-started", sectionId: "getting-started" as const, label: "Getting started" },
+  { href: "/#blog", sectionId: "blog" as const, label: "Blog" },
+  { href: "/#resources", sectionId: "resources" as const, label: "Resources" },
+  { href: "/#contact", sectionId: "contact" as const, label: "Contact" },
+] as const;
 
 export async function Footer() {
   const siteSettings = await getSiteSettings();
   const socials = Object.entries(siteSettings.socialLinks).filter(([, value]) =>
     Boolean(value),
   );
+  const hidden = new Set(getHiddenSections(siteSettings));
 
   return (
     <footer className="border-t border-border bg-card">
@@ -23,37 +36,20 @@ export async function Footer() {
           </div>
         </div>
 
-        <div className="space-y-4">
+        <nav aria-label="Footer" className="space-y-4">
           <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-muted-foreground">
             Navigation
           </h3>
           <div className="space-y-3 text-sm">
-            <Link className="block hover:text-primary" href="/#home">
-              Home
-            </Link>
-            <Link className="block hover:text-primary" href="/#about">
-              About
-            </Link>
-            <Link className="block hover:text-primary" href="/#services">
-              Services
-            </Link>
-            <Link className="block hover:text-primary" href="/#rates">
-              Rates
-            </Link>
-            <Link className="block hover:text-primary" href="/#getting-started">
-              Getting started
-            </Link>
-            <Link className="block hover:text-primary" href="/#blog">
-              Blog
-            </Link>
-            <Link className="block hover:text-primary" href="/#resources">
-              Resources
-            </Link>
-            <Link className="block hover:text-primary" href="/#contact">
-              Contact
-            </Link>
+            {footerLinks
+              .filter((link) => !hidden.has(link.sectionId))
+              .map((link) => (
+                <Link key={link.href} className="block hover:text-primary" href={link.href}>
+                  {link.label}
+                </Link>
+              ))}
           </div>
-        </div>
+        </nav>
 
         <div className="space-y-4">
           <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-muted-foreground">

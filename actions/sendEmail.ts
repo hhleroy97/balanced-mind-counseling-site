@@ -49,7 +49,7 @@ export async function sendContactEmail(
 
   try {
     await resend.emails.send({
-      from: "Balanced Mind Counseling <website@resend.dev>",
+      from: process.env.CONTACT_FORM_FROM_EMAIL ?? "Balanced Mind Counseling <website@resend.dev>",
       to: process.env.CONTACT_FORM_TO_EMAIL,
       subject: `New contact form submission from ${parsed.data.name}`,
       react: ContactEmail({

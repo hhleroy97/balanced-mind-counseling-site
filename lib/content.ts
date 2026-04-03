@@ -76,7 +76,8 @@ async function safeFetch<T>(query: string, params?: Record<string, string>) {
 
   try {
     return await client.fetch<T>(query, params ?? {});
-  } catch {
+  } catch (error) {
+    console.error("[safeFetch] Sanity query failed:", error);
     return null;
   }
 }
@@ -151,6 +152,14 @@ function withSiteSettingsFallbacks(siteSettings: SiteSettings): SiteSettings {
       ...m.socialLinks,
       ...(s.socialLinks ?? {}),
     },
+
+    showAbout: s.showAbout !== false,
+    showServices: s.showServices !== false,
+    showRates: s.showRates !== false,
+    showGettingStarted: s.showGettingStarted !== false,
+    showBlog: s.showBlog !== false,
+    showResources: s.showResources !== false,
+    showContact: s.showContact !== false,
 
     aboutEyebrow: s.aboutEyebrow || m.aboutEyebrow,
     aboutHeading: s.aboutHeading || m.aboutHeading,

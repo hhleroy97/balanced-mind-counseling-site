@@ -49,6 +49,15 @@ export type SiteSettings = {
   socialLinks: SocialLinks;
   seoDescription: string;
 
+  /** Section visibility toggles (default to true when unset in CMS). */
+  showAbout: boolean;
+  showServices: boolean;
+  showRates: boolean;
+  showGettingStarted: boolean;
+  showBlog: boolean;
+  showResources: boolean;
+  showContact: boolean;
+
   aboutEyebrow: string;
   aboutHeading: string;
   aboutLead: string;

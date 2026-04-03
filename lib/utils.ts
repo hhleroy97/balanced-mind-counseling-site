@@ -6,20 +6,15 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function formatDate(value: string) {
+  if (!value) return "";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "";
   return new Intl.DateTimeFormat("en-US", {
     month: "long",
     day: "numeric",
     year: "numeric",
     timeZone: "UTC",
-  }).format(new Date(value));
-}
-
-export function excerptText(text: string, length = 160) {
-  if (text.length <= length) {
-    return text;
-  }
-
-  return `${text.slice(0, length).trim()}...`;
+  }).format(date);
 }
 
 export function absoluteUrl(path = "") {

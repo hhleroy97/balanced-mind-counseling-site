@@ -106,6 +106,14 @@ export const mockSiteSettings: SiteSettings = {
   },
   seoDescription: LP_SHORT,
 
+  showAbout: true,
+  showServices: true,
+  showRates: true,
+  showGettingStarted: true,
+  showBlog: true,
+  showResources: true,
+  showContact: true,
+
   aboutEyebrow: "About the practice",
   aboutHeading: "Lorem ipsum dolor sit amet, consectetur adipiscing elit praesent commodo.",
   aboutLead: LP_LINE,

@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect, useRef } from "react";
 import { useFormStatus } from "react-dom";
 
 import { sendContactEmail } from "@/actions/sendEmail";
@@ -25,9 +25,16 @@ function SubmitButton() {
 
 export function ContactForm() {
   const [state, formAction] = useActionState(sendContactEmail, initialState);
+  const formRef = useRef<HTMLFormElement>(null);
+
+  useEffect(() => {
+    if (state.success) {
+      formRef.current?.reset();
+    }
+  }, [state]);
 
   return (
-    <form action={formAction} className="space-y-5">
+    <form ref={formRef} action={formAction} className="space-y-5">
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="space-y-2">
           <label htmlFor="name" className="text-sm font-medium">
@@ -68,15 +75,19 @@ export function ContactForm() {
 
       <div className="flex items-center justify-between gap-4">
         <SubmitButton />
-        {state.message ? (
-          <p
-            className={
-              state.success ? "text-sm text-primary" : "text-sm text-destructive"
-            }
-          >
-            {state.message}
-          </p>
-        ) : null}
+        <p
+          role="status"
+          aria-live="polite"
+          className={
+            state.message
+              ? state.success
+                ? "text-sm text-primary"
+                : "text-sm text-destructive"
+              : "sr-only"
+          }
+        >
+          {state.message}
+        </p>
       </div>
     </form>
   );

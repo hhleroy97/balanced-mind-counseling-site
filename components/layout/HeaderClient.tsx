@@ -10,9 +10,11 @@ import { cn } from "@/lib/utils";
 export function HeaderClient({
   practiceName,
   clientPortalUrl,
+  hiddenSections = [],
 }: {
   practiceName: string;
   clientPortalUrl: string;
+  hiddenSections?: string[];
 }) {
   const { isHome, isCompact } = useHeroChrome();
 
@@ -47,6 +49,7 @@ export function HeaderClient({
         <Nav
           clientPortalUrl={clientPortalUrl}
           compact={!isHome || isCompact}
+          hiddenSections={hiddenSections}
           className="justify-self-stretch md:justify-self-center"
         />
         <div className="hidden md:block" aria-hidden="true" />

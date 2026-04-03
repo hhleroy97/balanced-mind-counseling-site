@@ -1,14 +1,8 @@
 import { ContactForm } from "@/components/contact/ContactForm";
 import { FadeIn } from "@/components/shared/FadeIn";
 import { Card } from "@/components/ui/card";
+import { SOCIAL_LABELS } from "@/lib/social-labels";
 import type { SiteSettings } from "@/lib/types";
-
-const socialLabels: Record<string, string> = {
-  instagram: "Instagram",
-  facebook: "Facebook",
-  linkedin: "LinkedIn",
-  youtube: "YouTube",
-};
 
 export function ContactSection({
   siteSettings,
@@ -35,8 +29,12 @@ export function ContactSection({
                 {siteSettings.contactDetailsLabel}
               </p>
               <div className="mt-4 space-y-2 text-muted-foreground">
-                <p>{siteSettings.email}</p>
-                <p>{siteSettings.phone}</p>
+                <a href={`mailto:${siteSettings.email}`} className="block hover:text-foreground">
+                  {siteSettings.email}
+                </a>
+                <a href={`tel:${siteSettings.phone.replace(/\D/g, "")}`} className="block hover:text-foreground">
+                  {siteSettings.phone}
+                </a>
                 <p>{siteSettings.address}</p>
               </div>
             </div>
@@ -70,7 +68,7 @@ export function ContactSection({
                     rel="noreferrer"
                     className="rounded-full border border-border px-3 py-1.5 text-[10px] uppercase tracking-[0.16em] text-muted-foreground transition-colors hover:bg-accent"
                   >
-                    {socialLabels[name] ?? name}
+                    {SOCIAL_LABELS[name] ?? name}
                   </a>
                 ))}
               </div>

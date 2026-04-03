@@ -1,8 +1,14 @@
+"use client";
+
+import { useId } from "react";
+
 export function PractitionerSilhouette({
   className = "",
 }: {
   className?: string;
 }) {
+  const gradientId = useId();
+
   return (
     <svg
       viewBox="0 0 520 720"
@@ -12,15 +18,15 @@ export function PractitionerSilhouette({
       xmlns="http://www.w3.org/2000/svg"
     >
       <defs>
-        <linearGradient id="silhouette-fill" x1="260" y1="80" x2="260" y2="640">
+        <linearGradient id={gradientId} x1="260" y1="80" x2="260" y2="640">
           <stop stopColor="#FBF7EF" />
           <stop offset="1" stopColor="#E8DFCE" />
         </linearGradient>
       </defs>
-      <circle cx="264" cy="176" r="104" fill="url(#silhouette-fill)" />
+      <circle cx="264" cy="176" r="104" fill={`url(#${gradientId})`} />
       <path
         d="M115 666c12-115 72-191 149-191 77 0 138 76 149 191"
-        fill="url(#silhouette-fill)"
+        fill={`url(#${gradientId})`}
       />
       <path
         d="M120 664c14-114 72-189 144-189 74 0 130 75 144 189"

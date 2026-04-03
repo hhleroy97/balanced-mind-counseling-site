@@ -38,7 +38,6 @@ vi.mock("framer-motion", () => ({
 vi.mock("@/components/layout/useHeroChrome", () => ({
   useHeroChrome: () => ({
     isCompact: false,
-    hasScrolled: false,
   }),
 }));
 

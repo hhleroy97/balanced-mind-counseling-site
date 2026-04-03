@@ -35,6 +35,10 @@ export async function generateMetadata({
       url: absoluteUrl(`/blog/${slug}`),
       type: "article",
     },
+    twitter: {
+      title: post.seo?.title ?? post.title,
+      description: post.seo?.description ?? post.excerpt,
+    },
   };
 }
 

@@ -6,6 +6,7 @@ import { BotanicalAccent } from "@/components/shared/BotanicalAccent";
 import { SanityImage } from "@/components/shared/SanityImage";
 import { SocialBrandIcon } from "@/components/shared/SocialBrandIcon";
 import { Card } from "@/components/ui/card";
+import { SOCIAL_LABELS } from "@/lib/social-labels";
 import type { SiteSettings } from "@/lib/types";
 
 export function About({ siteSettings }: { siteSettings: SiteSettings }) {
@@ -20,12 +21,7 @@ export function About({ siteSettings }: { siteSettings: SiteSettings }) {
     },
     { label: "Location", value: siteSettings.address, icon: MapPin },
   ] as const;
-  const socialLabels: Record<string, string> = {
-    instagram: "Instagram",
-    facebook: "Facebook",
-    linkedin: "LinkedIn",
-    youtube: "YouTube",
-  };
+  const socialLabels = SOCIAL_LABELS;
   const socials = Object.entries(siteSettings.socialLinks).filter(([, value]) => Boolean(value));
   const portraitSource = siteSettings.profilePhoto ?? siteSettings.heroImage;
 

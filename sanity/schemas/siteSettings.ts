@@ -70,6 +70,7 @@ export const siteSettingsType = defineType({
   type: "document",
   groups: [
     { name: "identity", title: "Practice & SEO", default: true },
+    { name: "visibility", title: "Section Visibility" },
     { name: "hero", title: "Hero" },
     { name: "about", title: "About (home)" },
     { name: "services", title: "Services" },
@@ -162,6 +163,56 @@ export const siteSettingsType = defineType({
       rows: 3,
       description: "Default meta description sitewide.",
       group: "identity",
+    }),
+
+    defineField({
+      name: "showAbout",
+      title: "Show About section",
+      type: "boolean",
+      initialValue: true,
+      group: "visibility",
+    }),
+    defineField({
+      name: "showServices",
+      title: "Show Services section",
+      type: "boolean",
+      initialValue: true,
+      group: "visibility",
+    }),
+    defineField({
+      name: "showRates",
+      title: "Show Rates section",
+      type: "boolean",
+      initialValue: true,
+      group: "visibility",
+    }),
+    defineField({
+      name: "showGettingStarted",
+      title: "Show Getting Started section",
+      type: "boolean",
+      initialValue: true,
+      group: "visibility",
+    }),
+    defineField({
+      name: "showBlog",
+      title: "Show Blog section",
+      type: "boolean",
+      initialValue: true,
+      group: "visibility",
+    }),
+    defineField({
+      name: "showResources",
+      title: "Show Resources section",
+      type: "boolean",
+      initialValue: true,
+      group: "visibility",
+    }),
+    defineField({
+      name: "showContact",
+      title: "Show Contact section",
+      type: "boolean",
+      initialValue: true,
+      group: "visibility",
     }),
 
     defineField({

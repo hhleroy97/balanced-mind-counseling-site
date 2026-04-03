@@ -9,5 +9,5 @@ export function LucideByName({
   name?: string | null;
   className?: string;
 }) {
-  return createElement(getLucideIcon(name), { className });
+  return createElement(getLucideIcon(name), { className, "aria-hidden": true });
 }

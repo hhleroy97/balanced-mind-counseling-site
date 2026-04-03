@@ -38,13 +38,13 @@ export default async function Home() {
   return (
     <HomeFoldRoot>
       <Hero siteSettings={siteSettings} />
-      <About siteSettings={siteSettings} />
-      <Services siteSettings={siteSettings} />
-      <Rates siteSettings={siteSettings} />
-      <GettingStarted siteSettings={siteSettings} />
-      <BlogPreview siteSettings={siteSettings} posts={posts.slice(0, 3)} />
-      <ResourcesPreview siteSettings={siteSettings} resources={resources.slice(0, 3)} />
-      <ContactSection siteSettings={siteSettings} />
+      {siteSettings.showAbout && <About siteSettings={siteSettings} />}
+      {siteSettings.showServices && <Services siteSettings={siteSettings} />}
+      {siteSettings.showRates && <Rates siteSettings={siteSettings} />}
+      {siteSettings.showGettingStarted && <GettingStarted siteSettings={siteSettings} />}
+      {siteSettings.showBlog && <BlogPreview siteSettings={siteSettings} posts={posts.slice(0, 3)} />}
+      {siteSettings.showResources && <ResourcesPreview siteSettings={siteSettings} resources={resources.slice(0, 3)} />}
+      {siteSettings.showContact && <ContactSection siteSettings={siteSettings} />}
     </HomeFoldRoot>
   );
 }
