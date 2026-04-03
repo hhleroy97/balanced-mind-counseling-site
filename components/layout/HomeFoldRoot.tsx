@@ -4,8 +4,9 @@ import { usePathname } from "next/navigation";
 import { useEffect, type ReactNode } from "react";
 
 /**
- * On `/`, adds light proximity scroll-snap to section heads and handles hash targets
- * without animated scroll.
+ * On `/`, enables mandatory vertical scroll-snap to each fold (`.site-fold-section` start)
+ * and handles hash targets without animated scroll. Softer proximity snap when reduced motion
+ * is preferred.
  */
 export function HomeFoldRoot({ children }: { children: ReactNode }) {
   const pathname = usePathname();

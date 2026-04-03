@@ -34,10 +34,12 @@ const base: Post = {
 };
 
 describe("PostCard", () => {
-  it("renders links when slug is present", () => {
+  it("renders one full-card link when slug is present", () => {
     const html = renderToStaticMarkup(<PostCard post={base} />);
+    expect(html.match(/<a\b/g)?.length).toBe(1);
     expect(html).toContain('href="/blog/test-slug"');
     expect(html).toContain("Read article");
+    expect(html.indexOf('href="/blog/test-slug"')).toBeLessThan(html.indexOf("<img"));
   });
 
   it("omits links when slug is missing", () => {

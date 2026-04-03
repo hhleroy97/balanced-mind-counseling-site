@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Mail, Phone } from "lucide-react";
 import { motion } from "framer-motion";
 
 import { useHeroChrome } from "@/components/layout/useHeroChrome";
@@ -23,9 +23,14 @@ function fadeUp(delay = 0) {
 
 export function Hero({ siteSettings }: { siteSettings: SiteSettings }) {
   const { isCompact } = useHeroChrome();
-  const heroHighlights = [siteSettings.address, siteSettings.phone, siteSettings.email].filter(
-    Boolean,
-  ) as string[];
+  const heroHighlights = [
+    siteSettings.phone
+      ? { value: siteSettings.phone, icon: Phone }
+      : null,
+    siteSettings.email
+      ? { value: siteSettings.email, icon: Mail }
+      : null,
+  ].filter(Boolean) as Array<{ value: string; icon: typeof Phone }>;
 
   return (
     <section
@@ -55,7 +60,7 @@ export function Hero({ siteSettings }: { siteSettings: SiteSettings }) {
         <div className="flex min-w-0 flex-1 flex-col justify-center space-y-5">
           <motion.p
             {...fadeUp(0.1)}
-            className="text-sm font-medium leading-6 tracking-[0.01em] text-[#8f7440] lg:text-base"
+            className="text-base font-medium leading-7 tracking-[0.01em] text-[#8f7440] lg:text-lg lg:leading-8"
           >
             {siteSettings.tagline}
           </motion.p>
@@ -64,6 +69,7 @@ export function Hero({ siteSettings }: { siteSettings: SiteSettings }) {
             <h1 className="font-serif text-[clamp(2.2rem,4.2vw,3.75rem)] leading-[1.02] tracking-[-0.04em] text-[#1f352c]">
               {siteSettings.heroHeadline}
             </h1>
+            <hr className="border-t border-[#cdbf9f]/60" />
             <p className="max-w-2xl text-base leading-7 text-[#345447] lg:text-[1.05rem] lg:leading-8">
               {siteSettings.heroSubheadline}
             </p>
@@ -101,10 +107,11 @@ export function Hero({ siteSettings }: { siteSettings: SiteSettings }) {
           <motion.div {...fadeUp(0.28)} className="flex flex-wrap gap-2 pt-0.5">
             {heroHighlights.map((highlight) => (
               <span
-                key={highlight}
-                className="rounded-full border border-[#d8c7a4] bg-[#fbf8f2]/70 px-3 py-1.5 text-[10px] uppercase tracking-[0.16em] text-[#8f7440]"
+                key={highlight.value}
+                className="inline-flex items-center gap-1.5 rounded-full border border-[#d8c7a4] bg-[#fbf8f2]/70 px-3 py-1.5 text-[10px] uppercase tracking-[0.16em] text-[#8f7440]"
               >
-                {highlight}
+                <highlight.icon aria-hidden="true" className="size-3 shrink-0" />
+                {highlight.value}
               </span>
             ))}
           </motion.div>

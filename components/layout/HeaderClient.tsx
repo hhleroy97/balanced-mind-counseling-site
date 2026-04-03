@@ -9,10 +9,12 @@ import { cn } from "@/lib/utils";
 
 export function HeaderClient({
   practiceName,
+  bookingUrl,
   clientPortalUrl,
   hiddenSections = [],
 }: {
   practiceName: string;
+  bookingUrl: string;
   clientPortalUrl: string;
   hiddenSections?: string[];
 }) {
@@ -46,9 +48,11 @@ export function HeaderClient({
             />
           </Link>
         </div>
+        {/* On `/`, keep hero nav + CTA look in every fold; backdrop + logo still follow scroll (isCompact). */}
         <Nav
+          bookingUrl={bookingUrl}
           clientPortalUrl={clientPortalUrl}
-          compact={!isHome || isCompact}
+          compact={!isHome}
           hiddenSections={hiddenSections}
           className="justify-self-stretch md:justify-self-center"
         />

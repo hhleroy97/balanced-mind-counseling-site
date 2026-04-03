@@ -27,8 +27,8 @@ export function BlogPreview({
         <PostGrid posts={posts} />
 
         <FadeIn delay={0.12}>
-          <Link
-            href="/blog"
+            <Link
+              href="/blog#top"
             className="inline-flex text-sm font-semibold uppercase tracking-[0.16em] text-primary underline-offset-4 hover:underline"
           >
             View all blog posts

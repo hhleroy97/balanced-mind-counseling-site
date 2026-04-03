@@ -1,13 +1,5 @@
-import { PortableTextRenderer } from "@/components/blog/PortableTextRenderer";
 import { FadeIn } from "@/components/shared/FadeIn";
-import { SectionCardMedia } from "@/components/shared/SectionCardMedia";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { ServiceCardsGrid } from "@/components/sections/ServiceCardsGrid";
 import type { SiteSettings } from "@/lib/types";
 
 export function Services({ siteSettings }: { siteSettings: SiteSettings }) {
@@ -27,32 +19,10 @@ export function Services({ siteSettings }: { siteSettings: SiteSettings }) {
           </p>
         </FadeIn>
 
-        <div className="grid gap-6 lg:grid-cols-3">
-          {services.map((service, index) => (
-            <FadeIn key={`${service.title}-${index}`} delay={index * 0.08}>
-              <Card className="h-full">
-                <CardHeader className="space-y-4">
-                  <div className="flex items-center gap-3">
-                    <SectionCardMedia
-                      label={service.title}
-                      icon={service.icon}
-                      image={service.image}
-                      className="mb-0"
-                    />
-                    <CardTitle className="min-w-0 flex-1 leading-snug">{service.title}</CardTitle>
-                  </div>
-                  <CardDescription>{service.shortDescription}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <PortableTextRenderer
-                    value={service.fullDescription}
-                    className="text-sm"
-                  />
-                </CardContent>
-              </Card>
-            </FadeIn>
-          ))}
-        </div>
+        <FadeIn delay={0.06} className="space-y-4">
+          <p className="text-sm text-muted-foreground">Click a card to learn more.</p>
+          <ServiceCardsGrid services={services} />
+        </FadeIn>
       </div>
     </section>
   );

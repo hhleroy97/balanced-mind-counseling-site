@@ -43,11 +43,11 @@ export function About({ siteSettings }: { siteSettings: SiteSettings }) {
             <p className="font-medium text-[#1f352c]/90">{siteSettings.aboutLead}</p>
           </div>
 
-          <div className="rounded-2xl border border-[#e2d9ca] bg-white/70 p-4 shadow-[0_8px_30px_rgba(38,65,54,0.06)]">
+          <div className="rounded-2xl border border-[#e2d9ca] bg-white/70 p-4 text-center shadow-[0_8px_30px_rgba(38,65,54,0.06)]">
             <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#8f7440]">
               {siteSettings.connectHeading}
             </p>
-            <div className="mt-3 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+            <div className="mt-3 flex flex-col items-center gap-3 sm:flex-row sm:flex-wrap sm:justify-center sm:items-center">
               <a
                 href={siteSettings.bookingUrl}
                 target="_blank"

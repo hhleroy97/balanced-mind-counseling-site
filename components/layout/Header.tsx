@@ -8,6 +8,7 @@ export async function Header() {
   return (
     <HeaderClient
       practiceName={siteSettings.practiceName}
+      bookingUrl={siteSettings.bookingUrl}
       clientPortalUrl={siteSettings.clientPortalUrl}
       hiddenSections={getHiddenSections(siteSettings)}
     />

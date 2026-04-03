@@ -34,7 +34,11 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
   ]);
 
   return (
-    <section className="site-page-x mx-auto w-full max-w-7xl space-y-8 pb-14 pt-24 lg:pb-16 lg:pt-24">
+    <section
+      id="top"
+      className="site-page-x mx-auto w-full max-w-7xl space-y-8 pb-14 pt-24 lg:pb-16 lg:pt-24"
+      style={{ scrollMarginTop: "var(--site-header-height)" }}
+    >
       <div className="space-y-2">
         <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-primary">
           {siteSettings.blogEyebrow}
@@ -58,7 +62,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
               href={
                 pageData.currentPage <= 1
                   ? "#"
-                  : `/blog?page=${pageData.currentPage - 1}${tag ? `&tag=${encodeURIComponent(tag)}` : ""}`
+                  : `/blog?page=${pageData.currentPage - 1}${tag ? `&tag=${encodeURIComponent(tag)}` : ""}#top`
               }
             >
               Previous
@@ -74,7 +78,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
               href={
                 pageData.currentPage >= pageData.totalPages
                   ? "#"
-                  : `/blog?page=${pageData.currentPage + 1}${tag ? `&tag=${encodeURIComponent(tag)}` : ""}`
+                  : `/blog?page=${pageData.currentPage + 1}${tag ? `&tag=${encodeURIComponent(tag)}` : ""}#top`
               }
             >
               Next

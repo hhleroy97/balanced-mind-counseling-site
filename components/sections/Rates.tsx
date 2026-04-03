@@ -21,9 +21,13 @@ export function Rates({ siteSettings }: { siteSettings: SiteSettings }) {
           <p className="max-w-2xl text-lg leading-8 text-muted-foreground">{siteSettings.ratesIntro}</p>
         </FadeIn>
 
-        <div className="grid gap-6 lg:grid-cols-3">
+        <div className="grid gap-6 lg:grid-cols-2">
           {items.map((detail, index) => (
-            <FadeIn key={`${detail.title}-${index}`} delay={index * 0.06}>
+            <FadeIn
+              key={`${detail.title}-${index}`}
+              delay={index * 0.06}
+              className={index === 0 ? "lg:col-span-2" : undefined}
+            >
               <Card className="h-full rounded-[1.75rem] bg-white/85 p-8 shadow-none">
                 <div className="flex items-center gap-3">
                   <SectionCardMedia

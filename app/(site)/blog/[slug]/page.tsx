@@ -53,7 +53,10 @@ export default async function PostPage({ params }: PostPageProps) {
   const tags = Array.isArray(post.tags) ? post.tags : [];
 
   return (
-    <article className="site-page-x mx-auto w-full max-w-4xl space-y-8 py-16">
+    <article
+      className="site-page-x mx-auto w-full max-w-4xl space-y-8 pb-16 pt-[calc(var(--site-header-height)+1.75rem)]"
+      style={{ scrollMarginTop: "var(--site-header-height)" }}
+    >
       <div className="space-y-5">
         <div className="flex flex-wrap gap-2">
           {tags.map((tag) => (

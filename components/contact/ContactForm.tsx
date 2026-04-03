@@ -34,26 +34,29 @@ export function ContactForm() {
   }, [state]);
 
   return (
-    <form ref={formRef} action={formAction} className="space-y-5">
-      <div className="grid gap-5 sm:grid-cols-2">
-        <div className="space-y-2">
-          <label htmlFor="name" className="text-sm font-medium">
-            Name
-          </label>
-          <Input id="name" name="name" placeholder="Your name" required />
-        </div>
-        <div className="space-y-2">
-          <label htmlFor="email" className="text-sm font-medium">
-            Email
-          </label>
-          <Input
-            id="email"
-            name="email"
-            type="email"
-            placeholder="you@example.com"
-            required
-          />
-        </div>
+    <form
+      ref={formRef}
+      action={formAction}
+      className="flex h-full min-h-0 flex-col gap-5"
+    >
+      <div className="space-y-2">
+        <label htmlFor="name" className="text-sm font-medium">
+          Name
+        </label>
+        <Input id="name" name="name" placeholder="Your name" required />
+      </div>
+
+      <div className="space-y-2">
+        <label htmlFor="email" className="text-sm font-medium">
+          Email
+        </label>
+        <Input
+          id="email"
+          name="email"
+          type="email"
+          placeholder="you@example.com"
+          required
+        />
       </div>
 
       <div className="hidden" aria-hidden="true">
@@ -61,7 +64,7 @@ export function ContactForm() {
         <Input id="_trap" name="_trap" tabIndex={-1} autoComplete="off" />
       </div>
 
-      <div className="space-y-2">
+      <div className="flex min-h-0 flex-1 flex-col gap-2">
         <label htmlFor="message" className="text-sm font-medium">
           Message
         </label>
@@ -69,11 +72,12 @@ export function ContactForm() {
           id="message"
           name="message"
           placeholder="Share what brings you in, what support you're looking for, or any questions you have."
+          className="min-h-36 flex-1 resize-y"
           required
         />
       </div>
 
-      <div className="flex items-center justify-between gap-4">
+      <div className="flex shrink-0 items-center justify-between gap-4">
         <SubmitButton />
         <p
           role="status"

@@ -21,10 +21,11 @@ vi.mock("next/link", () => ({
 }));
 
 describe("Nav", () => {
-  it("renders scroll anchors and an external client portal link", () => {
+  it("renders scroll anchors and segmented schedule + client portal links", () => {
+    const book = "https://example.com/book";
     const portal = "https://example.com/portal";
     const html = renderToStaticMarkup(
-      <Nav clientPortalUrl={portal} compact={false} />,
+      <Nav bookingUrl={book} clientPortalUrl={portal} compact={false} />,
     );
 
     expect(html).toContain('href="/#home"');
@@ -34,6 +35,7 @@ describe("Nav", () => {
     expect(html).toContain('href="/#getting-started"');
     expect(html).toContain('href="/#blog"');
     expect(html).toContain('href="/#resources"');
+    expect(html).toContain(`href="${book}"`);
     expect(html).toContain(`href="${portal}"`);
     expect(html).toContain('href="/#contact"');
     expect(html).toContain("target=\"_blank\"");

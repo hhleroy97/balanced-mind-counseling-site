@@ -51,7 +51,6 @@ describe("Hero", () => {
     expect(html).toContain(`${mockSiteSettings.practiceName} logo`);
     expect(html).toContain(`href="${mockSiteSettings.bookingUrl}"`);
     expect(html).toContain(`href="${mockSiteSettings.clientPortalUrl}"`);
-    expect(html).toContain(mockSiteSettings.address);
     expect(html).toContain(mockSiteSettings.phone);
     expect(html).toContain(mockSiteSettings.email);
     expect(html).toContain('href="/#contact"');

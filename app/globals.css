@@ -93,13 +93,16 @@
   }
 }
 
-/* Homepage: free scroll with a light pull toward each section head (proximity snap). */
+/*
+ * Homepage: vertical scroll snaps to each `.site-fold-section` start so folds stay aligned
+ * (avoids resting between sections). `prefers-reduced-motion` uses softer proximity snap.
+ */
 html.home-fold-scroll {
-  scroll-snap-type: y proximity;
+  scroll-snap-type: y mandatory;
 }
 
 @media (prefers-reduced-motion: reduce) {
   html.home-fold-scroll {
-    scroll-snap-type: none;
+    scroll-snap-type: y proximity;
   }
 }

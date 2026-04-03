@@ -29,12 +29,32 @@ function navItemClass(compact: boolean, isActive: boolean) {
   );
 }
 
+function scheduleConsultClass(compact: boolean) {
+  return cn(
+    "relative z-[1] shrink-0 inline-flex items-center justify-center rounded-l-full rounded-r-none border px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] transition-colors",
+    compact
+      ? "border-primary bg-primary text-primary-foreground hover:bg-primary/90"
+      : "border-[#cdbf9f] bg-[#264136] text-[#fbf7ef] hover:border-[#bda770] hover:bg-[#1f352c]",
+  );
+}
+
+function clientPortalClass(compact: boolean) {
+  return cn(
+    "-ml-px shrink-0 inline-flex items-center justify-center rounded-l-none rounded-r-full border px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] transition-colors",
+    compact
+      ? "border border-primary/25 border-l-primary-foreground/20 bg-primary text-primary-foreground hover:bg-primary/90"
+      : "border-[#cdbf9f] text-[#335244] hover:bg-white/50",
+  );
+}
+
 export function Nav({
+  bookingUrl,
   clientPortalUrl,
   compact = false,
   hiddenSections = [],
   className,
 }: {
+  bookingUrl: string;
   clientPortalUrl: string;
   compact?: boolean;
   hiddenSections?: string[];
@@ -57,14 +77,24 @@ export function Nav({
               {link.label}
             </Link>
           ))}
-        <a
-          href={clientPortalUrl}
-          target="_blank"
-          rel="noreferrer"
-          className={navItemClass(compact, false)}
-        >
-          Client Portal
-        </a>
+        <span className="inline-flex shrink-0">
+          <a
+            href={bookingUrl}
+            target="_blank"
+            rel="noreferrer"
+            className={scheduleConsultClass(compact)}
+          >
+            Schedule consultation
+          </a>
+          <a
+            href={clientPortalUrl}
+            target="_blank"
+            rel="noreferrer"
+            className={clientPortalClass(compact)}
+          >
+            Client Portal
+          </a>
+        </span>
       </div>
     </nav>
   );
