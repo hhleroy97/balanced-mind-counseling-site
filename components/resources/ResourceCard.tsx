@@ -20,10 +20,10 @@ export function ResourceCard({ resource }: { resource: Resource }) {
           width={1200}
           height={750}
           sizes="(min-width: 1280px) 30vw, (min-width: 1024px) 45vw, 100vw"
-          className="h-44 w-full bg-muted/40 object-cover object-left-bottom"
+          className="h-40 w-full bg-muted/40 object-cover object-left-bottom sm:h-44"
         />
       ) : (
-        <div className="flex h-44 w-full items-center justify-center bg-[linear-gradient(135deg,_rgba(227,168,144,0.18),_rgba(142,173,150,0.18))]">
+        <div className="flex h-40 w-full items-center justify-center bg-[linear-gradient(135deg,_rgba(227,168,144,0.18),_rgba(142,173,150,0.18))] sm:h-44">
           <FileText className="size-10 text-primary" />
         </div>
       )}
@@ -40,7 +40,7 @@ export function ResourceCard({ resource }: { resource: Resource }) {
           <p className="text-sm text-muted-foreground">
             {formatDate(resource.publishedAt)}
           </p>
-          <CardTitle className="line-clamp-2 text-2xl leading-tight">
+          <CardTitle className="line-clamp-2 text-xl leading-tight sm:text-2xl">
             {slug ? (
               <Link href={`/resources/${slug}`} className="hover:text-primary">
                 {resource.title}
@@ -52,7 +52,7 @@ export function ResourceCard({ resource }: { resource: Resource }) {
         </div>
       </CardHeader>
       <CardContent className="flex flex-1 flex-col justify-between space-y-4 p-5 pt-0">
-        <p className="line-clamp-2 leading-6 text-muted-foreground">
+        <p className="line-clamp-3 text-sm leading-6 text-muted-foreground sm:text-base">
           {resource.description}
         </p>
         <div className="flex flex-wrap items-center gap-3">

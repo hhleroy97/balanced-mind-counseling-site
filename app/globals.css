@@ -21,8 +21,8 @@
 }
 
 :root {
-  /* Fixed header (py-4 + logo h-12–h-14); used for one-fold sections on the homepage */
-  --site-header-height: 5.5rem;
+  /* Mobile-first fixed header height; desktop overrides below. */
+  --site-header-height: 4.75rem;
   /* ~10% more than Tailwind px-6 / lg:px-8 for main content gutters */
   --site-page-padding-x: 1.65rem;
   --site-page-padding-x-lg: 2.2rem;
@@ -53,7 +53,7 @@
   }
 
   body {
-    @apply bg-background font-sans text-foreground;
+    @apply overflow-x-hidden bg-background font-sans text-foreground;
   }
 
   a {
@@ -69,21 +69,33 @@
 @layer utilities {
   .site-fold-section {
     box-sizing: border-box;
-    min-height: 100svh;
-    /* Clears the fixed header; hash/nav targets sit on this section so no extra scroll-margin is needed. */
-    padding-top: var(--site-header-height);
-    padding-bottom: 1.5rem;
-    scroll-snap-align: start;
-    scroll-snap-stop: normal;
+    /* Mobile lets sections grow naturally to avoid nested scroll traps. */
+    padding-top: calc(var(--site-header-height) + 1rem);
+    padding-bottom: 3rem;
   }
 
-  /* Usable content height inside a fold (below header + section bottom padding) */
   .site-fold-inner {
-    min-height: calc(100svh - var(--site-header-height) - 1.5rem);
+    min-height: auto;
   }
 
   .site-page-x {
     padding-inline: var(--site-page-padding-x);
+  }
+
+  @media (min-width: 768px) {
+    .site-fold-section {
+      min-height: 100svh;
+      /* Clears the fixed header; hash/nav targets sit on this section so no extra scroll-margin is needed. */
+      padding-top: var(--site-header-height);
+      padding-bottom: 1.5rem;
+      scroll-snap-align: start;
+      scroll-snap-stop: normal;
+    }
+
+    /* Usable content height inside a fold (below header + section bottom padding) */
+    .site-fold-inner {
+      min-height: calc(100svh - var(--site-header-height) - 1.5rem);
+    }
   }
 
   @media (min-width: 1024px) {
@@ -98,11 +110,23 @@
  * (avoids resting between sections). `prefers-reduced-motion` uses softer proximity snap.
  */
 html.home-fold-scroll {
-  scroll-snap-type: y mandatory;
+  scroll-snap-type: y proximity;
+}
+
+@media (min-width: 768px) {
+  html.home-fold-scroll {
+    scroll-snap-type: y mandatory;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html.home-fold-scroll {
     scroll-snap-type: y proximity;
+  }
+}
+
+@media (min-width: 768px) {
+  :root {
+    --site-header-height: 5.5rem;
   }
 }

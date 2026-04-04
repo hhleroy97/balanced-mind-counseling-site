@@ -54,7 +54,7 @@ export default async function PostPage({ params }: PostPageProps) {
 
   return (
     <article
-      className="site-page-x mx-auto w-full max-w-4xl space-y-8 pb-16 pt-[calc(var(--site-header-height)+1.75rem)]"
+      className="site-page-x mx-auto w-full max-w-4xl space-y-8 pb-14 pt-[calc(var(--site-header-height)+1.5rem)] md:pb-16 md:pt-[calc(var(--site-header-height)+1.75rem)]"
       style={{ scrollMarginTop: "var(--site-header-height)" }}
     >
       <div className="space-y-5">
@@ -66,10 +66,12 @@ export default async function PostPage({ params }: PostPageProps) {
         <p className="text-sm uppercase tracking-[0.18em] text-muted-foreground">
           {formatDate(post.publishedAt)}
         </p>
-        <h1 className="font-serif text-5xl tracking-tight text-foreground">
+        <h1 className="font-serif text-3xl tracking-tight text-foreground sm:text-4xl md:text-5xl">
           {post.title}
         </h1>
-        <p className="text-lg leading-8 text-muted-foreground">{post.excerpt}</p>
+        <p className="text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8">
+          {post.excerpt}
+        </p>
       </div>
 
       <SanityImage

@@ -18,18 +18,20 @@ export function ContactSection({
 
   return (
     <section id="contact" className="site-fold-section flex flex-col bg-card">
-      <div className="site-fold-inner site-page-x mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center overflow-y-auto">
-        <div className="grid w-full gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-stretch">
+      <div className="site-fold-inner site-page-x mx-auto flex w-full max-w-7xl flex-1 flex-col justify-start md:justify-center md:overflow-y-auto">
+        <div className="grid w-full gap-6 md:gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-stretch">
           <FadeIn className="h-full space-y-6">
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
               {siteSettings.contactEyebrow}
             </p>
-            <h2 className="max-w-2xl font-serif text-4xl tracking-tight text-foreground md:text-5xl">
+            <h2 className="max-w-2xl font-serif text-3xl tracking-tight text-foreground sm:text-4xl md:text-5xl">
               {siteSettings.contactHeading}
             </h2>
-            <p className="max-w-2xl text-lg leading-8 text-muted-foreground">{siteSettings.contactIntro}</p>
+            <p className="max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8">
+              {siteSettings.contactIntro}
+            </p>
 
-            <Card className="space-y-5 rounded-[1.75rem] p-8 shadow-none">
+            <Card className="space-y-5 rounded-[1.75rem] p-6 shadow-none sm:p-8">
               <div>
                 <p className="text-sm font-semibold uppercase tracking-[0.18em] text-muted-foreground">
                   {siteSettings.contactDetailsLabel}
@@ -50,7 +52,7 @@ export function ContactSection({
                   href={siteSettings.bookingUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex h-12 items-center justify-center rounded-full bg-primary px-6 text-sm font-semibold text-primary-foreground transition-all hover:-translate-y-0.5 hover:bg-primary/90"
+                  className="inline-flex h-12 w-full items-center justify-center rounded-full bg-primary px-6 text-sm font-semibold text-primary-foreground transition-all hover:-translate-y-0.5 hover:bg-primary/90 sm:w-auto"
                 >
                   Schedule Consultation
                 </a>
@@ -58,7 +60,7 @@ export function ContactSection({
                   href={siteSettings.clientPortalUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex h-12 items-center justify-center rounded-full border border-border px-6 text-sm font-semibold text-foreground transition-colors hover:bg-accent"
+                  className="inline-flex h-12 w-full items-center justify-center rounded-full border border-border px-6 text-sm font-semibold text-foreground transition-colors hover:bg-accent sm:w-auto"
                 >
                   Client Portal
                 </a>
@@ -83,7 +85,7 @@ export function ContactSection({
           </FadeIn>
 
           <FadeIn delay={0.08} className="flex h-full min-h-0 flex-col">
-            <Card className="flex h-full min-h-0 flex-col rounded-[1.75rem] p-8">
+            <Card className="flex h-full min-h-0 flex-col rounded-[1.75rem] p-6 sm:p-8">
               <ContactForm />
             </Card>
           </FadeIn>

@@ -7,12 +7,12 @@ export function GettingStarted({ siteSettings }: { siteSettings: SiteSettings })
 
   return (
     <section id="getting-started" className="site-fold-section flex flex-col bg-[#fbf8f2]">
-      <div className="site-fold-inner site-page-x mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center space-y-8 overflow-y-auto lg:space-y-10">
+      <div className="site-fold-inner site-page-x mx-auto flex w-full max-w-7xl flex-1 flex-col justify-start space-y-6 md:justify-center md:space-y-8 md:overflow-y-auto lg:space-y-10">
         <FadeIn className="space-y-4">
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
             {siteSettings.gettingStartedEyebrow}
           </p>
-          <h2 className="max-w-3xl font-serif text-4xl tracking-tight text-foreground md:text-5xl">
+          <h2 className="max-w-3xl font-serif text-3xl tracking-tight text-foreground sm:text-4xl md:text-5xl">
             {siteSettings.gettingStartedHeading}
           </h2>
         </FadeIn>
@@ -22,7 +22,7 @@ export function GettingStarted({ siteSettings }: { siteSettings: SiteSettings })
             const stepLabel = String(index + 1).padStart(2, "0");
             return (
               <FadeIn key={`${step.title}-${index}`} delay={index * 0.06}>
-                <Card className="h-full rounded-[1.75rem] p-8">
+                <Card className="h-full rounded-[1.75rem] p-6 sm:p-8">
                   <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">
                     Step {stepLabel}
                   </p>

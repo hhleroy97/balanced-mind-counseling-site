@@ -23,19 +23,19 @@ export function HeaderClient({
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-500",
+        "fixed inset-x-0 top-0 z-50 transition-all duration-500 [padding-top:env(safe-area-inset-top)]",
         !isHome || isCompact
           ? "border-b border-[#d7dfd8] bg-[#f6f1e7]/82 shadow-[0_10px_35px_rgba(38,65,54,0.08)] backdrop-blur-xl"
           : "border-b border-transparent bg-transparent",
       )}
     >
-      <div className="site-page-x mx-auto grid w-full max-w-7xl grid-cols-[11rem_minmax(0,1fr)] items-center gap-4 py-4 md:grid-cols-[13.5rem_minmax(0,1fr)_13.5rem]">
-        <div className="flex min-h-12 items-center justify-start sm:min-h-14">
+      <div className="site-page-x mx-auto flex w-full max-w-7xl items-center justify-between gap-3 py-3 md:grid md:grid-cols-[13.5rem_minmax(0,1fr)_13.5rem] md:gap-4 md:py-4">
+        <div className="flex min-h-10 min-w-0 flex-1 items-center justify-start sm:min-h-11 md:flex-none md:min-h-14">
           <Link
             href="/#home"
             className={cn(
-              "inline-flex transition-opacity duration-500",
-              !isHome || isCompact ? "opacity-100" : "pointer-events-none opacity-0",
+              "inline-flex min-w-0 transition-opacity duration-500",
+              !isHome || isCompact ? "opacity-100" : "md:pointer-events-none md:opacity-0",
             )}
           >
             <Image
@@ -44,7 +44,7 @@ export function HeaderClient({
               width={240}
               height={80}
               priority
-              className="h-12 w-auto max-w-[10.5rem] object-contain object-left sm:h-14 sm:max-w-[12.5rem]"
+              className="h-10 w-auto max-w-[8.75rem] object-contain object-left sm:h-11 sm:max-w-[9.5rem] md:h-14 md:max-w-[12.5rem]"
             />
           </Link>
         </div>

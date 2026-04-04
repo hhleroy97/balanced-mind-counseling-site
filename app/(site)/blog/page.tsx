@@ -36,7 +36,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
   return (
     <section
       id="top"
-      className="site-page-x mx-auto w-full max-w-7xl space-y-8 pb-14 pt-24 lg:pb-16 lg:pt-24"
+      className="site-page-x mx-auto w-full max-w-7xl space-y-8 pb-14 pt-[calc(var(--site-header-height)+1.5rem)] lg:pb-16 lg:pt-24"
       style={{ scrollMarginTop: "var(--site-header-height)" }}
     >
       <div className="space-y-2">

@@ -56,7 +56,10 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
   }
 
   return (
-    <section className="site-page-x mx-auto w-full max-w-4xl space-y-8 py-16">
+    <section
+      className="site-page-x mx-auto w-full max-w-4xl space-y-8 pb-14 pt-[calc(var(--site-header-height)+1.5rem)] md:pb-16 md:pt-[calc(var(--site-header-height)+1.75rem)]"
+      style={{ scrollMarginTop: "var(--site-header-height)" }}
+    >
       <Link
         href="/resources"
         className="text-sm font-medium text-muted-foreground hover:text-foreground"
@@ -66,10 +69,10 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
 
       <div className="space-y-5">
         <Badge>{resource.category}</Badge>
-        <h1 className="font-serif text-5xl tracking-tight text-foreground">
+        <h1 className="font-serif text-3xl tracking-tight text-foreground sm:text-4xl md:text-5xl">
           {resource.title}
         </h1>
-        <p className="text-lg leading-8 text-muted-foreground">
+        <p className="text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8">
           {resource.description}
         </p>
         <p className="text-sm uppercase tracking-[0.18em] text-muted-foreground">
@@ -86,9 +89,11 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
         className="aspect-[16/8] rounded-[2rem]"
       />
 
-      <div className="rounded-[2rem] border border-border bg-card p-8">
+      <div className="rounded-[2rem] border border-border bg-card p-6 sm:p-8">
         <div className="space-y-5">
-          <h2 className="font-serif text-3xl">{siteSettings.resourceDetailDownloadHeading}</h2>
+          <h2 className="font-serif text-2xl sm:text-3xl">
+            {siteSettings.resourceDetailDownloadHeading}
+          </h2>
           <p className="leading-7 text-muted-foreground">{siteSettings.resourceDetailDownloadBody}</p>
           {resource.fileUrl ? (
             <Button asChild size="lg">

@@ -29,7 +29,7 @@ export default async function ResourcesPage({
   ]);
 
   return (
-    <section className="site-page-x mx-auto w-full max-w-7xl space-y-8 pb-14 pt-24 lg:pb-16 lg:pt-24">
+    <section className="site-page-x mx-auto w-full max-w-7xl space-y-8 pb-14 pt-[calc(var(--site-header-height)+1.5rem)] lg:pb-16 lg:pt-24">
       <div className="space-y-2">
         <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-primary">
           {siteSettings.resourcesEyebrow}

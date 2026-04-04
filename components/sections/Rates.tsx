@@ -10,15 +10,17 @@ export function Rates({ siteSettings }: { siteSettings: SiteSettings }) {
 
   return (
     <section id="rates" className="site-fold-section flex flex-col bg-[#f6f1e7]">
-      <div className="site-fold-inner site-page-x mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center space-y-8 overflow-y-auto lg:space-y-10">
+      <div className="site-fold-inner site-page-x mx-auto flex w-full max-w-7xl flex-1 flex-col justify-start space-y-6 md:justify-center md:space-y-8 md:overflow-y-auto lg:space-y-10">
         <FadeIn className="space-y-4">
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
             {siteSettings.ratesEyebrow}
           </p>
-          <h2 className="max-w-3xl font-serif text-4xl tracking-tight text-foreground md:text-5xl">
+          <h2 className="max-w-3xl font-serif text-3xl tracking-tight text-foreground sm:text-4xl md:text-5xl">
             {siteSettings.ratesHeading}
           </h2>
-          <p className="max-w-2xl text-lg leading-8 text-muted-foreground">{siteSettings.ratesIntro}</p>
+          <p className="max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8">
+            {siteSettings.ratesIntro}
+          </p>
         </FadeIn>
 
         <div className="grid gap-6 lg:grid-cols-2">
@@ -28,7 +30,7 @@ export function Rates({ siteSettings }: { siteSettings: SiteSettings }) {
               delay={index * 0.06}
               className={index === 0 ? "lg:col-span-2" : undefined}
             >
-              <Card className="h-full rounded-[1.75rem] bg-white/85 p-8 shadow-none">
+              <Card className="h-full rounded-[1.75rem] bg-white/85 p-6 shadow-none sm:p-8">
                 <div className="flex items-center gap-3">
                   <SectionCardMedia
                     label={detail.title}

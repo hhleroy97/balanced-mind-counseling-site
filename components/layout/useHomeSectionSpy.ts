@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useCallback, useEffect, useLayoutEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { HOME_NAV_SECTION_IDS, type HomeNavSectionId } from "@/lib/home-section-nav";
 
@@ -49,24 +49,21 @@ export function useHomeSectionSpy(): HomeNavSectionId | null {
     setActiveSectionId(computeActiveSectionId());
   }, [isHome]);
 
-  useLayoutEffect(() => {
-    refresh();
-  }, [refresh]);
-
   useEffect(() => {
     if (!isHome) return;
 
-    refresh();
+    const frame = window.requestAnimationFrame(refresh);
     window.addEventListener("scroll", refresh, { passive: true });
     window.addEventListener("resize", refresh);
 
     return () => {
+      window.cancelAnimationFrame(frame);
       window.removeEventListener("scroll", refresh);
       window.removeEventListener("resize", refresh);
     };
   }, [isHome, refresh]);
 
-  return activeSectionId;
+  return isHome ? activeSectionId : null;
 }
 
 /**

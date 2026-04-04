@@ -77,7 +77,7 @@ export function ContactForm() {
         />
       </div>
 
-      <div className="flex shrink-0 items-center justify-between gap-4">
+      <div className="flex shrink-0 flex-col items-stretch gap-4 sm:flex-row sm:items-center sm:justify-between">
         <SubmitButton />
         <p
           role="status"

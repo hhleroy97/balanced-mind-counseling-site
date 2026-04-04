@@ -25,7 +25,7 @@ export function PostCard({ post }: { post: Post }) {
         width={1200}
         height={750}
         sizes="(min-width: 1280px) 30vw, (min-width: 1024px) 45vw, 100vw"
-        className="h-44 w-full bg-muted/40 object-cover object-left-bottom transition-[filter] group-hover:brightness-[1.02]"
+        className="h-40 w-full bg-muted/40 object-cover object-left-bottom transition-[filter] group-hover:brightness-[1.02] sm:h-44"
       />
       <CardHeader className="space-y-3 p-5">
         {tags.length ? (
@@ -39,7 +39,7 @@ export function PostCard({ post }: { post: Post }) {
           <p className="text-sm text-muted-foreground">{formatDate(post.publishedAt)}</p>
           <CardTitle
             className={cn(
-              "line-clamp-2 text-2xl leading-tight",
+              "line-clamp-2 text-xl leading-tight sm:text-2xl",
               href && "text-foreground transition-colors group-hover:text-primary",
             )}
           >
@@ -48,7 +48,9 @@ export function PostCard({ post }: { post: Post }) {
         </div>
       </CardHeader>
       <CardContent className="flex flex-1 flex-col justify-between space-y-4 p-5 pt-0">
-        <p className="line-clamp-2 leading-6 text-muted-foreground">{post.excerpt}</p>
+        <p className="line-clamp-3 text-sm leading-6 text-muted-foreground sm:text-base">
+          {post.excerpt}
+        </p>
         {href ? (
           <span className="text-sm font-semibold text-primary underline-offset-4 group-hover:underline">
             Read article

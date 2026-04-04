@@ -27,8 +27,8 @@ export function About({ siteSettings }: { siteSettings: SiteSettings }) {
 
   return (
     <section id="about" className="site-fold-section flex flex-col bg-[#fbf8f2]">
-      <div className="site-fold-inner site-page-x mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center overflow-y-auto">
-        <div className="grid w-full gap-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:items-start lg:gap-10">
+      <div className="site-fold-inner site-page-x mx-auto flex w-full max-w-7xl flex-1 flex-col justify-start md:justify-center md:overflow-y-auto">
+        <div className="grid w-full gap-6 sm:gap-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:items-start lg:gap-10">
         <FadeIn className="order-1 min-w-0 space-y-5 lg:order-2 lg:space-y-6">
           <header className="space-y-2 lg:space-y-3">
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#b18d4a]">
@@ -43,7 +43,7 @@ export function About({ siteSettings }: { siteSettings: SiteSettings }) {
             <p className="font-medium text-[#1f352c]/90">{siteSettings.aboutLead}</p>
           </div>
 
-          <div className="rounded-2xl border border-[#e2d9ca] bg-white/70 p-4 text-center shadow-[0_8px_30px_rgba(38,65,54,0.06)]">
+          <div className="rounded-2xl border border-[#e2d9ca] bg-white/70 p-4 text-center shadow-[0_8px_30px_rgba(38,65,54,0.06)] sm:p-5">
             <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#8f7440]">
               {siteSettings.connectHeading}
             </p>
@@ -69,7 +69,7 @@ export function About({ siteSettings }: { siteSettings: SiteSettings }) {
         <FadeIn delay={0.08} className="order-2 min-w-0 lg:order-1">
           <div className="mx-auto w-full max-w-md lg:mx-0 lg:max-w-none">
             <div className="overflow-hidden rounded-[2.25rem] border border-[#dbe2d8] shadow-[0_20px_55px_rgba(38,65,54,0.1)]">
-              <div className="relative h-[min(28rem,calc(100svh-var(--site-header-height)-5rem))] min-h-[16rem] w-full overflow-hidden rounded-none border-0 bg-[linear-gradient(180deg,_#f7f1e7_0%,_#eef1ea_55%,_#fdfbf7_100%)]">
+              <div className="relative h-[min(24rem,calc(100svh-var(--site-header-height)-6rem))] min-h-[16rem] w-full overflow-hidden rounded-none border-0 bg-[linear-gradient(180deg,_#f7f1e7_0%,_#eef1ea_55%,_#fdfbf7_100%)] sm:h-[min(28rem,calc(100svh-var(--site-header-height)-5rem))]">
                 <BotanicalAccent className="absolute right-4 top-4 z-[1] h-24 w-24 text-[#335244]/8 lg:right-5 lg:top-5 lg:h-28 lg:w-28" />
                 <SanityImage
                   source={portraitSource}
