@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Lora } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 
 import { absoluteUrl } from "@/lib/utils";
 
@@ -54,6 +55,7 @@ export default async function RootLayout({
     >
       <body className="min-h-full bg-background text-foreground">
         {children}
+        <Analytics />
       </body>
     </html>
   );

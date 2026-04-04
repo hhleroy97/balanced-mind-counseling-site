@@ -119,6 +119,7 @@ For the practice owner:
 
 ## Deployment Checklist
 
+- Enable Web Analytics in the Vercel project dashboard after the first deploy so `@vercel/analytics` can start collecting data
 - Add all environment variables in Vercel
 - Point Cloudflare DNS to Vercel
 - Add your production domain to Sanity CORS settings
@@ -126,6 +127,15 @@ For the practice owner:
 - Test the contact form end-to-end
 - Verify booking and client portal links
 - Submit the generated sitemap to Google Search Console
+
+## Vercel Analytics
+
+1. Open the project in Vercel.
+2. Go to `Analytics`.
+3. Enable `Web Analytics` for the project.
+4. Redeploy if Vercel prompts you to do so.
+
+The app already mounts Vercel's `Analytics` component in `app/layout.tsx`, so no additional environment variables are required for the basic integration.
 
 ## Notes
 
