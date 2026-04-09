@@ -2,9 +2,15 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { PortableTextRenderer } from "@/components/blog/PortableTextRenderer";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { SanityImage } from "@/components/shared/SanityImage";
 import { Badge } from "@/components/ui/badge";
-import { getPostBySlug, getPostSlugs } from "@/lib/content";
+import { getPostBySlug, getPostSlugs, getSiteSettings } from "@/lib/content";
+import {
+  buildBlogPostingJsonLd,
+  buildKeywords,
+  buildPostMetaDescription,
+} from "@/lib/seo";
 import { absoluteUrl, formatDate } from "@/lib/utils";
 
 type PostPageProps = {
@@ -20,31 +26,44 @@ export async function generateMetadata({
   params,
 }: PostPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const post = await getPostBySlug(slug);
+  const [post, siteSettings] = await Promise.all([
+    getPostBySlug(slug),
+    getSiteSettings(),
+  ]);
 
   if (!post) {
     return {};
   }
 
+  const description = buildPostMetaDescription(post, siteSettings.practiceName);
+
   return {
     title: post.seo?.title ?? post.title,
-    description: post.seo?.description ?? post.excerpt,
+    description,
+    alternates: {
+      canonical: `/blog/${slug}`,
+    },
+    keywords: buildKeywords(post.tags, post.title, "blog"),
     openGraph: {
       title: post.seo?.title ?? post.title,
-      description: post.seo?.description ?? post.excerpt,
+      description,
       url: absoluteUrl(`/blog/${slug}`),
       type: "article",
+      publishedTime: post.publishedAt,
     },
     twitter: {
       title: post.seo?.title ?? post.title,
-      description: post.seo?.description ?? post.excerpt,
+      description,
     },
   };
 }
 
 export default async function PostPage({ params }: PostPageProps) {
   const { slug } = await params;
-  const post = await getPostBySlug(slug);
+  const [post, siteSettings] = await Promise.all([
+    getPostBySlug(slug),
+    getSiteSettings(),
+  ]);
 
   if (!post) {
     notFound();
@@ -57,6 +76,9 @@ export default async function PostPage({ params }: PostPageProps) {
       className="site-page-x mx-auto w-full max-w-4xl space-y-8 pb-14 pt-[calc(var(--site-header-height)+1.5rem)] md:pb-16 md:pt-[calc(var(--site-header-height)+1.75rem)]"
       style={{ scrollMarginTop: "var(--site-header-height)" }}
     >
+      <JsonLd
+        data={buildBlogPostingJsonLd(post, siteSettings.practiceName)}
+      />
       <div className="space-y-5">
         <div className="flex flex-wrap gap-2">
           {tags.map((tag) => (

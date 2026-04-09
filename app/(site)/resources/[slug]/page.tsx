@@ -3,10 +3,16 @@ import type { Metadata } from "next";
 import { Download } from "lucide-react";
 import { notFound } from "next/navigation";
 
+import { JsonLd } from "@/components/seo/JsonLd";
 import { SanityImage } from "@/components/shared/SanityImage";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { getResourceBySlug, getResourceSlugs, getSiteSettings } from "@/lib/content";
+import {
+  buildKeywords,
+  buildResourceJsonLd,
+  buildResourceMetaDescription,
+} from "@/lib/seo";
 import { absoluteUrl, formatDate } from "@/lib/utils";
 
 type ResourcePageProps = {
@@ -22,24 +28,36 @@ export async function generateMetadata({
   params,
 }: ResourcePageProps): Promise<Metadata> {
   const { slug } = await params;
-  const resource = await getResourceBySlug(slug);
+  const [resource, siteSettings] = await Promise.all([
+    getResourceBySlug(slug),
+    getSiteSettings(),
+  ]);
 
   if (!resource) {
     return {};
   }
 
+  const description = buildResourceMetaDescription(
+    resource,
+    siteSettings.practiceName,
+  );
+
   return {
     title: resource.title,
-    description: resource.description,
+    description,
+    alternates: {
+      canonical: `/resources/${slug}`,
+    },
+    keywords: buildKeywords(resource.category, resource.title, "resource"),
     openGraph: {
       title: resource.title,
-      description: resource.description,
+      description,
       url: absoluteUrl(`/resources/${slug}`),
       type: "article",
     },
     twitter: {
       title: resource.title,
-      description: resource.description,
+      description,
     },
   };
 }
@@ -60,6 +78,9 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
       className="site-page-x mx-auto w-full max-w-4xl space-y-8 pb-14 pt-[calc(var(--site-header-height)+1.5rem)] md:pb-16 md:pt-[calc(var(--site-header-height)+1.75rem)]"
       style={{ scrollMarginTop: "var(--site-header-height)" }}
     >
+      <JsonLd
+        data={buildResourceJsonLd(resource, siteSettings.practiceName)}
+      />
       <Link
         href="/resources"
         className="text-sm font-medium text-muted-foreground hover:text-foreground"

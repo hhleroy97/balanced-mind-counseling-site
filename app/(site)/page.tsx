@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { JsonLd } from "@/components/seo/JsonLd";
 import { About } from "@/components/sections/About";
 import { BlogPreview } from "@/components/sections/BlogPreview";
 import { ContactSection } from "@/components/sections/ContactSection";
@@ -10,20 +11,34 @@ import { ResourcesPreview } from "@/components/sections/ResourcesPreview";
 import { Services } from "@/components/sections/Services";
 import { HomeFoldRoot } from "@/components/layout/HomeFoldRoot";
 import { getPosts, getResources, getSiteSettings } from "@/lib/content";
+import {
+  buildHomeMetaDescription,
+  buildSiteKeywords,
+  buildWebPageJsonLd,
+} from "@/lib/seo";
+
+const HOME_TITLE = "BALANCED MIND COUNSELING | Megan Ashley Smith";
 
 export async function generateMetadata(): Promise<Metadata> {
   const siteSettings = await getSiteSettings();
 
   return {
-    title: siteSettings.practiceName,
-    description: siteSettings.seoDescription,
+    title: {
+      absolute: HOME_TITLE,
+    },
+    description: buildHomeMetaDescription(siteSettings),
+    alternates: {
+      canonical: "/",
+    },
+    keywords: buildSiteKeywords(siteSettings),
     openGraph: {
-      title: siteSettings.practiceName,
-      description: siteSettings.seoDescription,
+      title: HOME_TITLE,
+      description: buildHomeMetaDescription(siteSettings),
+      url: "/",
     },
     twitter: {
-      title: siteSettings.practiceName,
-      description: siteSettings.seoDescription,
+      title: HOME_TITLE,
+      description: buildHomeMetaDescription(siteSettings),
     },
   };
 }
@@ -34,9 +49,17 @@ export default async function Home() {
     getPosts(),
     getResources(),
   ]);
+  const description = buildHomeMetaDescription(siteSettings);
 
   return (
     <HomeFoldRoot>
+      <JsonLd
+        data={buildWebPageJsonLd({
+          name: siteSettings.practiceName,
+          description,
+          path: "/",
+        })}
+      />
       <Hero siteSettings={siteSettings} />
       {siteSettings.showAbout && <About siteSettings={siteSettings} />}
       {siteSettings.showServices && <Services siteSettings={siteSettings} />}

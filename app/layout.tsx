@@ -3,11 +3,15 @@ import { Inter, Lora } from "next/font/google";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
 
+import { DEFAULT_ROBOTS } from "@/lib/seo";
 import { absoluteUrl } from "@/lib/utils";
 
 import "./globals.css";
 
 const GOOGLE_ANALYTICS_ID = "G-D1TCWT3SNJ";
+const SITE_TITLE = "BALANCED MIND COUNSELING | Megan Ashley Smith";
+const DEFAULT_SITE_DESCRIPTION =
+  "Balanced Mind Counseling provides therapy support for adults with clear intake, session, and scheduling guidance.";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -24,25 +28,34 @@ const lora = Lora({
 export const metadata: Metadata = {
   metadataBase: new URL(absoluteUrl()),
   title: {
-    default: "Balanced Mind Counseling",
-    template: "%s | Balanced Mind Counseling",
+    default: SITE_TITLE,
+    template: `%s | ${SITE_TITLE}`,
   },
-  description:
-    "Warm, modern therapy services with blog content, practical resources, and a clear path to scheduling.",
+  description: DEFAULT_SITE_DESCRIPTION,
+  alternates: {
+    canonical: "/",
+  },
+  keywords: [
+    "Balanced Mind Counseling",
+    "therapy",
+    "counseling",
+    "mental health",
+    "blog",
+    "resources",
+  ],
+  robots: DEFAULT_ROBOTS,
   openGraph: {
-    title: "Balanced Mind Counseling",
-    description:
-      "Warm, modern therapy services with blog content, practical resources, and a clear path to scheduling.",
-    url: absoluteUrl(),
+    title: SITE_TITLE,
+    description: DEFAULT_SITE_DESCRIPTION,
+    url: "/",
     siteName: "Balanced Mind Counseling",
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Balanced Mind Counseling",
-    description:
-      "Warm, modern therapy services with blog content, practical resources, and a clear path to scheduling.",
+    title: SITE_TITLE,
+    description: DEFAULT_SITE_DESCRIPTION,
   },
 };
 

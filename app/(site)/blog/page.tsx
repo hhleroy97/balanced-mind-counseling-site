@@ -1,18 +1,17 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 
+import { JsonLd } from "@/components/seo/JsonLd";
 import { PostGrid } from "@/components/blog/PostGrid";
 import { CategoryFilter } from "@/components/resources/CategoryFilter";
 import { Button } from "@/components/ui/button";
 import { getBlogPageData, getPostTags, getSiteSettings } from "@/lib/content";
-
-export async function generateMetadata(): Promise<Metadata> {
-  const siteSettings = await getSiteSettings();
-  return {
-    title: siteSettings.blogHeading,
-    description: siteSettings.blogIntro,
-  };
-}
+import {
+  buildBlogMetaDescription,
+  buildCanonicalPath,
+  buildCollectionPageJsonLd,
+  buildKeywords,
+} from "@/lib/seo";
 
 type BlogPageProps = {
   searchParams: Promise<{
@@ -20,6 +19,46 @@ type BlogPageProps = {
     tag?: string;
   }>;
 };
+
+export async function generateMetadata({
+  searchParams,
+}: BlogPageProps): Promise<Metadata> {
+  const siteSettings = await getSiteSettings();
+  const { page, tag } = await searchParams;
+  const canonicalPath = buildCanonicalPath("/blog", {
+    ...(page ? { page } : {}),
+    ...(tag ? { tag } : {}),
+  });
+  const title = tag
+    ? `${siteSettings.blogHeading} - ${tag}`
+    : siteSettings.blogHeading;
+  const description = buildBlogMetaDescription(siteSettings);
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: canonicalPath,
+    },
+    keywords: buildKeywords(
+      siteSettings.practiceName,
+      siteSettings.blogHeading,
+      siteSettings.blogIntro,
+      tag,
+      "blog",
+    ),
+    openGraph: {
+      title,
+      description,
+      url: canonicalPath,
+      type: "website",
+    },
+    twitter: {
+      title,
+      description,
+    },
+  };
+}
 
 export default async function BlogPage({ searchParams }: BlogPageProps) {
   const { page, tag } = await searchParams;
@@ -32,6 +71,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
       tag,
     }),
   ]);
+  const description = buildBlogMetaDescription(siteSettings);
 
   return (
     <section
@@ -39,6 +79,16 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
       className="site-page-x mx-auto w-full max-w-7xl space-y-8 pb-14 pt-[calc(var(--site-header-height)+1.5rem)] lg:pb-16 lg:pt-24"
       style={{ scrollMarginTop: "var(--site-header-height)" }}
     >
+      <JsonLd
+        data={buildCollectionPageJsonLd({
+          name: siteSettings.blogHeading,
+          description,
+          path: buildCanonicalPath("/blog", {
+            ...(page ? { page } : {}),
+            ...(tag ? { tag } : {}),
+          }),
+        })}
+      />
       <div className="space-y-2">
         <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-primary">
           {siteSettings.blogEyebrow}

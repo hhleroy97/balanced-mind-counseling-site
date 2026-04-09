@@ -27,6 +27,8 @@ cp .env.local.example .env.local
 
 3. Fill in the required values in `.env.local`.
 
+   Important for SEO: set `NEXT_PUBLIC_SITE_URL` to the deployed site origin in production so canonical tags, `robots.txt`, and `sitemap.xml` point at the live domain.
+
 4. Start the dev server:
 
 ```bash
@@ -142,6 +144,12 @@ The app already mounts Vercel's `Analytics` component in `app/layout.tsx`, so no
 The site also loads the Google tag (`gtag.js`) globally from `app/layout.tsx` using measurement ID `G-D1TCWT3SNJ`, so pageview tracking can start once the property is configured in Google Analytics.
 
 If the practice ever needs to switch to a different GA4 property, update the `GOOGLE_ANALYTICS_ID` constant in `app/layout.tsx`.
+
+## SEO Metadata
+
+The app now adds canonical metadata on the main site routes and includes JSON-LD structured data for the organization, website, homepage, blog pages, and resource detail pages.
+
+For production deployments, make sure `NEXT_PUBLIC_SITE_URL` matches the public domain exactly, including protocol and preferred host, so search engines see the correct canonical URLs.
 
 ## Notes
 
