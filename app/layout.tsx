@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import { Inter, Lora } from "next/font/google";
+import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
 
 import { absoluteUrl } from "@/lib/utils";
 
 import "./globals.css";
+
+const GOOGLE_ANALYTICS_ID = "G-D1TCWT3SNJ";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -57,6 +60,17 @@ export default async function RootLayout({
         {children}
         <Analytics />
       </body>
+      <Script
+        id="google-analytics"
+        src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}
+        strategy="afterInteractive"
+      />
+      <Script id="google-analytics-init" strategy="afterInteractive">
+        {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${GOOGLE_ANALYTICS_ID}');`}
+      </Script>
     </html>
   );
 }

@@ -137,6 +137,12 @@ For the practice owner:
 
 The app already mounts Vercel's `Analytics` component in `app/layout.tsx`, so no additional environment variables are required for the basic integration.
 
+## Google Analytics 4
+
+The site also loads the Google tag (`gtag.js`) globally from `app/layout.tsx` using measurement ID `G-D1TCWT3SNJ`, so pageview tracking can start once the property is configured in Google Analytics.
+
+If the practice ever needs to switch to a different GA4 property, update the `GOOGLE_ANALYTICS_ID` constant in `app/layout.tsx`.
+
 ## Notes
 
 - The contact form intentionally includes a hidden honeypot field.
