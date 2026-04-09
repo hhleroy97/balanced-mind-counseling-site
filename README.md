@@ -151,6 +151,8 @@ The app now adds canonical metadata on the main site routes and includes JSON-LD
 
 For production deployments, make sure `NEXT_PUBLIC_SITE_URL` matches the public domain exactly, including protocol and preferred host, so search engines see the correct canonical URLs.
 
+The app also serves `robots.txt` from `app/robots.ts` and `llms.txt` from `app/llms.txt/route.ts`.
+
 ## Notes
 
 - The contact form intentionally includes a hidden honeypot field.
